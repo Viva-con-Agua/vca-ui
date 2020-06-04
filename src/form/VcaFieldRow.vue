@@ -1,12 +1,10 @@
 <template>
-    <div class="vca-form">
-        <form>
+    <div class="vca-field-row">
             <slot></slot>
-        </form>
     </div>
 </template>
 <script>
 export default {
-  name: 'VcaForm'
+    name: 'VcaFieldRow'
 }
 </script>

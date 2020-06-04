@@ -1,4 +1,5 @@
 export { default as VcaForm } from './VcaForm';
-export { default as VcaRow } from './VcaRow';
+export { default as VcaField } from './VcaField';
+export { default as VcaFieldRow } from './VcaFieldRow';
 export { default as VcaInput } from './VcaInput';
-export { default as VcaMoneyInput} from './VcaMoneyInput.vue'
+export { default as VcaMoneyInput } from './VcaMoneyInput.vue';

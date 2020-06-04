@@ -1,1 +1,1 @@
-export { default as floated } from './floated';
+export { default as floated } from './floated'

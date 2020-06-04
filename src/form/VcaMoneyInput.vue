@@ -8,81 +8,78 @@
         </select>
     </div>
 </template>
-
 <script>
-
 import Money from '../utils/Money'
 export default {
-    name: "VcaMoneyInput",
-    props: {
-        amount: {
-            type: Object,
-            default: function () {
-                return {
-                    "amount": 1233,
-                    "currency": "EUR"
-                }
-            }
-        },
-        rules: {
-            type: Array,
-            default: () => [{
-                validator: () => false,
-                msg: ""
-            }]
-        },
-        label: {
-            "type": String,
-            "default": ""
-        },
-        disabled: {
-            "type": Boolean,
-            "default": false
-        },
-        size: {
-            type: String,
-            default: "medium"
-        }
-    },
-    data () {
+  name: 'VcaMoneyInput',
+  props: {
+    amount: {
+      type: Object,
+      default: function () {
         return {
-            "amountErrorState": false,
-            "errorMsg": 'donation.hints.error.amount.pattern'
+          'amount': 0,
+          'currency': 'EUR'
         }
+      }
     },
-    computed: {
-        displayAmount: {
-            get: function () { 
-                return Money.getInputString(this.amount.amount, this.amount.currency)
-            },
-            set: function(value) {
-                this.amount.amount = Money.getAmount(value)
-            }
-        }
+    rules: {
+      type: Array,
+      default: () => [{
+        validator: () => false,
+        msg: ''
+      }]
     },
-    methods: {
-        internalValidation(numeric) {
-            return this.rules.reduce((acc, rule) => {
-                var res = acc
-                if(rule.validator(numeric)) {
-                    res = {
-                        "valid": false,
-                        "msg": rule.msg
-                    }
-                }
-                return res
-            }, {
-                "valid": true
-            })
-        },
-        change() {
-            this.$emit("change", this.amount)
-        }
+    label: {
+      'type': String,
+      'default': ''
+    },
+    disabled: {
+      'type': Boolean,
+      'default': false
+    },
+    size: {
+      type: String,
+      default: 'medium'
     }
+  },
+  data () {
+    return {
+      'amountErrorState': false,
+      'errorMsg': 'donation.hints.error.amount.pattern'
+    }
+  },
+  computed: {
+    displayAmount: {
+      get: function () {
+        return Money.getInputString(this.amount.amount, this.amount.currency)
+      },
+      set: function (value) {
+        this.amount.amount = Money.getAmount(value)
+      }
+    }
+  },
+  methods: {
+    internalValidation (numeric) {
+      return this.rules.reduce((acc, rule) => {
+        var res = acc
+        if (rule.validator(numeric)) {
+          res = {
+            'valid': false,
+            'msg': rule.msg
+          }
+        }
+        return res
+      }, {
+        'valid': true
+      })
+    },
+    change () {
+      this.$emit('change', this.amount)
+    }
+  }
 }
 
 </script>
-
 <style scoped>
 .vca-money-input {
     width: 100%;
@@ -104,6 +101,5 @@ export default {
     border-left: none;
     border-top-left-radius: 0em;
     border-bottom-left-radius: 0em;
-
 }
 </style>
