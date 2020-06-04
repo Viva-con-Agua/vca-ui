@@ -1,8 +1,10 @@
 import * as form from './form'
+import * as elements from './elements'
 import * as directives from './directives'
 
 const allComponents = {
-  ...form
+  ...form,
+    ...elements
 }
 
 const VcaUi = Vue => {
@@ -15,3 +17,4 @@ const VcaUi = Vue => {
 export default VcaUi
 export * from './form'
 export * from './directives'
+export * from './elements'
