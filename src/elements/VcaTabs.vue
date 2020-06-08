@@ -2,8 +2,8 @@
     <div>
         <div class="vca-tabs">
             <ul>
-                <li v-for="tab in tabs" :key="tab.id" :class="{ 'is-active': tab.isActive }">
-                    <a :href="tab.href" @click="selectTab(tab)">{{ tab.title }}</a>
+                <li v-for="tab in tabs" @click="selectTab(tab)" :key="tab.id" :class="{ 'is-active': tab.isActive }">
+                    <a :href="tab.href">{{ tab.title }}</a>
                 </li>
             </ul>
         </div>
