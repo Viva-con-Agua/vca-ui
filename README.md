@@ -48,15 +48,25 @@ For row padding add the propertys `first` or `last`
 ```
 ### MoneyInput
 ```
-<vca-money-input v-model="money" :amount="money"/>
+<vca-money-input v-model="money" :amount="money" :rules="$v.value" select/>
 ```
-Edit `money` datatype.
+Edit `money` datatype. With `select` the input provide a dropsdown for currency selection. Default the currency will display as label.
 
+Money
 ```
 money: {
     amount: 0, //int in cents
     currency: "EUR" //currenry tag
 }
+```
+List of Currency. Use `select` option for selectable list.
+```
+            currencies: [
+                {
+                    label: '€',
+                    value: 'EUR'
+                }
+            ]
 ```
 ## Elements
 
