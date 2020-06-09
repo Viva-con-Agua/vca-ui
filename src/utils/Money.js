@@ -30,7 +30,9 @@ export default class Money {
 
   static convertDE (amount) {
     const money = amount.toString()
-    if (money.length === 1) {
+    if (money.length === 0) {
+        return '0,00'
+    } else if(money.length === 1) {
       return '0,0' + money
     } else if (money.length === 2) {
       return '0,' + money
