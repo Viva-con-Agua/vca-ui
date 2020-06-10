@@ -3,7 +3,7 @@
         <div class="vca-money-input">
             <div class="vca-input-container" :class="{focus: hasFocus}">
                 <label> {{ topText }} </label>
-                <input ref="ta" v-model="displayAmount" :placeholder="label" :disabled="disabled" @input="input" @change="change" @blur="blur" @focus="setFocus">
+                <input ref="ta" v-model="displayAmount" :placeholder="label" :disabled="disabled" @keyup="keyup()" @click="click" @change="change" @blur="blur" @focus="setFocus">
             </div>
             <div v-if="select" class="currency-select">
                 <select v-if="select" v-model="money.currency">
@@ -79,7 +79,9 @@ export default {
     data () {
         return {
             hasError: false,
-            hasFocus: false
+            hasFocus: false,
+            lastLength: 0,
+            lastPos: 0,
         }
     },
     computed: {
@@ -110,9 +112,13 @@ export default {
         change () {
             this.$emit('change', this.amount)
         },
-        input () {
+        keyup () {
             if (typeof this.$refs.ta.selectionStart == "number") {
-                this.$refs.ta.selectionStart = this.$refs.ta.selectionEnd = this.$refs.ta.value.length;
+                var diff = Math.abs(this.lastLength - this.$refs.ta.value.length)
+                this.$refs.ta.setSelectionRange(this.lastPos + diff, this.lastPos + diff)
+
+                this.lastLength = this.$refs.ta.value.length
+                this.lastPos = this.$refs.ta.selectionStart//this.$refs.ta.selectionEnd;
             } else if (typeof this.$refs.ta.createTextRange != "undefined") {
                 this.$refs.ta.focus();
                 var range = this.$refs.ta.createTextRange();
@@ -120,7 +126,13 @@ export default {
                 range.select();
             }
         },
+        click () {
+            this.lastLength =  this.$refs.ta.value.length
+            this.lastPos =  this.$refs.ta.selectionStart
+        },
         setFocus () {
+            this.lastLength =  this.$refs.ta.value.length
+            this.lastPos =  this.$refs.ta.selectionStart
             this.hasFocus = true
         },
         blur () {
