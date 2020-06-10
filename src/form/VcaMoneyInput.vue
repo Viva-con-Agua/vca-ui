@@ -1,15 +1,18 @@
 <template>
     <div class="vca-input" :class="{error: hasError}">
         <div class="vca-money-input">
-        <input ref="ta" v-model="displayAmount" :placeholder="label" :disabled="disabled" @change="change" @blur="validate">
-        <div v-if="select" class="currency-select">
-            <select v-if="select" v-model="money.currency">
-                <option v-for="cur in currency" :key="cur.value" label="€" :value="cur.value">{{ cur.label }}</option>
-            </select>
-        </div>
-        <div v-if="!select" class="currency-label">
-            <label v-if="!select" class="currency-select"> {{ currency[0].label }} </label>
-        </div>
+            <div class="vca-input-container" :class="{focus: hasFocus}">
+                <label> {{ topText }} </label>
+                <input ref="ta" v-model="displayAmount" :placeholder="label" :disabled="disabled" @keyup="keyup()" @click="click" @change="change" @blur="blur" @focus="setFocus">
+            </div>
+            <div v-if="select" class="currency-select">
+                <select v-if="select" v-model="money.currency">
+                    <option v-for="cur in currency" :key="cur.value" label="€" :value="cur.value">{{ cur.label }}</option>
+                </select>
+            </div>
+            <div v-if="!select" class="currency-label">
+                <label v-if="!select" class="currency-select"> {{ currency[0].label }} </label>
+            </div>
         </div>
         <span v-if="hasError">{{ errorMsg }}</span>
         <span v-else></span>
@@ -67,11 +70,18 @@ export default {
         select: {
             type: Boolean,
             default: false
+        },
+        topText: {
+            type: String,
+            default: ""
         }
     },
     data () {
         return {
-            hasError: false
+            hasError: false,
+            hasFocus: false,
+            lastLength: 0,
+            lastPos: 0,
         }
     },
     computed: {
@@ -101,6 +111,33 @@ export default {
         },
         change () {
             this.$emit('change', this.amount)
+        },
+        keyup () {
+            if (typeof this.$refs.ta.selectionStart == "number") {
+                var diff = Math.abs(this.lastLength - this.$refs.ta.value.length)
+                this.$refs.ta.setSelectionRange(this.lastPos + diff, this.lastPos + diff)
+
+                this.lastLength = this.$refs.ta.value.length
+                this.lastPos = this.$refs.ta.selectionStart//this.$refs.ta.selectionEnd;
+            } else if (typeof this.$refs.ta.createTextRange != "undefined") {
+                this.$refs.ta.focus();
+                var range = this.$refs.ta.createTextRange();
+                range.collapse(false);
+                range.select();
+            }
+        },
+        click () {
+            this.lastLength =  this.$refs.ta.value.length
+            this.lastPos =  this.$refs.ta.selectionStart
+        },
+        setFocus () {
+            this.lastLength =  this.$refs.ta.value.length
+            this.lastPos =  this.$refs.ta.selectionStart
+            this.hasFocus = true
+        },
+        blur () {
+            this.validate()
+            this.hasFocus = false
         },
         validate () {
             // if validate is set
