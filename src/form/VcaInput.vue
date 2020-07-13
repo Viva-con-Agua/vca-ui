@@ -3,7 +3,7 @@
             <input
                 :class="{error: hasError}"
                 :value="value"
-                type="value"
+                :type="type"
                 name="value"
                 @input="input"
                 :placeholder="placeholder"
@@ -17,6 +17,10 @@
 export default {
   name: 'VcaInput',
   props: {
+    type: {
+        type: String,
+        default: 'input'
+    },
     value: {
       type: String
     },
