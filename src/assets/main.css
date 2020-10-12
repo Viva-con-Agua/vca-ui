@@ -1,3 +1,8 @@
+
+body {
+    font-family: arial, sans-serif;
+}
+
 .vca-form {
     width: 100%;
     max-width: 100%;
@@ -16,11 +21,47 @@
     background-size: 100% 1px;
     background-repeat: repeat-x;
     background-position: center;
+    text-align: left;
     margin: 1em;
 }
+
+/*
+    CSS Positioning
+*/
+
+.vca-right,
+.vca-left,
+.vca-center {
+    width: 100%; 
+    display: flex; 
+}
+
+.vca-right {
+    justify-content: flex-end;
+}
+
+.vca-left {
+    justify-content: flex-start;
+}
+
+.vca-center {
+    justify-content: center;
+}
+
+.card-input {
+    text-align: left;
+}
+
+.vca-border {
+    border: solid thin #008fc3;
+}
+
 .vca-field-label label {
     background-color: white;
     padding-right: 2em;
+    color: #008fc3;
+    font-size: 1.2em;
+    font-weight: bold;
 }
 .vca-field-content{
     flex-direction: column;
@@ -140,7 +181,6 @@
 }
 .vca-input-container input {
     width: 100%;
-    border-radius: 0em;
     border-radius: 0.2rem;
     padding: 0.6em 1em;
     border: 1px solid #ccc;
@@ -237,7 +277,7 @@ ul li {
 
 .vca-card {
   /* Add shadows to create the "card" effect */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 2px rgba(0,0,0,0.2);
   transition: 0.3s;
   padding: 1.0em;
   margin: 0.9em;
@@ -250,6 +290,21 @@ ul li {
     flex: 1;
     margin: 2vw;
 }
+
+.card-input-label {
+    font-size: .9em;
+}
+
+.card-input-sub {
+    font-size: .75em;
+}
+
+.card-input-label,
+.card-input-sub {
+    color: #1f1b6e;
+    font-weight: bolder;
+}
+
 .stripe-payment-container, .paypal-payment-container {
     padding-top: 10px;
 }
@@ -291,6 +346,106 @@ ul li {
     -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
+
+/**
+    CSS vca-button
+**/
+
+
+.btn-center-container {
+    text-align: center;
+}
+
+.vca-button:hover  {
+    background-color: #006ab1;
+}
+
+.vca-button {
+    cursor: pointer;
+    margin-top: 1em;
+    font-size: 1.3em;
+    margin-bottom: 1em;
+    height: 45px;
+    width: 100%;
+    background-color: #008fc3;
+    color: #FFFFFF;
+    padding: 0.5em 1.2em;
+    border: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.vca-button-small:hover {
+    background-color: #006ab1;
+    color: #ffffff;
+}
+
+.vca-button:disabled,
+.vca-button-small:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.vca-button-small {
+    cursor: pointer;
+    margin-top: 1.2em;
+    font-size: 1em;
+    margin-bottom: 1em;
+    width: auto;
+    background-color: #fff;
+    color: #008fc3;
+    padding: 0.7em 1em;
+    border: solid thin #008fc3;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+/*
+    CSS SELECTION BUTTON
+*/
+.selection-button {
+    background-color: #fff;
+    color: #008fc3;
+
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    
+    border: solid thin transparent;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    
+    
+    width: auto;
+    margin: 1em 3em;
+    padding: 1.5em 2em;
+}
+
+.selection-button:hover {
+    border: solid thin #008fc3;
+}
+
+.selection-btn-selected {
+    background-color: #008fc3;
+    color: #fff;
+}
+
 .newsletter input[type=checkbox] {
     border: none;
     color: #ccc;
@@ -301,6 +456,39 @@ ul li {
 @media only screen and (max-width: 600px) {
     .stripe-donation-button {
         font-size: .9rem !important;
+    }
+
+    .card-input-label {
+        font-size: .8em;
+    }
+
+    .card-input-sub {
+        font-size: .6em;
+    }
+
+    /*
+        CSS SELECTION BUTTON
+    */
+    .vca-button {
+        white-space: nowrap;
+        font-size: .8em;
+    }
+    .vca-button-small {
+        height: auto;
+        white-space: nowrap;
+        font-size: .7em;
+    }
+    /*
+        CSS SELECTION BUTTON
+    */
+    .selection-button {
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+        -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+        -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+
+        font-size: 12px;
+        margin: 10px;
+        padding: 5px;
     }
     .vca-input select,
     .vca-input input,
