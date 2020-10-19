@@ -4,3 +4,4 @@ export { default as VcaCard } from './VcaCard';
 export { default as VcaShareButtons } from './VcaShareButtons';
 export { default as VcaShareIcons } from './VcaShareIcons';
 export { default as VcaProgressBar } from './VcaProgressBar';
+export { default as VcaTabBar } from './VcaTabBar';

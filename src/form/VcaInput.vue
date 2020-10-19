@@ -85,9 +85,11 @@ export default {
           if (firstRect.top < lastRect.top) {
               first.children[0].style.width = "100%";
               last.children[0].style.width = "100%";
+              last.children[0].style.marginLeft = "0";
           } else {
               first.children[0].style.width = "95%";
               last.children[0].style.width = "95%";
+              last.children[0].style.marginLeft = "5%";
           }
 
         })
