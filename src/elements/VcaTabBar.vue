@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="vca-tabs">
+        <div class="vca-tab-bar">
             <ul>
                 <li v-for="tab in tabs" @click="selectTab(tab)" :key="tab.id" :class="{ 'is-active': tab.isActive }">
                     <a :href="tab.href">{{ tab.title }}</a>
@@ -15,7 +15,7 @@
 </template>
 <script>
 export default {
-    name: 'VcaTabs',
+    name: 'VcaTabBar',
     data() {
         return { tabs: [] };
     },
@@ -24,6 +24,7 @@ export default {
     },
     methods: {
         selectTab(selectedTab) {
+            this.$emit("click", selectedTab)
             this.tabs.forEach(tab => {
                 tab.isActive = (tab.title == selectedTab.title);
             });

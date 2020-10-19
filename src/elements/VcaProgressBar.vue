@@ -48,7 +48,6 @@ export default {
 .vca-progress {
     text-align: left;
     font-size: large;
-    padding: 0.6em;
 }
 #progress {
     width: 100%;

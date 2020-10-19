@@ -53,7 +53,7 @@ export default {
     }
 
     .accord .header {
-      font-size: 1rem;
+      font-size: 1em;
     }
 
      /* Style the buttons that are used to open and close the accordion panel */
@@ -68,6 +68,7 @@ export default {
       border: none;
       outline: none;
       transition: 0.4s;
+      display: flex;
     }
 
     /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
