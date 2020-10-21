@@ -167,6 +167,15 @@ div.highlight {
 /*
     CSS Layout Elements
 */
+
+
+.tabs-details {
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+    padding: 1px;
+}
+
 .vca-tab-bar ul {
     border-spacing: 5px 0;
     overflow: hidden;
@@ -387,7 +396,7 @@ ul li {
 
 .card-input-label,
 .card-input-sub {
-    color: #1f1b6e;
+    color: #006ab1;
     font-weight: bolder;
 }
 
@@ -490,6 +499,12 @@ ul li {
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
+    .tabs-details {
+        border-left: solid thin #ddd;
+        border-right: solid thin #ddd;
+        box-shadow: 0 4px 8px -6px #000;
+        padding: 1px;
+    }
     .vca-tabs ul {
         flex-wrap: nowrap;
     }
