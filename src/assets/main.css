@@ -97,6 +97,10 @@ div.highlight {
     box-shadow: none;
     outline-color: #008fc2;
 }
+.vca-input-checkbox {
+    margin-bottom: .3em;
+    font-size: 0.8em;
+}
 .vca-input .error,
 .vca-input-checkbox.error input,
 .vca-country-select .error select {
@@ -482,7 +486,7 @@ ul li {
 }
 
 .stripe-payment-container, .paypal-payment-container {
-    padding-top: 10px;
+    padding: 10px;
 }
 .vca-input-border {
     border: 1px solid #ccc;
@@ -511,6 +515,9 @@ ul li {
 
     .card-input-label {
         font-size: 1rem;
+    }
+
+    .vca-input-checkbox {
     }
 
     .card-input-sub {
