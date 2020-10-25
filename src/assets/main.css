@@ -99,7 +99,6 @@ div.highlight {
 }
 .vca-input-checkbox {
     margin-bottom: .3em;
-    font-size: 0.8em;
 }
 .vca-input .error,
 .vca-input-checkbox.error input,
@@ -515,9 +514,6 @@ ul li {
 
     .card-input-label {
         font-size: 1rem;
-    }
-
-    .vca-input-checkbox {
     }
 
     .card-input-sub {
