@@ -218,15 +218,15 @@ ul li {
 .vca-tabs li {
     padding: 14px 16px;
     font-size: 1rem;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
 }
 .vca-tab-bar li,
 .vca-tabs li {
     background-color: inherit;
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
-    border-top: 1px solid #dddddd;
-    border-right: 1px solid #dddddd;
-    border-left: 1px solid #dddddd;
+    border-top: 1px solid #b8d8ea;
+    border-right: 1px solid #b8d8ea;
+    border-left: 1px solid #b8d8ea;
     flex: auto;
     flex-basis: 100%;
     outline: none;
@@ -237,9 +237,14 @@ ul li {
 /* Change background color of buttons on hover */
 .vca-tab-bar li:hover,
 .vca-tabs li:hover {
-    background-color: #ddd;
+    background-color: #b8d8ea;
 }
 /* Create an active/current tablink class */
+.vca-tab-bar li.is-active {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+
 .vca-tab-bar li.is-active,
 .vca-tabs li.is-active {
     background-color: #008fc3;
@@ -247,7 +252,7 @@ ul li {
 }
 .vca-tab-bar li.is-active:hover,
 .vca-tabs li.is-active:hover {
-    background-color: #0070ba;
+    background-color: #03558C;
 }
 .vca-tab-bar li a,
 .vca-tabs li a {
@@ -294,7 +299,7 @@ ul li {
 }
 
 .vca-button:hover  {
-    background-color: #006ab1;
+    background-color: #03558C;
 }
 
 .vca-button {
@@ -320,7 +325,7 @@ ul li {
 }
 
 .vca-button-small:hover {
-    background-color: #006ab1;
+    background-color: #03558C;
     color: #ffffff;
 }
 
@@ -399,7 +404,7 @@ ul li {
 
 .card-input-label,
 .card-input-sub {
-    color: #006ab1;
+    color: #03558C;
     font-weight: bolder;
 }
 
@@ -503,8 +508,8 @@ ul li {
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
     .tabs-details {
-        border-left: solid thin #ddd;
-        border-right: solid thin #ddd;
+        border-left: solid thin #b8d8ea;
+        border-right: solid thin #b8d8ea;
         box-shadow: 0 4px 8px -6px #000;
         padding: 1px;
     }
@@ -570,7 +575,7 @@ ul li {
 }
 
 .stripe-donation-button:hover {
-    background-color: #0070ba;
+    background-color: #03558C;
 }
 .stripe-donation-button:disabled,
 .stripe-donation-button:disabled {

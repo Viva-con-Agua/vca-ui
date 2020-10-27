@@ -93,7 +93,7 @@ export default {
     }
 
     .whatsapp:hover, .telegram:hover, .twitter:hover, .mobile:hover {
-        border: solid 2px #0070ba;
+        border: solid 2px #03558C;
     }
 
     .shareLinks {
