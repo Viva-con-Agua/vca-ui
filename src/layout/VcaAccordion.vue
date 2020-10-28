@@ -3,7 +3,7 @@
         <button @click="toggle" class="accordion">
           <div class="arrow" v-if="isActive">&minus;</div>
           <div class="arrow" v-else>&plus;</div>
-          <div>{{ header }}</div>
+          <div class="header">{{ header }}</div>
         </button>
         <transition name="fade" mode="out-in">
             <div v-if="isActive" class="panel" :class="{active: isActive}">
@@ -37,7 +37,7 @@ export default {
     }
 }
 </script>
-<style type="text/css">
+<style scoped>
     button {
       position: relative;
     }
@@ -45,11 +45,15 @@ export default {
       display: inline-block;
     }
     button .arrow {
-      margin-right: 5px;
+      margin-right: 10px;
     }
 
     .accord {
         margin-bottom: 5px;
+    }
+
+    .accord .header {
+      font-size: 1em;
     }
 
      /* Style the buttons that are used to open and close the accordion panel */
@@ -64,11 +68,12 @@ export default {
       border: none;
       outline: none;
       transition: 0.4s;
+      display: flex;
     }
 
     /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
     .active, .accordion:hover {
-      background-color: #006ab1;
+      background-color: #03558C;
     }
 
     /* Style the accordion panel. Note: hidden by default */

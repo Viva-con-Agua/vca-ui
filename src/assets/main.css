@@ -1,8 +1,29 @@
+/** MAIN CSS **/
 
+/* Default CSS mobile first
+/* Extra small devices (phones, 600px and down) */
 body {
     font-family: arial, sans-serif;
+    font-size: 0.8rem;
+    margin: 10px 0;
 }
 
+div.highlight {
+    color: white;
+    background-color: #008fc3;
+    font-weight: bold;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+.vca-border {
+    padding: 10px;
+    border: solid thin #008fc3;
+}
+
+/*
+    CSS Form Elements 
+*/
 .vca-form {
     width: 100%;
     max-width: 100%;
@@ -11,18 +32,116 @@ body {
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box;   
 }
+
 .vca-field {
     display: flex;
     flex-direction: column;
-    margin: 0 0 1em;
 }
+
 .vca-field-label {
     background-image: linear-gradient(to bottom, #008fc3 0%, #008fc3 51%, transparent 51%);
     background-size: 100% 1px;
     background-repeat: repeat-x;
     background-position: center;
     text-align: left;
-    margin: 1em;
+    margin: 1em 0;
+}
+
+.vca-field-label label {
+    background-color: white;
+    padding-right: 2em;
+    color: #008fc3;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.vca-input select {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 0.2rem;
+    padding: 0.6em 1em;
+    box-shadow: none;
+    outline-color: #008fc2;  
+    background-color:white;
+    font-size: 0.8rem;
+}
+.vca-input select option {
+  background:white;
+  border-top:1px solid #444;
+  padding:.3em 1em .3em 1em;
+}
+.vca-input {
+    width: 100%;
+    box-shadow: none;
+    margin: 0 0 1em;
+    flex-basis: 150px;
+    flex-grow: 1;
+    flex-shrink: 1; 
+}
+.vca-input input {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 0.2rem;
+    padding: 0.6em 1em;
+    box-shadow: none;
+    outline-color: #008fc2;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;
+    font-size: 0.8rem;
+}
+.vca-input input[type=checkbox] {
+    border: 1px solid #ccc;
+    border-radius: 0.2rem;
+    padding: 0.6em 1em;
+    box-shadow: none;
+    outline-color: #008fc2;
+}
+.vca-input-checkbox {
+    margin-bottom: .3em;
+}
+.vca-input .error,
+.vca-input-checkbox.error input,
+.vca-country-select .error select {
+    border-color: #dc3545;
+}
+.vca-input.error span,
+.vca-country-select.error span {
+    display: block;
+}
+.vca-input.error span,
+.vca-input-checkbox.error span,
+.vca-country-select.error span {
+    width: 100%;
+    color: #dc3545;
+}
+
+/* Margin will automatically be calculated in src/form/VcaInput.vue */
+.vca-input.error.last span {
+    text-align: left;
+    margin-left: 5%;
+}
+.vca-input-checkbox.error span { 
+    float: left;
+}
+
+.vca-input-container input {
+    width: 100%;
+    border-radius: 0.2rem;
+    padding: 0.6em 1em;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-top-right-radius: 0em;
+    border-bottom-right-radius: 0em;
+    outline-color: #008fc2;
+    text-align: right;
+}
+.vca-input-container label{
+    position: absolute;
+    padding-left: 0.4em;
+    font-size: 10px;
+    font-weight: 600;
+    
 }
 
 /*
@@ -48,22 +167,105 @@ body {
     justify-content: center;
 }
 
-.card-input {
-    text-align: left;
+/*
+    CSS Layout Elements
+*/
+
+
+.tabs-details {
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+    padding: 1px;
 }
 
-.vca-border {
-    border: solid thin #008fc3;
+.vca-tab-bar ul {
+    border-spacing: 5px 0;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 0;
+    padding: 0;
+    border: 1px solid #ccc;
+    margin-bottom: -1px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: #fff;
+}
+.vca-tabs ul {
+    border-spacing: 5px 0;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    border: 1px solid #ccc;
+    margin-bottom: -1px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: #fff;
 }
 
-.vca-field-label label {
-    background-color: white;
-    padding-right: 2em;
+ul li {
+    list-style: none;
+}
+/* Style the buttons inside the tab */
+.vca-tab-bar li {
+    padding: 17px 5px;
+    font-size: 1em;
+}
+.vca-tabs li {
+    padding: 14px 16px;
+    font-size: 1rem;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+.vca-tab-bar li,
+.vca-tabs li {
+    background-color: inherit;
+    border-top: 1px solid #b8d8ea;
+    border-right: 1px solid #b8d8ea;
+    border-left: 1px solid #b8d8ea;
+    flex: auto;
+    flex-basis: 100%;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: center;
+}
+/* Change background color of buttons on hover */
+.vca-tab-bar li:hover,
+.vca-tabs li:hover {
+    background-color: #b8d8ea;
+}
+/* Create an active/current tablink class */
+.vca-tab-bar li.is-active {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+
+.vca-tab-bar li.is-active,
+.vca-tabs li.is-active {
+    background-color: #008fc3;
+    border-color: #008fc3 #008fc3 #008fc3;
+}
+.vca-tab-bar li.is-active:hover,
+.vca-tabs li.is-active:hover {
+    background-color: #03558C;
+}
+.vca-tab-bar li a,
+.vca-tabs li a {
     color: #008fc3;
-    font-size: 1.2em;
     font-weight: bold;
+    text-decoration: none;
 }
-.vca-field-content{
+.vca-tab-bar li.is-active a,
+.vca-tabs li.is-active a {
+    color: white;
+}
+
+.vca-field-content {
     flex-direction: column;
     margin: 0 0 1em;
 }
@@ -77,6 +279,8 @@ body {
     width: 100%;
     box-shadow: none;
 }
+
+/* Width will automatically be calculated in src/form/VcaInput.vue */
 .vca-field-row .first input,
 .vca-field-row .last input {
     width: 95%;
@@ -86,68 +290,124 @@ body {
     box-shadow: none;
     text-align: right;
 }
-.vca-input select {
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 0.2rem;
-    padding: 0.6em 1em;
-    box-shadow: none;
-    outline-color: #008fc2;  
-    background-color:white;
+
+/**
+    CSS vca-button
+**/
+.btn-center-container {
+    text-align: center;
 }
-.vca-input select option {
-  background:white;
-  border-top:1px solid #444;
-  padding:.3em 1em .3em 1em;
+
+.vca-button:hover  {
+    background-color: #03558C;
 }
-.vca-input {
-    width: 100%;
-    box-shadow: none;
-    margin: 0 0 1em;
-    flex-basis: 150px;
-    flex-grow: 1;
-    flex-shrink: 1; 
-}
-.vca-input input {
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 0.2rem;
-    padding: 0.6em 1em;
-    box-shadow: none;
-    outline-color: #008fc2;
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;   
-}
-.vca-input input[type=checkbox] {
-    border: 1px solid #ccc;
-    border-radius: 0.2rem;
-    padding: 0.6em 1em;
-    box-shadow: none;
-    outline-color: #008fc2;
-}
-.vca-input .error,
-.vca-input-checkbox.error input,
-.vca-country-select .error select {
-    border-color: #dc3545;
-}
-.vca-input.error span,
-.vca-country-select.error span {
+
+.vca-button {
+    cursor: pointer;
     display: block;
-}
-.vca-input.error span,
-.vca-input-checkbox.error span,
-.vca-country-select.error span {
+    margin: 1em auto;
+    font-size: 1em;
     width: 100%;
-    color: #dc3545;
+    height: auto;
+    background-color: #008fc3;
+    color: #FFFFFF;
+    padding: 0.5em 1.2em;
+    border: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
-.vca-input.error.last span {
-    text-align: left;
-    margin-left: 5%;
+
+.vca-button-small:hover {
+    background-color: #03558C;
+    color: #ffffff;
 }
-.vca-input-checkbox.error span { 
-    float: left;
+
+.vca-button:disabled,
+.vca-button-small:disabled {
+    opacity: 0.3;
+    cursor: default;
 }
+
+.vca-button-small {
+    cursor: pointer;
+    font-size: .7rem;
+    height: auto;
+    margin: 1em auto;
+    font-size: 1em;
+    display: block;
+    width: auto;
+    background-color: #fff;
+    color: #008fc3;
+    padding: 0.7em 1em;
+    border: solid thin #008fc3;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+/*
+    CSS SELECTION BUTTON
+*/
+.selection-button {
+    background-color: #fff;
+    color: #008fc3;
+
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    
+    border: solid thin transparent;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width: auto;
+    
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+
+    font-size: .75rem;
+    margin: 10px;
+    padding: 5px;
+}
+
+.selection-button:hover {
+    border: solid thin #008fc3;
+}
+
+.selection-btn-selected {
+    background-color: #008fc3;
+    color: #fff;
+}
+
+.card-input-label {
+    font-size: .9rem;
+}
+
+.card-input-sub {
+    font-size: .8rem;
+}
+
+.card-input-label,
+.card-input-sub {
+    color: #03558C;
+    font-weight: bolder;
+}
+
 .vca-label {
     width: 100%;
     display: flex;
@@ -178,24 +438,6 @@ body {
 }
 .vca-money-container {
     width: 80%;
-}
-.vca-input-container input {
-    width: 100%;
-    border-radius: 0.2rem;
-    padding: 0.6em 1em;
-    border: 1px solid #ccc;
-    border-right: none;
-    border-top-right-radius: 0em;
-    border-bottom-right-radius: 0em;
-    outline-color: #008fc2;
-    text-align: right;
-}
-.vca-input-container label{
-    position: absolute;
-    padding-left: 0.4em;
-    font-size: 10px;
-    font-weight: 600;
-    
 }
 .focus label {
     color: #008fc3;
@@ -231,57 +473,13 @@ body {
 .currency-label label {
     width: 100%;
 }
-.vca-tabs ul {
-    border-spacing: 5px 0;
-    overflow: hidden;
-    display: flex;
-    padding: 0;
-    border: 1px solid #ccc;
-    margin-bottom: -1px;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    background-color: #fff;
-}
-ul li {
-    list-style: none;
-}
-/* Style the buttons inside the tab */
-.vca-tabs li {
-    background-color: inherit;
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
-    border-top: 1px solid #dddddd;
-    border-right: 1px solid #dddddd;
-    border-left: 1px solid #dddddd;
-    flex: auto;
-    flex-basis: 100%;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
-}
-/* Change background color of buttons on hover */
-.vca-tabs li:hover {
-    background-color: #ddd;
-}
-/* Create an active/current tablink class */
-.vca-tabs li.is-active {
-    background-color: #008fc3;
-    border-color: #008fc3 #008fc3 #008fc3;
-}
-.vca-tabs li.is-active a {
-    color: white;
-}
 
 .vca-card {
-  /* Add shadows to create the "card" effect */
-  box-shadow: 0 4px 8px 2px rgba(0,0,0,0.2);
-  transition: 0.3s;
-  padding: 1.0em;
-  margin: 0.9em;
-  text-align: center;
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 2px rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 1.0em;
+    margin: 20px 10px;
 }
 /* Create three equal columns that sits next to each other */
 .vca-column {
@@ -291,22 +489,8 @@ ul li {
     margin: 2vw;
 }
 
-.card-input-label {
-    font-size: .9em;
-}
-
-.card-input-sub {
-    font-size: .75em;
-}
-
-.card-input-label,
-.card-input-sub {
-    color: #1f1b6e;
-    font-weight: bolder;
-}
-
 .stripe-payment-container, .paypal-payment-container {
-    padding-top: 10px;
+    padding: 10px;
 }
 .vca-input-border {
     border: 1px solid #ccc;
@@ -315,8 +499,83 @@ ul li {
     box-shadow: none;
     outline-color: #008fc2;
 }
-.stripe-donation-button:hover, .vca-tabs li.is-active:hover {
-    background-color: #0070ba;
+
+.newsletter input[type=checkbox] {
+    border: none;
+    color: #ccc;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .tabs-details {
+        border-left: solid thin #b8d8ea;
+        border-right: solid thin #b8d8ea;
+        box-shadow: 0 4px 8px -6px #000;
+        padding: 1px;
+    }
+    .vca-tabs ul {
+        flex-wrap: nowrap;
+    }
+
+    .card-input-label {
+        font-size: 1rem;
+    }
+
+    .card-input-sub {
+        font-size: .9rem;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    body {
+        font-size: 1rem;
+    }
+
+    .vca-field-label label {
+        font-size: 1.2rem;
+    }
+
+    .vca-input select,
+    .vca-input input,
+    .error span {
+        font-size: 1rem;
+    }
+
+    .vca-button {
+        font-size: 1.3em;
+        height: 45px;
+        width: 70%;
+        white-space: normal;
+    }
+
+    .vca-button-small {
+        white-space: normal;
+        font-size: .9em;
+    }
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .selection-button {
+        box-shadow: none;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        
+        font-size: 1rem;
+        margin: 1em 3em;
+        padding: 1.5em 2em;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}
+
+.stripe-donation-button:hover {
+    background-color: #03558C;
 }
 .stripe-donation-button:disabled,
 .stripe-donation-button:disabled {
@@ -345,167 +604,4 @@ ul li {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-}
-
-/**
-    CSS vca-button
-**/
-
-
-.btn-center-container {
-    text-align: center;
-}
-
-.vca-button:hover  {
-    background-color: #006ab1;
-}
-
-.vca-button {
-    cursor: pointer;
-    margin-top: 1em;
-    font-size: 1.3em;
-    margin-bottom: 1em;
-    height: 45px;
-    width: 100%;
-    background-color: #008fc3;
-    color: #FFFFFF;
-    padding: 0.5em 1.2em;
-    border: 0;
-    text-transform: uppercase;
-    font-weight: bold;
-    text-decoration: none;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-    -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-}
-
-.vca-button-small:hover {
-    background-color: #006ab1;
-    color: #ffffff;
-}
-
-.vca-button:disabled,
-.vca-button-small:disabled {
-    opacity: 0.3;
-    cursor: default;
-}
-
-.vca-button-small {
-    cursor: pointer;
-    margin-top: 1.2em;
-    font-size: 1em;
-    margin-bottom: 1em;
-    width: auto;
-    background-color: #fff;
-    color: #008fc3;
-    padding: 0.7em 1em;
-    border: solid thin #008fc3;
-    text-transform: uppercase;
-    font-weight: bold;
-    text-decoration: none;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-    -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-}
-
-/*
-    CSS SELECTION BUTTON
-*/
-.selection-button {
-    background-color: #fff;
-    color: #008fc3;
-
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: bold;
-    text-decoration: none;
-    
-    border: solid thin transparent;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    
-    
-    width: auto;
-    margin: 1em 3em;
-    padding: 1.5em 2em;
-}
-
-.selection-button:hover {
-    border: solid thin #008fc3;
-}
-
-.selection-btn-selected {
-    background-color: #008fc3;
-    color: #fff;
-}
-
-.newsletter input[type=checkbox] {
-    border: none;
-    color: #ccc;
-}
-/*********************
-*** SCREEN 600 PX ***
-**********************/
-@media only screen and (max-width: 600px) {
-    .stripe-donation-button {
-        font-size: .9rem !important;
-    }
-
-    .card-input-label {
-        font-size: .8em;
-    }
-
-    .card-input-sub {
-        font-size: .6em;
-    }
-
-    /*
-        CSS SELECTION BUTTON
-    */
-    .vca-button {
-        white-space: nowrap;
-        font-size: .8em;
-    }
-    .vca-button-small {
-        height: auto;
-        white-space: nowrap;
-        font-size: .7em;
-    }
-    /*
-        CSS SELECTION BUTTON
-    */
-    .selection-button {
-        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-        -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-        -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-
-        font-size: 12px;
-        margin: 10px;
-        padding: 5px;
-    }
-    .vca-input select,
-    .vca-input input,
-    .error span,
-    .vca-field-label label {
-        font-size: .8em;
-    }
-}
-/*********************
-*** SCREEN 359 PX ***
-**********************/
-@media only screen and (max-width: 359px) {
-    .vca-tabs ul {
-        flex-wrap: wrap;
-    }
-    .vca-field-row .first input,
-    .vca-field-row .last input {
-        width: 100%;
-    }
 }
