@@ -60,6 +60,6 @@ export default {
 .progress-bar {
     width: 1%;
     height: 30px;
-    background-color: #1f1b6e;
+    background-color: #03558C;
 }
 </style>
