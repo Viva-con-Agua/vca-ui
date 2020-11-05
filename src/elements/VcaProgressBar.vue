@@ -44,22 +44,3 @@ export default {
 
 }
 </script>
-<style scoped>
-.vca-progress {
-    text-align: left;
-    font-size: large;
-}
-#progress {
-    width: 100%;
-    border-top: solid thin #008fc3;
-    border-left: solid thin #008fc3;
-    border-bottom: solid thin #008fc3;
-    border-right: solid thin #008fc3;
-}
-
-.progress-bar {
-    width: 1%;
-    height: 30px;
-    background-color: #03558C;
-}
-</style>

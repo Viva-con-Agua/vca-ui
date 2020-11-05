@@ -3,8 +3,7 @@
 /* Default CSS mobile first
 /* Extra small devices (phones, 600px and down) */
 body {
-    font-family: arial, sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.8em;
     margin: 10px 0;
 }
 
@@ -21,6 +20,10 @@ div.highlight {
     border: solid thin #008fc3;
 }
 
+.vca-tab-bar, .vca-tabs, .accordion, .vca-button, .vca-button-small, .border-button {
+    font-family: Ubuntu, Arial, Helvetica !important;
+}
+
 /*
     CSS Form Elements 
 */
@@ -34,6 +37,7 @@ div.highlight {
 }
 
 .vca-field {
+    padding: 1.0em;
     display: flex;
     flex-direction: column;
 }
@@ -51,51 +55,55 @@ div.highlight {
     background-color: white;
     padding-right: 2em;
     color: #008fc3;
-    font-size: 0.9rem;
+    font-size: 0.9em;
     font-weight: bold;
+}
+
+.vca-money-input,
+.vca-input input[type=checkbox],
+.vca-input-date input,
+.vca-input select,
+.vca-input input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .vca-input select {
     width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 0.2rem;
     padding: 0.6em 1em;
-    box-shadow: none;
-    outline-color: #008fc2;  
-    background-color:white;
-    font-size: 0.8rem;
+    background-color: white;
+    font-size: 0.8em;
 }
 .vca-input select option {
   background:white;
   border-top:1px solid #444;
   padding:.3em 1em .3em 1em;
 }
+.vca-input-date,
+.vca-input-checkbox,
 .vca-input {
     width: 100%;
-    box-shadow: none;
     margin: 0 0 1em;
     flex-basis: 150px;
     flex-grow: 1;
     flex-shrink: 1; 
 }
+
+/* Overrwrite v-select style here */
+.vs__search {
+    padding: 0.3em 1em;
+}
+
+.vca-input-date input,
 .vca-input input {
     width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 0.2rem;
     padding: 0.6em 1em;
-    box-shadow: none;
-    outline-color: #008fc2;
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box;
-    font-size: 0.8rem;
 }
 .vca-input input[type=checkbox] {
-    border: 1px solid #ccc;
-    border-radius: 0.2rem;
     padding: 0.6em 1em;
-    box-shadow: none;
-    outline-color: #008fc2;
 }
 .vca-input-checkbox {
     margin-bottom: .3em;
@@ -103,7 +111,7 @@ div.highlight {
 .vca-input .error,
 .vca-input-checkbox.error input,
 .vca-country-select .error select {
-    border-color: #dc3545;
+    border-color: #e50846;
 }
 .vca-input.error span,
 .vca-country-select.error span {
@@ -113,7 +121,7 @@ div.highlight {
 .vca-input-checkbox.error span,
 .vca-country-select.error span {
     width: 100%;
-    color: #dc3545;
+    color: #e50846;
 }
 
 /* Margin will automatically be calculated in src/form/VcaInput.vue */
@@ -127,7 +135,7 @@ div.highlight {
 
 .vca-input-container input {
     width: 100%;
-    border-radius: 0.2rem;
+    border-radius: 0.2em;
     padding: 0.6em 1em;
     border: 1px solid #ccc;
     border-right: none;
@@ -143,7 +151,80 @@ div.highlight {
     font-weight: 600;
     
 }
+.vca-money-input {
+    display: inline-flex;
+    width: 100%;
+}
 
+.vca-money-input input {
+  border: none;
+  color: #777;
+}
+
+.vca-money-input .vca-input-container label {
+    font-size: .8em;
+}
+.vca-money-container {
+    width: 80%;
+}
+.focus label {
+    color: #008fc3;
+}
+.currency-select {
+    width: 20%;
+    border: none;
+    border-left: none;
+    border-top-left-radius: 0em;
+    border-bottom-left-radius: 0em;
+}
+.currency-select select {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-left: none;
+    border-top-left-radius: 0em;
+    border-bottom-left-radius: 0em;
+    background: rgba(34,36,38,.15);
+    box-shadow: none;
+}
+.currency-label {
+    background: rgba(34,36,38,.15);
+    width: 20%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: none;
+    border-left: none;
+    border-top-left-radius: 0em;
+    border-bottom-left-radius: 0em;
+}
+.currency-label label {
+    width: 100%;
+}
+
+.dropdown-container {
+    margin-bottom: 0.5em;
+}
+
+.dropdown-option {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+.option-title {
+    font-weight: bold;
+    margin-right: 0.5em;
+}
+
+.option-subtitle {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: baseline;
+    list-style-type: none;
+    margin-bottom: 1em;
+}
 /*
     CSS Positioning
 */
@@ -170,13 +251,15 @@ div.highlight {
 /*
     CSS Layout Elements
 */
-
+.vca-card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 2px rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 1.0em;
+}
 
 .tabs-details {
-    border-left: none;
-    border-right: none;
-    box-shadow: none;
-    padding: 1px;
+    padding: 1em;
 }
 
 .vca-tab-bar ul {
@@ -199,7 +282,6 @@ div.highlight {
     display: flex;
     flex-wrap: wrap;
     padding: 0;
-    border: 1px solid #ccc;
     margin-bottom: -1px;
     border-top: none;
     border-left: none;
@@ -217,16 +299,15 @@ ul li {
 }
 .vca-tabs li {
     padding: 14px 16px;
-    font-size: 1rem;
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
+    font-size: 1em;
+    border-top-left-radius: 0.25em;
+    border-top-right-radius: 0.25em;
 }
 .vca-tab-bar li,
 .vca-tabs li {
+    text-transform: uppercase;
     background-color: inherit;
-    border-top: 1px solid #b8d8ea;
-    border-right: 1px solid #b8d8ea;
-    border-left: 1px solid #b8d8ea;
+    border: solid thin #ccc;
     flex: auto;
     flex-basis: 100%;
     outline: none;
@@ -234,15 +315,25 @@ ul li {
     transition: 0.3s;
     text-align: center;
 }
+.vca-tab-bar li a,
+.vca-tabs li a {
+    transition: 0.3s;  
+}
+/* Change background color of buttons on hover */
+.vca-tab-bar li:hover a,
+.vca-tabs li:hover a {
+    color: #002e6d;
+    border-color: #002e6d;
+}
 /* Change background color of buttons on hover */
 .vca-tab-bar li:hover,
 .vca-tabs li:hover {
-    background-color: #b8d8ea;
+    border-color: #002e6d;
 }
 /* Create an active/current tablink class */
 .vca-tab-bar li.is-active {
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
+    border-top-left-radius: 0.25em;
+    border-top-right-radius: 0.25em;
 }
 
 .vca-tab-bar li.is-active,
@@ -252,7 +343,8 @@ ul li {
 }
 .vca-tab-bar li.is-active:hover,
 .vca-tabs li.is-active:hover {
-    background-color: #03558C;
+    background-color: #002e6d;
+    border-color: #002e6d #002e6d #002e6d;
 }
 .vca-tab-bar li a,
 .vca-tabs li a {
@@ -299,7 +391,7 @@ ul li {
 }
 
 .vca-button:hover  {
-    background-color: #03558C;
+    background-color: #002e6d;
 }
 
 .vca-button {
@@ -309,6 +401,7 @@ ul li {
     font-size: 1em;
     width: 100%;
     height: auto;
+    line-height: 2em;
     background-color: #008fc3;
     color: #FFFFFF;
     padding: 0.5em 1.2em;
@@ -325,7 +418,8 @@ ul li {
 }
 
 .vca-button-small:hover {
-    background-color: #03558C;
+    background-color: #002e6d;
+    border-color: #002e6d;
     color: #ffffff;
 }
 
@@ -337,10 +431,9 @@ ul li {
 
 .vca-button-small {
     cursor: pointer;
-    font-size: .7rem;
+    font-size: .8em;
     height: auto;
     margin: 1em auto;
-    font-size: 1em;
     display: block;
     width: auto;
     background-color: #fff;
@@ -356,6 +449,33 @@ ul li {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.cancel-button {
+  display: flex;
+  position: relative;
+  margin-right: 10px;
+}
+
+.cancel-button .button {
+  text-decoration: none;
+  background-color: #e50846;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  line-height: 2.5em;
+
+  cursor: pointer;
+  padding: 0 15px;
+  width: 100%;
+  border: solid thin transparent;
+}
+
+.cancel-button:hover .button {
+  background-color: #fff;
+  color: #e50846;
+  border: solid thin #e50846;
 }
 
 /*
@@ -380,31 +500,107 @@ ul li {
     -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 
-    font-size: .75rem;
+    font-size: .8em;
     margin: 10px;
     padding: 5px;
 }
 
 .selection-button:hover {
-    border: solid thin #008fc3;
+    border: solid thin #002e6d;
+    color: #002e6d;
 }
 
 .selection-btn-selected {
     background-color: #008fc3;
     color: #fff;
 }
+.selection-btn-selected:hover {
+    background-color: #002e6d;
+    color: #fff;
+}
+
+.border-button {
+  display: flex;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.border-button:first-child {
+  margin-right: 10px;
+}
+
+.border-button:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 10px;
+  height: 0px;
+}
+
+.border-button:first-child:after {
+    background: linear-gradient(110deg, rgba(255,255,255,1) 47%, rgba(0,143,195,1) 48%, rgba(0,143,195,1) 52%, rgba(255,255,255,1) 53%);
+    width: 15px;
+    height: 40px;
+    right: 0px;
+    background-repeat: no-repeat;
+    top: 1px;
+    bottom: 0px;
+    cursor: pointer;
+}
+
+.border-button:hover:first-child:after {
+    background: linear-gradient(110deg, rgba(0, 46, 109,1) 47%, rgba(0, 46, 109,1) 48%, rgba(0, 46, 109,1) 52%, rgba(255,255,255,1) 53%);
+}
+
+.border-button .button {
+    text-decoration: none;
+    background-color: #fff;
+    color: #008fc3;
+    border-left: solid thin #008fc3;
+    border-top: solid thin #008fc3;
+    font-weight: bold;
+    text-transform: uppercase;
+  
+    outline: none;
+    line-height: 40px;
+  
+    cursor: pointer;
+    padding: 0 30px 0 20px;
+    width: 100%;
+}
+
+.border-button:hover .button {
+    color: #fff;
+    background-color: #002e6d;
+    border-left: solid thin #002e6d;
+    border-top: solid thin #002e6d;
+}
+
+.border-button .border-bottom {
+    border-bottom: 1px solid #008fc3;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: calc(100% - 15px);
+    z-index: 100;
+}
+
+.border-button:hover .border-bottom {
+    border-bottom: 1px solid #002e6d;
+}
 
 .card-input-label {
-    font-size: .9rem;
+    font-size: .9em;
 }
 
 .card-input-sub {
-    font-size: .8rem;
+    font-size: .8em;
 }
 
 .card-input-label,
 .card-input-sub {
-    color: #03558C;
+    color: #002e6d;
     font-weight: bolder;
 }
 
@@ -428,59 +624,7 @@ ul li {
     width: 100%;
     color:  #008fc3;
 }
-.vca-form form .vca-field .vca-money-input {
-    display: inline-flex;
-    border-radius: 0em;
-    border: 0em;
-    float: right;
-    margin-right: 5px;
-    width: auto;
-}
-.vca-money-container {
-    width: 80%;
-}
-.focus label {
-    color: #008fc3;
-}
-.currency-select {
-    width: 20%;
-    border: none;
-    border-left: none;
-    border-top-left-radius: 0em;
-    border-bottom-left-radius: 0em;
-}
-.currency-select select {
-    width: 100%;
-    height: 100%;
-    border: none;
-    border-left: none;
-    border-top-left-radius: 0em;
-    border-bottom-left-radius: 0em;
-    background: rgba(34,36,38,.15);
-    box-shadow: none;
-}
-.currency-label {
-    background: rgba(34,36,38,.15);
-    width: 20%;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    border: none;
-    border-left: none;
-    border-top-left-radius: 0em;
-    border-bottom-left-radius: 0em;
-}
-.currency-label label {
-    width: 100%;
-}
 
-.vca-card {
-    /* Add shadows to create the "card" effect */
-    box-shadow: 0 4px 8px 2px rgba(0,0,0,0.2);
-    transition: 0.3s;
-    padding: 1.0em;
-    margin: 20px 10px;
-}
 /* Create three equal columns that sits next to each other */
 .vca-column {
     -webkit-flex: 1;
@@ -489,12 +633,9 @@ ul li {
     margin: 2vw;
 }
 
-.stripe-payment-container, .paypal-payment-container {
-    padding: 10px;
-}
 .vca-input-border {
     border: 1px solid #ccc;
-    border-radius: 0.2rem;
+    border-radius: 0.2em;
     padding: 0.6em 1em;
     box-shadow: none;
     outline-color: #008fc2;
@@ -505,46 +646,112 @@ ul li {
     color: #ccc;
 }
 
+/** Progress bar */
+
+.vca-progress {
+    text-align: left;
+    font-size: large;
+}
+#progress {
+    width: 100%;
+    border-top: solid thin #008fc3;
+    border-left: solid thin #008fc3;
+    border-bottom: solid thin #008fc3;
+    border-right: solid thin #008fc3;
+}
+
+.progress-bar {
+    width: 1%;
+    height: 30px;
+    background-color: #002e6d;
+}
+
+/** Accordion */
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  background-color: #008fc3;
+  color: #fff;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  padding: 1em;
+  width: 100%;
+  font-size: 1em;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: flex;
+}
+
+.accord {
+    margin-bottom: 5px;
+}
+
+.accord .header {
+  font-size: 1em;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: #002e6d;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0 1em;
+  background-color: white;
+  overflow: hidden;
+} 
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-    .tabs-details {
-        border-left: solid thin #b8d8ea;
-        border-right: solid thin #b8d8ea;
-        box-shadow: 0 4px 8px -6px #000;
-        padding: 1px;
-    }
+
     .vca-tabs ul {
         flex-wrap: nowrap;
     }
 
     .card-input-label {
-        font-size: 1rem;
+        font-size: 1em;
     }
 
     .card-input-sub {
-        font-size: .9rem;
+        font-size: .9em;
     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
     body {
-        font-size: 1rem;
+        font-size: 1em;
     }
 
     .vca-field-label label {
-        font-size: 1.2rem;
+        font-size: 1.2em;
     }
 
     .vca-input select,
     .vca-input input,
+    .vca-input-date input,
     .error span {
-        font-size: 1rem;
+        font-size: 1em;
+    }
+    .vca-money-input {
+        width: auto;
     }
 
     .vca-button {
         font-size: 1.3em;
-        height: 45px;
+        line-height: 1.5em;
         width: 70%;
         white-space: normal;
     }
@@ -563,9 +770,15 @@ ul li {
         -moz-box-shadow: none;
         -webkit-box-shadow: none;
         
-        font-size: 1rem;
+        font-size: 1em;
         margin: 1em 3em;
         padding: 1.5em 2em;
+    }
+    .vca-button,
+    .vca-button-small {
+        box-shadow: none;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
     }
 }
 
@@ -575,7 +788,7 @@ ul li {
 }
 
 .stripe-donation-button:hover {
-    background-color: #03558C;
+    background-color: #002e6d;
 }
 .stripe-donation-button:disabled,
 .stripe-donation-button:disabled {
