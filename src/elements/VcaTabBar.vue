@@ -8,7 +8,7 @@
             </ul>
         </div>
 
-        <div class="tabs-details">
+        <div class="tab-bar-content">
             <slot></slot>
         </div>
     </div>

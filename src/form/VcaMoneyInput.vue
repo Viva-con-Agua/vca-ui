@@ -153,26 +153,3 @@ export default {
 }
 
 </script>
-<style scoped>
-.vca-money-input {
-    width: 100%;
-    display: inline-flex;
-    border-radius: 0em;
-    border: 0em;
-}
-.vca-money-input input {
-    width: 80%;
-    border-radius: 0em;
-    border-top-right-radius: 0em;
-    border-bottom-right-radius: 0em;;
-    border: none;
-}
-.vca-money-input select {
-    background: rgba(34,36,38,.15);
-    width: 20%;
-    border: none;
-    border-left: none;
-    border-top-left-radius: 0em;
-    border-bottom-left-radius: 0em;
-}
-</style>
