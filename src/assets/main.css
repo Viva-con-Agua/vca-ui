@@ -93,6 +93,26 @@ div.highlight {
 .vs__search {
     padding: 0.3em 1em;
 }
+.vs__dropdown-toggle {
+    border: none;
+}
+.v-select {
+    border: 1px solid #ccc;
+    border-radius: 5px;    
+}
+.vs__dropdown-option {
+    line-height: 1em;
+    font-size: .7em;
+}
+.vs__dropdown-option--highlight {
+    background-color: #008fc3;
+}
+.vs--single .vs__selected {
+    padding: .6em;
+    width: 100%;
+    border-color: #008fc3;
+    margin-left: 0;
+}
 
 .vca-input-date input,
 .vca-input input {
@@ -141,7 +161,7 @@ div.highlight {
     border-right: none;
     border-top-right-radius: 0em;
     border-bottom-right-radius: 0em;
-    outline-color: #008fc2;
+    outline-color: #008fc3;
     text-align: right;
 }
 .vca-input-container label{
@@ -638,7 +658,7 @@ ul li {
     border-radius: 0.2em;
     padding: 0.6em 1em;
     box-shadow: none;
-    outline-color: #008fc2;
+    outline-color: #008fc3;
 }
 
 .newsletter input[type=checkbox] {
