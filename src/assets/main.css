@@ -278,6 +278,46 @@ div.highlight {
     padding: 1.0em;
 }
 
+.vca-flex-cell {
+    width: 100%;
+}
+
+.vca-table {
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: right;
+}
+
+.vca-table-cell:first-child {
+    text-align: left;
+}
+.vca-table-header {
+    display: table-row;
+    color: white;
+    background-color: #008fc3;
+    font-weight: bold;
+    font-size: 1.2em
+}
+.vca-table-cell {
+    vertical-align: middle;
+    padding: .5em;
+    display: table-cell;
+}
+.vca-table-row {
+    display: table-row;
+}
+.vca-table-row:hover {
+    background-color: #002e6d;
+    color: white;
+}
+.even {
+    background-color: #eef9ff;
+}
+.editable {
+    cursor: pointer;
+}
+
 .tabs-details {
     padding: 1em;
 }
