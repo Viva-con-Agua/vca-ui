@@ -53,7 +53,7 @@ export default {
   },
   data () {
     return {
-      inputValue: null,
+      inputValue: this.value,
       hasError: false
     }
   },
@@ -64,10 +64,12 @@ export default {
     // validate form via vuelidate
     validate () {
       // if validate is set
-      if (this.inputValue == null) {
-        this.hasError = true
-      } else {
-        this.hasError = false
+      if (this.rules !== null) {
+        if (this.rules.$invalid) {
+          this.hasError = true
+        } else {
+          this.hasError = false
+        }
       }
     }
   }
