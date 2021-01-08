@@ -15,6 +15,40 @@ div.highlight {
     display: inline-block;
 }
 
+div.text-highlight {
+    color: white;
+    background-color: #008fc3;
+    font-weight: bold;
+    padding: 1px 4px;
+    display: inline;
+}
+
+.vue-notification {
+    width: 100%;
+
+    padding: 10px;
+    margin: 0 5px 5px;
+
+    color: #ffffff;
+    background: #44a4fc;
+    border-left: 5px solid #187fe7;
+}
+
+.vue-notification .warn {
+    background: #ffb648;
+    border-left-color: #55c0e9;
+}
+
+.vue-notification .success {
+    background: #68cd86;
+    border-left-color: #45b7a9;
+}
+
+.vue-notification .error {
+    background: #e54d42;
+    border-left-color: #e50846;
+}
+
 .vca-border {
     padding: 10px;
     border: solid thin #008fc3;
@@ -59,7 +93,7 @@ div.highlight {
     font-weight: bold;
 }
 
-.vca-money-input,
+.vca-labeled-input,
 .vca-input input[type=checkbox],
 .vca-input-date input,
 .vca-country-select select,
@@ -132,7 +166,7 @@ div.highlight {
 }
 .vca-input .error,
 .vca-input-date .error input,
-.vca-input.error .vca-money-input,
+.vca-input.error .vca-labeled-input,
 .vca-input-checkbox .error input,
 .vca-country-select.error select {
     border-color: #e50846;
@@ -174,23 +208,39 @@ div.highlight {
     text-align: right;
 }
 .vca-input-container label{
-    position: absolute;
+    position: inherit;
     padding-left: 0.4em;
-    font-size: 10px;
     font-weight: 600;
-    
 }
-.vca-money-input {
+.vca-labeled-input-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.vca-labeled-input-container input[type=number] {
+    width: 75px;
+    outline: none;
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+    appearance: textfield;
+}
+
+.vca-labeled-input-container span[class*="middle"] {
+    margin: auto;
+}
+
+.vca-labeled-input {
     display: inline-flex;
     width: 100%;
 }
 
-.vca-money-input input {
+.vca-labeled-input input {
   border: none;
   color: #777;
 }
 
-.vca-money-input .vca-input-container label {
+.vca-labeled-input .vca-labeled-input-container label {
     font-size: .8em;
 }
 .vca-money-container {
@@ -218,6 +268,7 @@ div.highlight {
 }
 .currency-label {
     background: rgba(34,36,38,.15);
+    min-width: 50px;
     width: 20%;
     display: flex;
     align-items: center;
@@ -228,6 +279,7 @@ div.highlight {
     border-bottom-left-radius: 0em;
 }
 .currency-label label {
+    min-width: 50px;
     width: 100%;
 }
 
@@ -261,8 +313,12 @@ div.highlight {
 .vca-right,
 .vca-left,
 .vca-center {
-    width: 100%; 
     display: flex; 
+    width: auto;
+}
+
+.vca-left, .vca-right {
+    flex-basis: 50%;
 }
 
 .vca-right {
@@ -325,6 +381,22 @@ div.highlight {
 }
 .editable {
     cursor: pointer;
+}
+
+.vca-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.vca-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.vca-row div,
+.vca-column div {
+    flex: auto;
 }
 
 .tabs-details {
@@ -803,7 +875,6 @@ ul li {
     -webkit-flex: 1;
     -ms-flex: 1;
     flex: 1;
-    margin: 2vw;
 }
 
 .vca-input-border {
@@ -888,6 +959,13 @@ ul li {
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
+ 
+    .vca-row {
+        flex-wrap: nowrap;
+    }
+    .vca-labeled-input-container {
+        flex-wrap: nowrap;
+    }
 
     .vca-tabs ul {
         flex-wrap: nowrap;
@@ -899,6 +977,14 @@ ul li {
 
     .card-input-sub {
         font-size: .9em;
+    }
+
+   .currency-label {
+        min-width: 100px;
+    }
+
+    .currency-label label {
+        min-width: 100px;
     }
 
     /*
@@ -936,7 +1022,7 @@ ul li {
     .error span {
         font-size: 1em;
     }
-    .vca-money-input {
+    .vca-labeled-input {
         width: auto;
     }
 

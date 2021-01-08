@@ -1,12 +1,32 @@
 <template>
     <div class="vca-input" :class="{error: hasError}">
-        <div class="vca-money-input">
-            <div class="vca-input-container" :class="{focus: hasFocus}">
-                <label> {{ topText }} </label>
-                <input ref="ta" v-model="displayAmount" :placeholder="label" :disabled="disabled" @keyup="keyup()" @click="click" @change="change" @blur="blur" @focus="setFocus">
+        <div class="vca-labeled-input">
+            <div class="vca-labeled-input-container">
+                <label v-if="topText"> {{ topText }} </label>
+                <div class="vca-right">
+                    <input 
+                     class="left"
+                     type="number"
+                     v-model="money_data.unit" 
+                     :placeholder="0" 
+                     min="0"
+                     @input="changeUnit"
+                     @blur="blur"
+                     @change="change">
+                    
+                    <span class="middle">,</span>
+                    <input 
+                     class="middle"
+                     type="number"
+                     v-model="money_data.subunit" 
+                     placeholder="00"
+                     @change="change"
+                     @blur="blur"
+                     @input="changeSubUnit">
+                </div>
             </div>
             <div v-if="select" class="currency-select">
-                <select v-if="select" v-model="money.currency">
+                <select v-if="select" v-model="money_data.currency">
                     <option v-for="cur in currency" :key="cur.value" label="€" :value="cur.value">{{ cur.label }}</option>
                 </select>
             </div>
@@ -19,7 +39,7 @@
     </div>
 </template>
 <script>
-import Money from '../utils/Money'
+import Money from '@/utils/Money'
 export default {
     name: 'VcaMoneyInput',
     props: {
@@ -73,71 +93,20 @@ export default {
         },
         topText: {
             type: String,
-            default: ""
+            default: ''
         }
     },
     data () {
         return {
+            money_data: { unit: Money.getData(this.money).unit, subunit: Money.getData(this.money).subunit, currency: this.currency },
             hasError: false,
-            hasFocus: false,
             lastLength: 0,
             lastPos: 0,
         }
     },
-    computed: {
-        displayAmount: {
-            get: function () {
-                return Money.getInputString(this.money.amount, this.money.currency)
-            },
-            set: function (value) {
-                this.money.amount = Money.getAmount(value)
-            }
-        }
-    },
     methods: {
-        internalValidation (numeric) {
-            return this.rules.reduce((acc, rule) => {
-                var res = acc
-                if (rule.validator(numeric)) {
-                    res = {
-                        'valid': false,
-                        'msg': rule.msg
-                    }
-                }
-                return res
-            }, {
-                'valid': true
-            })
-        },
-        change () {
-            this.$emit('change', this.amount)
-        },
-        keyup () {
-            if (typeof this.$refs.ta.selectionStart == "number") {
-                var diff = Math.abs(this.lastLength - this.$refs.ta.value.length)
-                this.$refs.ta.setSelectionRange(this.lastPos + diff, this.lastPos + diff)
-
-                this.lastLength = this.$refs.ta.value.length
-                this.lastPos = this.$refs.ta.selectionStart//this.$refs.ta.selectionEnd;
-            } else if (typeof this.$refs.ta.createTextRange != "undefined") {
-                this.$refs.ta.focus();
-                var range = this.$refs.ta.createTextRange();
-                range.collapse(false);
-                range.select();
-            }
-        },
-        click () {
-            this.lastLength =  this.$refs.ta.value.length
-            this.lastPos =  this.$refs.ta.selectionStart
-        },
-        setFocus () {
-            this.lastLength =  this.$refs.ta.value.length
-            this.lastPos =  this.$refs.ta.selectionStart
-            this.hasFocus = true
-        },
         blur () {
             this.validate()
-            this.hasFocus = false
         },
         validate () {
             // if validate is set
@@ -148,8 +117,39 @@ export default {
                     this.hasError = false
                 }
             }
+        },
+        change() {
+            this.$emit("input", { 'amount': Money.getValue(this.money_data), 'currency': this.currency[0].value })
+        },
+        changeSubUnit(){
+            this.money_data.subunit = this.money_data.subunit.substring(this.money_data.subunit.length - 2, this.money_data.subunit.length)
+            if (this.money_data.subunit >= 99) {
+                this.money_data.subunit = 99
+            }
+            if (this.money_data.subunit === "") {
+                this.money_data.subunit = 0
+            }
+        },
+        changeUnit(){
+            if (this.money_data.unit >= 99999) {
+                this.money_data.unit = 99999
+            }
+            if (this.money_data.unit === "") {
+                this.money_data.unit = 0
+            }
         }
     }
 }
 
 </script>
+<style scoped>
+
+input[class*="middle"] {
+    text-align: left;
+}
+input[class*="left"] {
+    text-align: right;
+    width: 100px;
+}
+
+</style>
