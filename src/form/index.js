@@ -11,3 +11,5 @@ export { default as VcaSelection } from './VcaSelection.vue';
 export { default as VcaDropdown } from './VcaDropdown.vue';
 export { default as VcaKnownFrom } from './VcaKnownFrom.vue';
 export { default as VcaCountrySelect } from './VcaCountrySelect.vue';
+export { default as VcaDistanceInput } from './VcaDistanceInput.vue';
+export { default as VcaTimeInput } from './VcaTimeInput.vue';

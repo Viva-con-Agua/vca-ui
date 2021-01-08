@@ -53,7 +53,6 @@ export default {
             window.location = "https://twitter.com/intent/tweet?text=" + this.share.text + "&url=" + encodeURIComponent(this.share.url)
         },
         shareMobile() {
-            console.log(navigator.share)
             if (navigator.share) {
                 navigator.share({
                     title: "",

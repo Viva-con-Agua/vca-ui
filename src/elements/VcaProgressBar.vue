@@ -38,7 +38,7 @@ export default {
     },
     data () {
         return {
-            width: 100 / this.finish * this.current + "%"
+            width: Math.min(100 / this.finish * this.current, 100) + "%"
         }
     }
 

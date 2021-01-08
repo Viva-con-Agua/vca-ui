@@ -47,4 +47,7 @@ export default {
     button .arrow {
       margin-right: 10px;
     }
+    .panel {
+        overflow: visible;
+    }
 </style>

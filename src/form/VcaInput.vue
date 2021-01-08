@@ -78,6 +78,10 @@ export default {
           var first = parent.querySelector(".first")
           var last = parent.querySelector(".last")
 
+          if (last  === null || first === null) {
+            return
+          }
+
           var firstRect = first.getBoundingClientRect();
           var lastRect = last.getBoundingClientRect();
 
