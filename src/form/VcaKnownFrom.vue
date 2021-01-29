@@ -1,6 +1,6 @@
 <template>
     <div class="select-known">
-        <VcaDropdown label="So bin ich auf euch aufmerksam geworden" errorMsg="Bitte wähle etwas aus" @change="change" title="Bitte wählen" ref="known_from" :rules="$v.known_from" :options="options"/>
+        <VcaDropdown :label="label" :errorMsg="errorMsg" v-model="current" @input="change" :title="placeholder" ref="reference" :rules="$v.known_from" :options="options"/>
     </div>
 </template>
 <script>
@@ -12,14 +12,62 @@ export default {
         VcaDropdown
     },
     props: {
+        placeholder: {
+            type: String,
+            default: 'Bitte wählen'
+        },
+        label: {
+            type: String,
+            default: 'So bin ich auf euch aufmerksam geworden'
+        },
+        preselection: {
+            type: String,
+            default: null
+        },
         req: {
             type: Boolean,
             default: false
+        },
+        value: {
+            type: Array
+        },
+        errorMsg: {
+            type: String,
+            default: 'Error'
+        }
+    },
+    validations: {
+        known_from: {
+            required
+        }
+    },
+    created() {
+      if (this.preselection !== null) {
+
+        var value = this.options.find(element => element.value == this.preselection)
+        if (value != null) {
+          this.current = [value]
+          this.$emit("input", this.current)
+        }
+      }
+    },
+    methods: {
+        change(e) {
+            this.current = e
+            this.$emit("input", e)
+            if(this.req) {
+                this.$refs.reference.validate()
+            }
+        },
+        validate () {
+            if(this.req) {
+                this.$refs.reference.validate()
+            }
         }
     },
     data() {
         return {
-            known_from: "",
+            current: this.value,
             options:
             [
                 { title: "Bitte wählen", value: "" },
@@ -29,25 +77,6 @@ export default {
                 { title: "Instagram", value: "instagram" },
                 { title: "Facebook", value: "facebook" }
             ]
-        }
-    },
-    validations: {
-        known_from: {
-            required
-        }
-    },
-    methods: {
-        change(e) {
-            this.known_from = e
-            this.$emit("input", e)
-            if(this.req) {
-                this.$refs.known_from.validate()
-            }
-        },
-        validate () {
-            if(this.req) {
-                this.$refs.known_from.validate()
-            }
         }
     }
 }

@@ -1,11 +1,11 @@
 <template>
-    <div class="vca-input-checkbox" :class="{error: hasError}">
+    <div class="vca-input vca-checkbox" :class="{error: hasError}">
         <label class="container">
             <input type="checkbox" v-model="checked" @change="change">
             <span class="checkmark"></span>
             <slot></slot>
         </label>
-        <span class="error-msg" v-if="hasError">{{ errorMsg }}</span>
+        <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
     </div>
 </template>
 <script>

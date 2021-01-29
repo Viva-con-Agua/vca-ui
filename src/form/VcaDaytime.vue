@@ -1,10 +1,13 @@
 <template>
-        <div class="vca-input vca-date" :class="{error: hasError}">
-            <Datepicker
+        <div class="vca-input vca-daytime" :class="{error: hasError}">
+            <vue-timepicker
                 :class="{error: hasError, first: first, last: last}"
                 :placeholder="placeholder"
                 :format="format"
-                :value="value"
+                close-on-complete
+                :minute-interval="minuteInterval"
+                :second-interval="secondInterval"
+
                 v-model="inputValue"
                 @blur="validate"
                 @input="input"
@@ -15,20 +18,23 @@
 </template>
 <script>
 
-import Datepicker from 'vuejs-datepicker';
 export default {
-  name: 'VcaInputDate',
-  components: {Datepicker},
+  name: 'VcaDaytime',
   props: {
     value: {
-      type: Date
+      type: Object      
     },
     format: {
       type: String,
-      default: 'dd.MM.yyyy'
+      default: 'HH:mm'
     },
-    model: {
-      type: Object
+    minuteInterval: {
+      type: String,
+      default: '15'
+    },
+    secondInterval: {
+      type: String,
+      default: '15'
     },
     errorMsg: {
       type: String,
@@ -76,20 +82,38 @@ export default {
   }
 }
 </script>
-<style type="text/css">
-  .vdp-datepicker__calendar .cell {
-    color: 000 !important;
-    border: solid thin transparent !important;
+<style lang="scss">
+  .vca-input .time-picker {
+
+    width: 100% !important;
+    
+    input {
+      padding: .6em 1em !important;
+      width: 100% !important;  
+      height: auto !important;
+    }
+
+    .select-list {
+
+      li.hint {
+        font-weight: bold;
+        line-height: 2em;
+      }
+
+      li:hover {  
+        background-color: #008fc3 !important;
+        color: #fff !important;
+      }
+      li.active {
+        background-color: #002e6d !important;
+      }
+    }
+
   }
-  .vdp-datepicker__calendar .cell:hover {
-    background-color: #008fc3 !important;
-    color: #fff !important;
-  }
-  .vdp-datepicker__calendar .cell.selected {
-    background-color: #002e6d !important;
-    color: #fff !important;
-  }
-  .vdp-datepicker__calendar .cell.selected:hover {
-    border: solid thin transparent !important;
+  
+</style>
+<style scoped>
+  .vca-input-daytime .time-picker {
+    width: 100%;
   }
 </style>

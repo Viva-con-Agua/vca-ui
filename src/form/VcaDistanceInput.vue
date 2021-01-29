@@ -30,7 +30,7 @@
                 <label class="currency-select"> KM </label>
             </div>
         </div>
-        <span v-if="hasError">{{ errorMsg }}</span>
+        <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
         <span v-else></span>
     </div>
 </template>
@@ -39,7 +39,7 @@ import Distance from '@/utils/Distance'
 export default {
     name: 'VcaDistanceInput',
     props: {
-        distance: {
+        value: {
             type: Number,
             default: 0
         },
@@ -51,6 +51,14 @@ export default {
             'type': String,
             'default': ''
         },
+        errorMsg: {
+            type: String,
+            default: ''
+        },
+        rules: {
+            type: Object,
+            default: null
+        },
         placeholder: {
             type: String,
             default: ""
@@ -59,16 +67,11 @@ export default {
     data () {
         return {
             max_meter: 1,
-            distance_data: Distance.getData(this.distance),
+            distance_data: Distance.getData(this.value),
             hasError: false,
             hasFocus: false,
             lastLength: 0,
             lastPos: 0,
-        }
-    },
-    watch: {
-        distance: function(val) {
-           this.distance_data = Distance.getData(val) 
         }
     },
     methods: { 
@@ -76,6 +79,16 @@ export default {
             this.lastLength =  this.$refs.ta.value.length
             this.lastPos =  this.$refs.ta.selectionStart
             this.hasFocus = true
+        },
+        validate () {
+            // if validate is set
+            if (this.rules !== null) {
+                if (this.rules.$invalid) {
+                    this.hasError = true
+                } else {
+                    this.hasError = false
+                }
+            }
         },
         change() {
             this.$emit("input", Distance.getValue(this.distance_data))
@@ -87,6 +100,7 @@ export default {
             if (this.distance_data.meter.length > 1){
                 this.distance_data.meter = this.distance_data.meter[1]
             }
+            this.change()
         },
         changeKm(){
             if (this.distance_data.km >= 120) {
@@ -95,6 +109,7 @@ export default {
             if (this.distance_data.km === "") {
                 this.distance_data.km = 0
             }
+            this.change()
         }
     }
 

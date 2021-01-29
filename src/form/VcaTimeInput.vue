@@ -11,7 +11,7 @@
              :placeholder="label"
              min="0"
              @input="changeHours"
-             @blur="change">
+             @change="change">
             <span class="middle"> : </span>
             <input 
              ref="ta"
@@ -21,7 +21,7 @@
              :placeholder="label" 
              min="0"
              max="59"
-             @blur="change"
+             @change="change"
              @input="changeMinutes">
             <span class="middle"> : </span>
             <input 
@@ -32,7 +32,7 @@
              :placeholder="label" 
              min=0
              max=59
-             @blur="change"
+             @change="change"
              @input="changeSecond">
         </div>
             </div>
@@ -41,7 +41,7 @@
             </div>
 
         </div>
-        <span v-if="hasError">{{ errorMsg }}</span>
+        <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
         <span v-else></span>
     </div>
 </template>
@@ -50,7 +50,7 @@ import Time from '@/utils/Time'
 export default {
     name: 'VcaTimeInput',
     props: {
-        time: {
+        value: {
             type: Number,
             default: 0
         },
@@ -62,6 +62,14 @@ export default {
             'type': String,
             'default': ''
         },
+        errorMsg: {
+            type: String,
+            default: ''
+        },
+        rules: {
+            type: Object,
+            default: null
+        },
         placeholder: {
             type: String,
             default: ''
@@ -69,8 +77,7 @@ export default {
     },
     data () {
         return {
-            time_data: Time.getTimeDate(this.time),
-            value: this.time,
+            time_data: Time.getTimeDate(this.value),
             hasError: false,
             hasFocus: false,
             lastLength: 0,
@@ -80,12 +87,25 @@ export default {
     methods: {
         changeHours(){
             this.time_data.hours = Time.validateHours(this.time_data.hours)
+            this.change()
         },
         changeMinutes(){
             this.time_data.minutes = Time.validate(this.time_data.minutes)
+            this.change()
         },
         changeSecond(){
             this.time_data.seconds = Time.validate(this.time_data.seconds)
+            this.change()
+        },
+        validate () {
+            // if validate is set
+            if (this.rules !== null) {
+                if (this.rules.$invalid) {
+                    this.hasError = true
+                } else {
+                    this.hasError = false
+                }
+            }
         },
         change() {
             this.$emit("input", Time.getValue(this.time_data))
@@ -100,4 +120,3 @@ input[type=number] {
 }
 
 </style>
-        

@@ -16,9 +16,12 @@
   ],
   "dependencies": {
     "core-js": "^3.8.2",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.1",
     "vue": "^2.6.12",
     "vue-country-region-select": "^2.0.14",
     "vue-select": "^3.11.2",
+    "vue2-timepicker": "^1.1.6",
     "vuejs-datepicker": "^1.6.2",
     "vuelidate": "^0.7.6"
   },

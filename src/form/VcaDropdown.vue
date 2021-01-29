@@ -4,10 +4,12 @@
         <label>{{ label }}</label>
         <div class="vca-input" :class="{error: hasError, first: first, last: last}">
             <v-select
-                    :value="currentOption"
+                    :value="currentOptions"
                     :options="options"
                     :class="{error: hasError}"
                     label="title"
+                    :multiple="multiple"
+                    :taggable="taggable"
                     :placeholder="title"
                     v-on:input="handleClick"
             >
@@ -19,7 +21,7 @@
                     </div>
                 </template>
             </v-select>
-            <span v-if="hasError">{{ errorMsg }}</span>
+            <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
             <span v-else></span>
         </div>
 
@@ -30,6 +32,12 @@
 export default {
     name: "VcaDropdown",
     props: {
+        value: {
+            type: Array,
+            default: function() {
+                return []
+            }
+        },
         title: {
             type: String,
             default: 'default title'
@@ -50,6 +58,14 @@ export default {
             type: Boolean,
             default: false
         },
+        multiple: {
+            type: Boolean,
+            default: false
+        },
+        taggable: {
+            type: Boolean,
+            default: false
+        },
         errorMsg: {
             type: String,
             default: 'Error'
@@ -63,18 +79,24 @@ export default {
     },
     data() {
         return {
-            currentOption: "",
+            currentOptions: this.value,
             hasError: false
         }
     },
     methods: {
         handleClick(event) {
-            if(event !== null && event.value != "") {
-                this.currentOption = event.title
-                this.$emit("change", event.value)
+            if(event !== null) {
+
+                // Set event as an array if its only a single selection, otherwise we cannot handle the model correctly
+                if(!Array.isArray(event)) {
+                    event = [event]                
+                }
+
+                this.currentOptions = event
+                this.$emit("input", event)
             } else {
-                this.currentOption = ""
-                this.$emit("change", "")
+                this.currentOptions = []
+                this.$emit("input", [])
             }
         },
         validate () {
@@ -89,3 +111,11 @@ export default {
     }
 }
 </script>
+<style type="text/css">
+    .vs__selected {
+        padding: .6em;
+        background-color: white;
+        border: solid thin #008fc3;
+        margin-left: 0;
+    }
+</style>
