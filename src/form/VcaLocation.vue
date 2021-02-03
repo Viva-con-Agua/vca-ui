@@ -8,17 +8,18 @@
   export default {
     name: "VcaLocation",
     props: {
-      apiKey: {
+      type: {
         type: String,
-        default: null
-      },
-      language: {
-        type: String,
-        default: 'de'
+        default: 'geocode',
+        validator: function (value) {
+          // The value must match one of these strings
+          return ['address', 'geocode'].indexOf(value) !== -1
+        }
       }
     },
     data() { 
       return {
+        locationType: this.type,
         currentAddress: {
           street: '',
           number: '',
@@ -27,11 +28,11 @@
           sublocality: '',
           country: '',
           countryCode: '',
-          meta: {
-            latitude: '',
-            longitude: '',
-            placeId: '',
-          }
+          position: {
+            lat: '',
+            lng: ''
+          },
+          placeId: '',
         },
         autocomplete: null
       }
@@ -42,7 +43,7 @@
         // Load autocomplete from google places
         this.autocomplete = new window.google.maps.places.Autocomplete(
           (this.$refs.autocompleteAddress),
-          {types: ['address']}
+          {types: [this.mapType]}
         );
         
         // Add listener for changing of place
@@ -50,6 +51,11 @@
 
           // Get values from places
           let place = this.autocomplete.getPlace();
+
+          if (place.address_components === undefined) {
+            return
+          }
+
           let ac = place.address_components;
           let street = ac.find(field => field.types.some(t => t === "route")) //ac[ac.length-1]["long_name"];
           let street_number = ac.find(field => field.types.some(t => t === "street_number")) //ac[ac.length-1]["short_name"];
@@ -59,12 +65,12 @@
           let country = ac.find(field => field.types.some(t => t === "country")) //ac[ac.length-1]["long_name"];
 
           // Set place id
-          this.currentAddress.meta.placeId = place.place_id
+          this.currentAddress.placeId = place.place_id
 
           // Set geolocation informations
           if (place.geometry.location) {
-            this.currentAddress.meta.latitude = place.geometry.location.lat()
-            this.currentAddress.meta.longitude = place.geometry.location.lng()
+            this.currentAddress.position.lat = place.geometry.location.lat()
+            this.currentAddress.position.lng = place.geometry.location.lng()
           }
 
           // Set address elements
@@ -101,22 +107,13 @@
     },
     mounted() {
 
-      // Check if script is already added
-      let gapi = document.getElementById('vca_gapi')
-
-      if (gapi !== null) {
+      if (window.google) {
+        this.autocompleteCallback()
         return;
       }
 
-      // If script is not added, add it to head
-      let placesApi = document.createElement('script')
-      placesApi.setAttribute('id', 'vca_gapi')
-      placesApi.setAttribute('src', 'https://maps.googleapis.com/maps/api/js?key=' + this.apiKey + '&libraries=places&language=' +  this.language)
-
-      // Set callback function if script is loaded
-      placesApi.onload = () => this.autocompleteCallback()
-
-      document.head.appendChild(placesApi)
+      // eslint-disable-next-line
+      console.error('Please include the Google Maps API in your index.html- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=[[API_KEY]]&libraries=places" ><\/script>')
 
     }
 

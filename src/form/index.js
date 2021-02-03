@@ -6,6 +6,7 @@ export { default as VcaCheckbox } from './VcaCheckbox';
 export { default as VcaInputDate } from './VcaDate';
 export { default as VcaDaytime } from './VcaDaytime.vue';
 export { default as VcaLocation } from './VcaLocation.vue';
+export { default as VcaMap } from './VcaMap.vue';
 export { default as VcaNumber } from './VcaNumber.vue';
 export { default as VcaMoneyInput } from './VcaMoneyInput.vue';
 export { default as VcaBorderedButton } from './VcaBorderedButton.vue';

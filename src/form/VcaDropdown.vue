@@ -7,10 +7,9 @@
                     :value="currentOptions"
                     :options="options"
                     :class="{error: hasError}"
-                    label="title"
                     :multiple="multiple"
                     :taggable="taggable"
-                    :placeholder="title"
+                    :placeholder="placeholder"
                     v-on:input="handleClick"
             >
                 <span slot="no-options">Bitte auswählen</span>
@@ -40,7 +39,11 @@ export default {
         },
         title: {
             type: String,
-            default: 'default title'
+            default: 'deprecated, remove title, use placeholder'
+        },
+        placeholder: {
+            type: String,
+            default: 'default placeholder'
         },
         label: {
             type: String,
@@ -82,6 +85,22 @@ export default {
             currentOptions: this.value,
             hasError: false
         }
+    },
+    watch: {
+      value: function(nVal) {
+
+        var preSelected = []
+        nVal.forEach(val => {
+          var value = this.options.find(element => element.value == val.value)      
+          if (value != null) {
+            preSelected.push(value)
+          } else if(this.taggable) {
+            preSelected.push(val)
+          }
+        })
+        this.currentOptions = preSelected
+
+      }
     },
     methods: {
         handleClick(event) {

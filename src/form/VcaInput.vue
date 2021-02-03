@@ -4,6 +4,7 @@
                 :class="{error: hasError}"
                 :value="value"
                 :type="type"
+                :disabled="disabled"
                 name="value"
                 @input="input"
                 :placeholder="placeholder"
@@ -35,6 +36,10 @@ export default {
     rules: {
       type: Object,
       default: null
+    },
+    disabled: {
+        type: Boolean,
+        default: false
     },
     first: {
         type: Boolean,

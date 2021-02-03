@@ -70,12 +70,12 @@ export default {
             current: this.value,
             options:
             [
-                { title: "Bitte wählen", value: "" },
-                { title: "Familie & Freunde", value: "family_friends" },
-                { title: "Festivals & Becherspende", value: "festivals_cupdonation" },
-                { title: "Wasser", value: "water" },
-                { title: "Instagram", value: "instagram" },
-                { title: "Facebook", value: "facebook" }
+                { title: "Bitte wählen", label: 'Bitte wählen', value: "" },
+                { title: "Familie & Freunde",  label: 'Familie & Freunde', value: "family_friends" },
+                { title: "Festivals & Becherspende", label: 'Festivals & Becherspende', value: "festivals_cupdonation" },
+                { title: "Wasser", label: 'Wasser', value: "water" },
+                { title: "Instagram", label: 'Instagram', value: "instagram" },
+                { title: "Facebook", label: 'Facebook', value: "facebook" }
             ]
         }
     }
