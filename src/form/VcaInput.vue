@@ -4,12 +4,13 @@
                 :class="{error: hasError}"
                 :value="value"
                 :type="type"
+                :disabled="disabled"
                 name="value"
                 @input="input"
                 :placeholder="placeholder"
                 @blur="validate"
                 />
-            <span v-if="hasError">{{ errorMsg }}</span>
+            <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
             <span v-else></span>
         </div>
 </template>
@@ -36,6 +37,10 @@ export default {
       type: Object,
       default: null
     },
+    disabled: {
+        type: Boolean,
+        default: false
+    },
     first: {
         type: Boolean,
         default: false
@@ -55,7 +60,6 @@ export default {
   },
   data () {
     return {
-      inputValue: '',
       hasError: false
     }
   },
@@ -101,7 +105,12 @@ export default {
       })
     },
     input (e) {
-      this.$emit('input', e.target.value)
+      this.hasError = false
+      if (!event.target.validity.valid) {
+        this.hasError = true
+      } else {
+        this.$emit('input', e.target.value)
+      }
     },
     // validate form via vuelidate
     validate () {

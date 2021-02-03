@@ -95,28 +95,24 @@ div.text-highlight {
 
 .vca-labeled-input,
 .vca-input input[type=checkbox],
-.vca-input-date input,
-.vca-country-select select,
 .vca-input select,
 .vca-input input {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.vca-country-select select,
 .vca-input select {
     width: 100%;
     padding: 0.6em 1em;
     background-color: white;
 }
-.vca-country-select select option,
+
 .vca-input select option {
   background:white;
   border-top:1px solid #444;
   padding:.3em 1em .3em 1em;
 }
-.vca-input-date,
-.vca-input-checkbox,
+
 .vca-input {
     width: 100%;
     margin: 0 0 1em;
@@ -133,6 +129,7 @@ div.text-highlight {
     border: none;
 }
 .v-select {
+    background-color: white;
     border: 1px solid #ccc;
     border-radius: 5px;    
 }
@@ -142,15 +139,23 @@ div.text-highlight {
 }
 .vs__dropdown-option--highlight {
     background-color: #008fc3;
-}
+}    
+
 .vs--single .vs__selected {
-    padding: .6em;
-    width: 100%;
-    border-color: #008fc3;
-    margin-left: 0;
+    width: 100% !important;
 }
 
-.vca-input-date input,
+.vs__selected {
+    padding: .6em !important;
+    border-color: #008fc3 !important;
+    margin-left: 0 !important;
+    background-color: #fff !important;
+}
+
+.vca-input.vca-checkbox input {
+    width: auto;
+}
+
 .vca-input input {
     width: 100%;
     padding: 0.6em 1em;
@@ -161,38 +166,35 @@ div.text-highlight {
 .vca-input input[type=checkbox] {
     padding: 0.6em 1em;
 }
-.vca-input-checkbox {
+.vca-input.vca-checkbox {
     margin-bottom: .3em;
 }
+
+input.error,
 .vca-input .error,
-.vca-input-date .error input,
-.vca-input.error .vca-labeled-input,
-.vca-input-checkbox .error input,
-.vca-country-select.error select {
-    border-color: #e50846;
+.vca-input .error input,
+.vca-input .error div input,
+.vca-input.error .vca-labeled-input {
+    border-color: #e50846 !important;
 }
-.vca-input.error span,
-.vca-input-date.error span,
-.vca-country-select.error span {
+
+.vca-input.error span.errorMsg {
     margin: 5px;
 }
-.vca-input.error span,
-.vca-input-date.error span,
-.vca-input-checkbox.error span,
-.vca-country-select.error span {
+.vca-input.error span.errorMsg {
     display: block;
-    width: 100%;
+    width: auto;
     color: #e50846;
 }
 
 /* Margin will automatically be calculated in src/form/VcaInput.vue */
 
-.vca-input-date.error.last span,
-.vca-input.error.last span {
+.vca-input.error.last span.errorMsg {
     text-align: left;
     margin-left: 5%;
 }
-.vca-input-checkbox.error span { 
+.vca-input.vca-checkbox.error span.errorMsg {
+    width: 100%;
     float: left;
 }
 
@@ -207,7 +209,7 @@ div.text-highlight {
     outline-color: #008fc3;
     text-align: right;
 }
-.vca-input-container label{
+.vca-input-container label {
     position: inherit;
     padding-left: 0.4em;
     font-weight: 600;
@@ -233,6 +235,7 @@ div.text-highlight {
 .vca-labeled-input {
     display: inline-flex;
     width: 100%;
+    background-color: white;
 }
 
 .vca-labeled-input input {
@@ -1016,10 +1019,8 @@ ul li {
     }
 
     .vca-input select,
-    .vca-country-select select,
     .vca-input input,
-    .vca-input-date input,
-    .error span {
+    .error span.errorMsg {
         font-size: 1em;
     }
     .vca-labeled-input {

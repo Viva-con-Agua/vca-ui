@@ -47,37 +47,35 @@ export default class Time {
     }
     
     static validateHours(hours){
-            if (hours >= 36) {
-                return 36
-            }
-            if (hours === "") {
-                return  "0"
-            }
-            if (hours.length >= 2 && hours[0] === "0") {
-                return hours[1]
-            }
-            return hours
+        if (hours >= 36) {
+            return 36
         }
+        if (hours === "") {
+            return  "0"
+        }
+        if (hours.length >= 2 && hours[0] === "0") {
+            return hours[1]
+        }
+        return hours
+    }
 
     static validate(minsec) {
-            if (minsec >= 59) {
-                minsec = "59"
-            }
-            if (minsec === "" ||minsec === "0"  ) {
-                return minsec = "00"
-            }
-            if (minsec.length >= 3 && minsec[0] === "0" ) {
-                return minsec[1] + minsec[2]
-            }
-            if (minsec.length >= 3 && minsec[0] !== "0") {
-                return  minsec[2]
-            }
-            if (minsec <= 9 && minsec !== 0) {
-                return "0" + minsec
-            }
-
+        if (minsec >= 59) {
+            minsec = "59"
+        }
+        if (minsec === "" || minsec === "0"  ) {
+            return minsec = "00"
+        }
+        if (minsec.length >= 3 && minsec[0] === "0" ) {
+            return minsec[1] + minsec[2]
+        }
+        if (minsec.length >= 3 && minsec[0] !== "0") {
+            return  minsec[2]
+        }
+        if (minsec <= 9 && minsec !== 0) {
             return minsec
-
+        }
+        return minsec
     }
 
 }

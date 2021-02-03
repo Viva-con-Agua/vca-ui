@@ -50,7 +50,6 @@ export default class Money {
 
   static convertDE (amount) {
     const money = amount.toString()
-    console.log(money)
     if (money.length === 0) {
         return '0,00'
     } else if(money.length === 1) {

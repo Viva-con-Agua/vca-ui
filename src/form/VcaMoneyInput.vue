@@ -34,7 +34,7 @@
                 <label v-if="!select" class="currency-select"> {{ currency[0].label }} </label>
             </div>
         </div>
-        <span v-if="hasError">{{ errorMsg }}</span>
+        <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
         <span v-else></span>
     </div>
 </template>
@@ -43,7 +43,7 @@ import Money from '@/utils/Money'
 export default {
     name: 'VcaMoneyInput',
     props: {
-        money: {
+        value: {
             type: Object,
             default: function () {
                 return {
@@ -98,7 +98,7 @@ export default {
     },
     data () {
         return {
-            money_data: { unit: Money.getData(this.money).unit, subunit: Money.getData(this.money).subunit, currency: this.currency },
+            money_data: { unit: Money.getData(this.value).unit, subunit: Money.getData(this.value).subunit, currency: this.value.currency },
             hasError: false,
             lastLength: 0,
             lastPos: 0,
@@ -129,6 +129,7 @@ export default {
             if (this.money_data.subunit === "") {
                 this.money_data.subunit = 0
             }
+            this.change()
         },
         changeUnit(){
             if (this.money_data.unit >= 99999) {
@@ -137,6 +138,7 @@ export default {
             if (this.money_data.unit === "") {
                 this.money_data.unit = 0
             }
+            this.change()
         }
     }
 }

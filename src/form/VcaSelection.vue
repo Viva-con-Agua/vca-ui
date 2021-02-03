@@ -13,20 +13,23 @@ export default {
         }
     },
     props: {
+        value: {
+            type: String
+        },
         selection: {
             type: Array,
             default: function() {
-                return [ { value: 0, label: "" } ]
+                return [ { value: '0', label: "" } ]
             }
         },
     },
     methods: {
         triggerCallback(e) {
             this.selected = e
-            this.$emit("click", e)
+            this.$emit("input", e)
         },
         btnSelected(val) {
-            return (val == this.selected) ? 'selection-btn-selected' : '';
+            return (val == this.value) ? 'selection-btn-selected' : '';
         },
     }
 }
