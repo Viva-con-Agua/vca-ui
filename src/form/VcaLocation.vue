@@ -43,7 +43,7 @@
         // Load autocomplete from google places
         this.autocomplete = new window.google.maps.places.Autocomplete(
           (this.$refs.autocompleteAddress),
-          {types: [this.mapType]}
+          {types: [this.locationType]}
         );
         
         // Add listener for changing of place
