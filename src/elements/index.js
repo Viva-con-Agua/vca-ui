@@ -6,3 +6,4 @@ export { default as VcaShareIcon } from './VcaShareIcon';
 export { default as VcaShareIcons } from './VcaShareIcons';
 export { default as VcaProgressBar } from './VcaProgressBar';
 export { default as VcaTabBar } from './VcaTabBar';
+export { default as VcaInfoBox } from './VcaInfoBox';
