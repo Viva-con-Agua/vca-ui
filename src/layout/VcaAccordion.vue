@@ -3,7 +3,7 @@
         <button @click="toggle" class="accordion">
           <div class="arrow" v-if="isActive">&minus;</div>
           <div class="arrow" v-else>&plus;</div>
-          <div class="header">{{ header }}</div>
+          <div class="accord-header">{{ header }}</div>
         </button>
         <transition name="fade" mode="out-in">
             <div v-if="isActive" class="panel" :class="{active: isActive}">
