@@ -39,7 +39,6 @@
             <div class="currency-label">
                 <label class="currency-select"> Zeit </label>
             </div>
-
         </div>
         <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
         <span v-else></span>
