@@ -1,16 +1,12 @@
 <template>
     <div class="select-known">
-        <VcaDropdown :label="label" :errorMsg="errorMsg" v-model="current" @input="change" :title="placeholder" ref="reference" :rules="$v.known_from" :options="options"/>
+        <vca-dropdown :label="label" :errorMsg="errorMsg" v-model="current" @input="change" :placeholder="placeholder" ref="reference" :rules="$v.known_from" :options="options"/>
     </div>
 </template>
 <script>
 import { required } from 'vuelidate/lib/validators'
-import VcaDropdown from '@/form/VcaDropdown'
 export default {
     name: 'VcaKnownFrom',
-    components:{
-        VcaDropdown
-    },
     props: {
         placeholder: {
             type: String,

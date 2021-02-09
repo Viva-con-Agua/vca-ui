@@ -1,6 +1,6 @@
 <template>
     <div class="vca-input">
-        <vca-dropdown :label="label" :errorMsg="errorMsg" v-model="current" @input="change" :title="placeholder" ref="reference" :rules="$v.country" :options="options"/>
+        <vca-dropdown :label="label" :errorMsg="errorMsg" v-model="current" @input="change" :placeholder="placeholder" ref="reference" :rules="$v.country" :options="options"/>
     </div>
 </template>
 <script>
