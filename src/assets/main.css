@@ -55,11 +55,18 @@ div.text-highlight {
 }
 
 .vca-tab-bar, .vca-tabs, .accordion, .vca-button, .vca-button-small, .border-button {
-    font-family: Ubuntu, Arial, Helvetica !important;
+    /*
+  Google Webfont Roboto
+  */
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400&display=swap');
+    font-family: 'Roboto Slab', serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /*
-    CSS Form Elements 
+    CSS Form Elements
 */
 .vca-form {
     width: 100%;
@@ -67,7 +74,7 @@ div.text-highlight {
     padding: 0.6em 0.6em;
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;   
+    box-sizing: border-box;
 }
 
 .vca-field {
@@ -118,7 +125,7 @@ div.text-highlight {
     margin: 0 0 1em;
     flex-basis: 150px;
     flex-grow: 1;
-    flex-shrink: 1; 
+    flex-shrink: 1;
 }
 
 /* Overrwrite v-select style here */
@@ -131,7 +138,7 @@ div.text-highlight {
 .v-select {
     background-color: white;
     border: 1px solid #ccc;
-    border-radius: 5px;    
+    border-radius: 5px;
 }
 .vs__dropdown-option {
     line-height: 1em;
@@ -139,7 +146,7 @@ div.text-highlight {
 }
 .vs__dropdown-option--highlight {
     background-color: #008fc3;
-}    
+}
 
 .vs--single .vs__selected {
     width: 100% !important;
@@ -316,7 +323,7 @@ input.error,
 .vca-right,
 .vca-left,
 .vca-center {
-    display: flex; 
+    display: flex;
     width: auto;
 }
 
@@ -461,7 +468,7 @@ ul li {
 }
 .vca-tab-bar li a,
 .vca-tabs li a {
-    transition: 0.3s;  
+    transition: 0.3s;
 }
 /* Change background color of buttons on hover */
 .vca-tab-bar li:hover a,
@@ -737,13 +744,13 @@ ul li {
     text-transform: uppercase;
     font-weight: bold;
     text-decoration: none;
-    
+
     border: solid thin transparent;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     width: auto;
-    
+
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
@@ -809,10 +816,10 @@ ul li {
     border-top: solid thin #008fc3;
     font-weight: bold;
     text-transform: uppercase;
-  
+
     outline: none;
     line-height: 40px;
-  
+
     cursor: pointer;
     padding: 0 30px 0 20px;
     width: 100%;
@@ -864,7 +871,7 @@ ul li {
     margin: 0 0 1em;
     flex-basis: 150px;
     flex-grow: 1;
-    flex-shrink: 1; 
+    flex-shrink: 1;
 }
 .vca-label label {
     font-size: 22px;
@@ -951,7 +958,7 @@ ul li {
   padding: 0 1em;
   background-color: white;
   overflow: hidden;
-} 
+}
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
@@ -962,7 +969,7 @@ ul li {
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
- 
+
     .vca-row {
         flex-wrap: nowrap;
     }
@@ -1060,7 +1067,7 @@ ul li {
         box-shadow: none;
         -moz-box-shadow: none;
         -webkit-box-shadow: none;
-        
+
         font-size: 1em;
         margin: 1em 3em;
         padding: 1.5em 2em;
