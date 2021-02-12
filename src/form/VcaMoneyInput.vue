@@ -106,10 +106,6 @@ export default {
     },
     watch: {
       value: function(nVal) {
-        // eslint-disable-next-line
-        console.log("value changed")
-        // eslint-disable-next-line
-        console.log(nVal)
         this.money_data = { unit: Money.getData(nVal).unit, subunit: Money.getData(nVal).subunit, currency: nVal.currency }
       }
     },

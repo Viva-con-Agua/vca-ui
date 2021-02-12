@@ -5,6 +5,7 @@ import * as layout from './layout'
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css';
 import './assets/main.css'
+
 const allComponents = {
   ...form,
     ...elements,

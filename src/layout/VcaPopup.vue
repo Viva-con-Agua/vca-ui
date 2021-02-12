@@ -1,6 +1,6 @@
 <template>
     <div class="popup-container" v-if="visible">
-      <div class="popup-background" />
+      <div class="popup-background" @click="hide" />
       <div class="popup">
         <div class="popup-header">
           {{ title }}
