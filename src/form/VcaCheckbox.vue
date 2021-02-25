@@ -1,7 +1,7 @@
 <template>
     <div class="vca-input vca-checkbox" :class="{error: hasError}">
         <label class="container">
-            <input type="checkbox" v-model="checked" @change="change">
+            <input type="checkbox" v-model="checked" @change="change" @blur="validate">
             <span class="checkmark"></span>
             <slot></slot>
         </label>

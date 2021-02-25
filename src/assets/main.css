@@ -223,8 +223,17 @@ input.error,
 }
 .vca-labeled-input-container {
     display: flex;
+    justify-content: flex-end;
     flex-wrap: wrap;
     width: 100%;
+}
+
+.vca-labeled-input-container label {
+    flex-basis: 35%;
+}
+
+.vca-labeled-input-container .vca-input-container {
+    flex-basis: 60%;
 }
 
 .vca-labeled-input-container input[type=number] {

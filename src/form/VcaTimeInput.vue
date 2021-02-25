@@ -3,7 +3,7 @@
         <div class="vca-labeled-input">
             <div class="vca-labeled-input-container" :class="{focus: hasFocus}">
                 <label v-if="topText"> {{ topText }} </label>
-        <div class="vca-flex-cell vca-right">
+        <div class="vca-flex-cell vca-input-container vca-right">
             <input 
              ref="ta"
              type="number"
@@ -11,6 +11,7 @@
              :placeholder="label"
              min="0"
              @input="changeHours"
+             @blur="validate"
              @change="change">
             <span class="middle"> : </span>
             <input 
@@ -22,6 +23,7 @@
              min="0"
              max="59"
              @change="change"
+             @blur="validate"
              @input="changeMinutes">
             <span class="middle"> : </span>
             <input 
@@ -33,6 +35,7 @@
              min=0
              max=59
              @change="change"
+             @blur="validate"
              @input="changeSecond">
         </div>
             </div>

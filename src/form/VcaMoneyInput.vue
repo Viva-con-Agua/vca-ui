@@ -11,7 +11,7 @@
                      :placeholder="0" 
                      min="0"
                      @input="changeUnit"
-                     @blur="blur"
+                     @blur="validate"
                      @change="change">
                     
                     <span class="middle">,</span>
@@ -21,7 +21,7 @@
                      v-model="money_data.subunit" 
                      placeholder="00"
                      @change="change"
-                     @blur="blur"
+                     @blur="validate"
                      @input="changeSubUnit">
                 </div>
             </div>
@@ -110,9 +110,6 @@ export default {
       }
     },
     methods: {
-        blur () {
-            this.validate()
-        },
         validate () {
             // if validate is set
             if (this.rules !== null) {
