@@ -103,6 +103,7 @@ div.text-highlight {
 .vca-labeled-input,
 .vca-input input[type=checkbox],
 .vca-input select,
+.vca-input textarea,
 .vca-input input {
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -163,7 +164,12 @@ div.text-highlight {
     width: auto;
 }
 
-.vca-input input {
+.vca-input textarea {
+    font-family: inherit;
+}
+
+.vca-input input,
+.vca-input textarea {
     width: 100%;
     padding: 0.6em 1em;
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
@@ -357,7 +363,6 @@ input.error,
 */
 .vca-card {
     /* Add shadows to create the "card" effect */
-    box-shadow: 0 4px 8px 2px rgba(0,0,0,0.2);
     transition: 0.3s;
     padding: 1.0em;
 }
@@ -582,9 +587,6 @@ ul li {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-    -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 .vca-button-small:hover {
@@ -616,9 +618,6 @@ ul li {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-    -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 .cancel-button {
@@ -737,9 +736,6 @@ ul li {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-    -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 /*
@@ -759,10 +755,6 @@ ul li {
     -moz-border-radius: 5px;
     border-radius: 5px;
     width: auto;
-
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-    -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 
     font-size: .8em;
     margin: 10px;
@@ -1036,6 +1028,7 @@ ul li {
 
     .vca-input select,
     .vca-input input,
+    .vca-input textarea,
     .error span.errorMsg {
         font-size: 1em;
     }
@@ -1121,7 +1114,4 @@ ul li {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-    -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
