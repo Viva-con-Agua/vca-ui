@@ -3,7 +3,7 @@
         <div class="vca-labeled-input">
             <div class="vca-labeled-input-container" :class="{focus: hasFocus}">
                 <label v-if="topText"> {{ topText }} </label>
-                <div class="vca-right">
+                <div class="vca-right vca-input-container">
                     <input 
                      ref="ta"
                      class="left"
@@ -12,6 +12,7 @@
                      placeholder="0" 
                      min="0"
                      @input="changeKm"
+                     @blur="validate"
                      @change="change">
                     
                     <span class="middle">,</span>
@@ -23,6 +24,7 @@
                      placeholder="0" 
                       :maxlength="max_meter"
                      @change="change"
+                     @blur="validate"
                      @input="changeMeter">
                 </div> 
             </div>

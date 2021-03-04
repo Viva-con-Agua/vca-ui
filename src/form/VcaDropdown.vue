@@ -104,6 +104,7 @@ export default {
     },
     methods: {
         handleClick(event) {
+            this.validate()
             if(event !== null) {
 
                 // Set event as an array if its only a single selection, otherwise we cannot handle the model correctly

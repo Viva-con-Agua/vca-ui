@@ -10,6 +10,7 @@
 
                 v-model="inputValue"
                 @blur="validate"
+                @close="validate"
                 @input="input"
                 />
             <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>

@@ -1,12 +1,12 @@
 <template>
         <div class="vca-input vca-date" :class="{error: hasError}">
-            <Datepicker
+            <datepicker
                 :class="{error: hasError, first: first, last: last}"
                 :placeholder="placeholder"
                 :format="format"
                 :value="getValue"
                 v-model="inputValue"
-                @blur="validate"
+                @selected="validate"
                 @input="input"
                 />
             <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
@@ -15,10 +15,10 @@
 </template>
 <script>
 
-import Datepicker from 'vuejs-datepicker';
+import datepicker from 'vuejs-datepicker';
 export default {
   name: 'VcaInputDate',
-  components: {Datepicker},
+  components: {datepicker},
   props: {
     value: {
       type: Number
@@ -65,6 +65,7 @@ export default {
   },
   methods: {
     input () {
+      this.validate()
       this.$emit('input', this.inputValue.getTime() / 1000)
     },
     // validate form via vuelidate
