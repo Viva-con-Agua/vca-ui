@@ -88,7 +88,7 @@ export default {
     },
     watch: { 
       value: function(nVal) {
-        this.time_data = Distance.getData(nVal)
+        this.time_data = Time.getTimeDate(nVal)
       }
     },
     methods: {
