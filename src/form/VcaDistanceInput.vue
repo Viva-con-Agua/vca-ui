@@ -74,6 +74,11 @@ export default {
             lastPos: 0,
         }
     },
+    watch: { 
+      value: function(nVal) {
+        this.distance_data = Distance.getData(nVal)
+      }
+    },
     methods: { 
         setFocus () {
             this.lastLength =  this.$refs.ta.value.length
