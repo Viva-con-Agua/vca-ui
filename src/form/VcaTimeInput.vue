@@ -86,6 +86,11 @@ export default {
             lastPos: 0,
         }
     },
+    watch: { 
+      value: function(nVal) {
+        this.time_data = Distance.getData(nVal)
+      }
+    },
     methods: {
         changeHours(){
             this.time_data.hours = Time.validateHours(this.time_data.hours)
