@@ -11,7 +11,7 @@ export default {
   name: 'VcaNumber',
   props: {
     value: {
-      type: String      
+      type: [ String, Number ]
     },
     min: {
       type: Number,
