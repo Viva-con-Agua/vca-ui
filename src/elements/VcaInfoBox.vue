@@ -9,7 +9,7 @@
       <div class="info-text-wrap">
         <div name="infotext" class="info-text-desktop"
              v-bind:class="classObject">
-          {{ infoText }}
+          <slot></slot>
         </div>
       </div>
     </div>
@@ -21,7 +21,7 @@
       <div class="info-text-wrap">
         <div name="infotext" class="info-text-mobile"
              v-bind:class="classObject">
-          {{ infoText }}
+          <slot></slot>
         </div>
       </div>
     </div>
@@ -31,7 +31,7 @@
 <script>
 export default {
   name: "VcaInfoBox",
-  props: ["infoText"],
+  props: [],
   data() {
     return {
       hovered: false,
@@ -66,7 +66,7 @@ export default {
 
           if (displayDesktop === 'contents') {
             spaceHorizontal = 400;
-            spaceVertical = 100;
+            spaceVertical = 200;
             child = 0;
           } else {
             spaceHorizontal = 150;
@@ -198,7 +198,6 @@ export default {
     }
 
     .text-top-right {
-      top: 0;
       left: 35px;
       transform: translateY(-100%);
     }
