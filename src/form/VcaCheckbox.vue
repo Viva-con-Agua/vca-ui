@@ -35,6 +35,11 @@ export default {
             hasError: false
         }
     },
+    watch: { 
+      value: function(nVal) {
+        this.checked = nVal
+      }
+    },
     mounted () {
         this.checked = this.value
     },

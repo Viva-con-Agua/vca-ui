@@ -65,6 +65,18 @@ div.text-highlight {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
 /*
     CSS Form Elements
 */
@@ -483,13 +495,14 @@ ul li {
     transition: 0.3s;
     text-align: center;
 }
-.vca-tab-bar li a,
-.vca-tabs li a {
+.vca-tab-bar li div,
+.vca-tabs li div {
+    cursor: pointer;
     transition: 0.3s;
 }
 /* Change background color of buttons on hover */
-.vca-tab-bar li:hover a,
-.vca-tabs li:hover a {
+.vca-tab-bar li:hover div,
+.vca-tabs li:hover div {
     color: #002e6d;
     border-color: #002e6d;
 }
@@ -514,14 +527,14 @@ ul li {
     background-color: #002e6d;
     border-color: #002e6d #002e6d #002e6d;
 }
-.vca-tab-bar li a,
-.vca-tabs li a {
+.vca-tab-bar li div,
+.vca-tabs li div {
     color: #008fc3;
     font-weight: bold;
     text-decoration: none;
 }
-.vca-tab-bar li.is-active a,
-.vca-tabs li.is-active a {
+.vca-tab-bar li.is-active div,
+.vca-tabs li.is-active div {
     color: white;
 }
 
