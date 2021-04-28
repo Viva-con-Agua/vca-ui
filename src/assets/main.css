@@ -1,3 +1,4 @@
+    
 /** MAIN CSS **/
 
 /* Default CSS mobile first
@@ -117,8 +118,8 @@ div.text-highlight {
 .vca-input select,
 .vca-input textarea,
 .vca-input input {
+    font-family: 'Roboto Slab', serif;
     border: 1px solid #ccc;
-    border-radius: 5px;
 }
 
 .vca-input select {
@@ -151,7 +152,6 @@ div.text-highlight {
 .v-select {
     background-color: white;
     border: 1px solid #ccc;
-    border-radius: 5px;
 }
 .vs__dropdown-option {
     line-height: 1em;
@@ -177,10 +177,6 @@ div.text-highlight {
 
 .vca-input.vca-checkbox input {
     width: auto;
-}
-
-.vca-input textarea {
-    font-family: inherit;
 }
 
 .vca-input input,
@@ -228,7 +224,6 @@ input.error,
 
 .vca-input-container input {
     width: 100%;
-    border-radius: 0.2em;
     padding: 0.6em 1em;
     border: 1px solid #ccc;
     border-right: none;
@@ -759,7 +754,9 @@ ul li {
 */
 .selection-button {
     background-color: #fff;
+
     color: #008fc3;
+    border: solid thin #008fc3;
 
     cursor: pointer;
     text-transform: uppercase;
@@ -906,7 +903,6 @@ ul li {
 
 .vca-input-border {
     border: 1px solid #ccc;
-    border-radius: 0.2em;
     padding: 0.6em 1em;
     box-shadow: none;
     outline-color: #008fc3;
