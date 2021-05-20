@@ -1,16 +1,15 @@
 <template>
     <div class="vca-input">
-        <vca-dropdown :label="label" :errorMsg="errorMsg" v-model="current" @input="change" :placeholder="placeholder" ref="reference" :rules="$v.country" :options="options"/>
+        <vca-dropdown :label="label" :errorMsg="errorMsg" v-model="current" @input="change" :placeholder="placeholder" ref="reference" :rules="rules" :options="options"/>
     </div>
 </template>
 <script>
-import { required } from 'vuelidate/lib/validators'
 export default {
     name: 'VcaCountry',
     props: {
-        req: {
-            type: Boolean,
-            default: false
+        rules: {
+            type: Object,
+            default: null
         },
         placeholder: {
             type: String,
@@ -42,21 +41,16 @@ export default {
         }
       }
     },
-    validations: {
-        country: {
-            required
-        }
-    },
     methods: {
         change(e) {
             this.current = e
             this.$emit("input", this.current)
-            if(this.req) {
+            if(this.rules) {
                 this.$refs.reference.validate()
             }
         },
         validate () {
-            if(this.req) {
+            if(this.rules) {
                 this.$refs.reference.validate()
             }
         }

@@ -28,8 +28,8 @@ export default {
             if (navigator.share) {
                 navigator.share({
                     title: "",
-                    text: this.share.text,
-                    url: this.share.url
+                    text: this.text,
+                    url: this.url
                 }).then(() => console.log('Successful share'))
                 .catch(error => console.log('Error sharing:', error));
             }

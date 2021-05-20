@@ -595,9 +595,6 @@ ul li {
     text-transform: uppercase;
     font-weight: bold;
     text-decoration: none;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
 }
 
 .vca-button-small:hover {
@@ -626,9 +623,6 @@ ul li {
     text-transform: uppercase;
     font-weight: bold;
     text-decoration: none;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
 }
 
 .cancel-button {
@@ -762,11 +756,6 @@ ul li {
     text-transform: uppercase;
     font-weight: bold;
     text-decoration: none;
-
-    border: solid thin transparent;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
     width: auto;
 
     font-size: .8em;
@@ -1032,6 +1021,10 @@ ul li {
 @media only screen and (min-width: 768px) {
     body {
         font-size: 1em;
+    }
+
+    div.content-text {
+        padding-top: 75px;
     }
 
     .vca-field-label label {

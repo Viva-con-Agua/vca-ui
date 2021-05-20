@@ -110,8 +110,8 @@ export default {
             this.change()
         },
         changeKm(){
-            if (this.distance_data.km >= 120) {
-                this.distance_data.km = 120
+            if (this.distance_data.km >= 999) {
+                this.distance_data.km = 999
             }
             if (this.distance_data.km === "") {
                 this.distance_data.km = 0

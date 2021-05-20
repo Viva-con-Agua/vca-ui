@@ -17,7 +17,8 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
+  z-index: 50;
 }
 
 .loading-background {
@@ -29,11 +30,14 @@ export default {
   z-index: 100;
 }  
 .loader {
-  margin: 100px auto;
-  position: relative;
-  width: 400px;
-  height: 120px;
-  z-index: 200;
+    position: relative;
+    z-index: 150;
+    margin: 100px auto;
+    text-align: center;
+}
+
+.loader img {
+    max-width: 50%;
 }
 
 </style>
