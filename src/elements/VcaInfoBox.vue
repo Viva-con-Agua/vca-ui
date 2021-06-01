@@ -146,8 +146,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import "../assets/style/_mixins.scss";
+<style scoped lang="scss">
+@import "src/assets/style/utils/mixins";
 
 .desktop {
   @include media(small) {
