@@ -1,9 +1,13 @@
 <template>
     <div class="vca-input vca-checkbox" :class="{error: hasError}">
         <label class="container">
-            <input type="checkbox" v-model="checked" @change="change" @blur="validate">
-            <span class="checkmark"></span>
-            <slot></slot>
+            <div class="vca-row container-row">
+                <input class="vca-input-checkbox" type="checkbox" v-model="checked" @change="change" @blur="validate">
+                <p class="checkbox-text">
+                    <span class="checkmark"></span>
+                    <slot></slot>
+                </p>
+            </div>
         </label>
         <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
     </div>
@@ -61,3 +65,16 @@ export default {
     }
 }
 </script>
+<style lang="scss">
+
+    .vca-checkbox .container .container-row {
+        align-items: flex-start;
+    }
+    .vca-input-checkbox {
+        margin: 5px 10px;
+    }
+    .checkbox-text {
+        flex: auto;
+        flex-basis: 85%;
+    }
+</style>

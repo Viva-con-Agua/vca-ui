@@ -1,37 +1,37 @@
 <template>
     <div class="vca-input" :class="{error: hasError}">
-        <div class="vca-labeled-input">
+        <div class="vca-input-label">
             <div class="vca-labeled-input-container">
-                <label v-if="topText"> {{ topText }} </label>
-                <div class="vca-right">
-                    <input 
-                     class="left"
-                     type="number"
-                     v-model="money_data.unit" 
-                     :placeholder="0" 
-                     min="0"
-                     @input="changeUnit"
-                     @blur="validate"
-                     @change="change">
-                    
-                    <span class="middle">,</span>
-                    <input 
-                     class="middle"
-                     type="number"
-                     v-model="money_data.subunit" 
-                     placeholder="00"
-                     @change="change"
-                     @blur="validate"
-                     @input="changeSubUnit">
+                <div class="top-text" v-if="topText"> {{ topText }} </div>
+                <input 
+                 class="left"
+                 type="number"
+                 v-model="money_data.unit" 
+                 :placeholder="0"
+                 :min="min"
+                 :class="css"
+                 @input="changeUnit"
+                 @blur="validate"
+                 @change="change">
+                
+                <span class="middle" :class="css">,</span>
+                <input 
+                 class="middle"
+                 type="number"
+                 v-model="money_data.subunit" 
+                 placeholder="00"
+                 :class="css"
+                 @change="change"
+                 @blur="validate"
+                 @input="changeSubUnit">
+                <div v-if="select" :class="css" class="currency-select">
+                    <select v-if="select" v-model="money_data.currency">
+                        <option v-for="cur in currency" :key="cur.value" label="€" :value="cur.value">{{ cur.label }}</option>
+                    </select>
                 </div>
-            </div>
-            <div v-if="select" class="currency-select">
-                <select v-if="select" v-model="money_data.currency">
-                    <option v-for="cur in currency" :key="cur.value" label="€" :value="cur.value">{{ cur.label }}</option>
-                </select>
-            </div>
-            <div v-if="!select" class="currency-label">
-                <label v-if="!select" class="currency-select"> {{ currency[0].label }} </label>
+                <div v-if="!select" :class="css" class="currency-label">
+                    <label v-if="!select" class="currency-select"> {{ currency[0].label }} </label>
+                </div>
             </div>
         </div>
         <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
@@ -39,7 +39,8 @@
     </div>
 </template>
 <script>
-import Money from '@/utils/Money'
+// TODO SWITCH BACK
+import Money from '../utils/Money'
 export default {
     name: 'VcaMoneyInput',
     props: {
@@ -75,6 +76,18 @@ export default {
             type: Object,
             default: null
         },
+        min: {
+            type: Number,
+            default: 0
+        },
+        css: {
+            type: String,
+            default: ""
+        },
+        threshhold: {
+            type: Object,
+            default: null
+        },
         label: {
             'type': String,
             'default': ''
@@ -98,6 +111,7 @@ export default {
     },
     data () {
         return {
+            amount: this.value,
             money_data: { unit: Money.getData(this.value).unit, subunit: Money.getData(this.value).subunit, currency: this.value.currency },
             hasError: false,
             lastLength: 0,
@@ -106,6 +120,7 @@ export default {
     },
     watch: {
       value: function(nVal) {
+        this.amount = nVal
         this.money_data = { unit: Money.getData(nVal).unit, subunit: Money.getData(nVal).subunit, currency: nVal.currency }
       }
     },
@@ -146,14 +161,65 @@ export default {
 }
 
 </script>
-<style scoped>
+<style type="text/css">
 
-input[class*="middle"] {
-    text-align: left;
+.vca-input-label {
+    margin: auto;
+    border: solid thin #ccc;
+    display: flex;
+    width: max-content;
+    padding: 10px;
+
 }
-input[class*="left"] {
+
+.top-text {
+    flex-basis: auto;
+}
+
+.currency-label {
+    background-color: transparent !important;
+    font-size: 1.75em;
+    margin-top: 8px;
+    font-weight: bold;
+}
+
+span.middle {
+    margin: auto 0;
+    font-size: 1.75em;
+    padding-top: 15px;
+}
+
+.vca-input-label input {
+    padding: 10px 0 0 0 !important;
+    font-size: 1.75em !important;
+    border: none !important;
+    font-weight: bold !important;
+}
+
+.vca-input-label input[class*="middle"] {
+    font-weight: bold;
+    text-align: left;
+    width: 75px;
+}
+
+.vca-input-label input[class*="left"] {
+    font-weight: bold;
     text-align: right;
-    width: 100px;
+    width: 75px;
+}
+
+
+@media only screen and (min-width: 600px) {
+    .top-text {
+            flex-basis: 100%;
+        }
+
+    .vca-input-label input[class*="left"] {
+        width: 50px;
+    }
+    .vca-input-label input[class*="middle"] {
+        width: 50px;
+    }
 }
 
 </style>

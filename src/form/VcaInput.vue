@@ -7,8 +7,8 @@
                 :disabled="disabled"
                 name="value"
                 @input="input"
+                @blur="blur"
                 :placeholder="placeholder"
-                @blur="validate"
                 />
             <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
             <span v-else></span>
@@ -110,6 +110,14 @@ export default {
         this.hasError = true
       } else {
         this.$emit('input', e.target.value)
+      }
+    },
+    blur (e) {
+      this.hasError = false
+      if (!event.target.validity.valid) {
+        this.hasError = true
+      } else {
+        this.$emit('blur', e.target.value)
       }
     },
     // validate form via vuelidate
