@@ -1,17 +1,22 @@
 import * as form from './form'
 import * as elements from './elements'
 import * as directives from './directives'
+import * as navigation from './navigation'
+import * as buttons from './buttons'
 import * as layout from './layout'
 import vSelect from 'vue-select'
 import VueTimepicker from 'vue2-timepicker'
 import 'vue2-timepicker/dist/VueTimepicker.css'
 import 'vue-select/dist/vue-select.css';
 import './assets/main.css'
+import './assets/styles/main.scss'
 
 const allComponents = {
   ...form,
     ...elements,
-    ...layout
+    ...layout,
+    ...buttons,
+    ...navigation
 }
 
 const VcaUi = Vue => {

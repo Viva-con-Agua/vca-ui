@@ -1,0 +1,50 @@
+@import "src/assets/styles/utils/variables";
+@import "src/assets/styles/utils/mixins";
+ 
+.half {
+    width: 70% !important;
+    @include media(large) {
+        width: 50% !important;
+    }
+
+}
+
+.quarter {
+    width: 50% !important;
+    @include media(large) {
+        width: 25% !important;
+    }
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+
+.main-color {
+    color: $vca-main;
+}
+
+.primay-light {
+    color: $vca-primary-light;
+}
+
+.primay-dark {
+    color: $vca-primary-dark;
+}
+
+.secondary-light {
+    color: $vca-secondary-color;
+}
+.secondary-dark {
+    color: $vca-secondary-darker;
+}
+

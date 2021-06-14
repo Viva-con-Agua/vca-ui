@@ -2,7 +2,7 @@
     <div class="vca-input vca-checkbox" :class="{error: hasError}">
         <label class="container">
             <div class="vca-row container-row">
-                <input class="vca-input-checkbox" type="checkbox" v-model="checked" @change="change" @blur="validate">
+                <input type="checkbox" v-model="checked" @change="change" @blur="validate">
                 <p class="checkbox-text">
                     <span class="checkmark"></span>
                     <slot></slot>
@@ -49,6 +49,7 @@ export default {
     },
     methods: {
         change (e) {
+            this.validate()
             this.$emit('input',  e.target.checked)
         },
         // validate form via vuelidate
@@ -65,16 +66,3 @@ export default {
     }
 }
 </script>
-<style lang="scss">
-
-    .vca-checkbox .container .container-row {
-        align-items: flex-start;
-    }
-    .vca-input-checkbox {
-        margin: 5px 10px;
-    }
-    .checkbox-text {
-        flex: auto;
-        flex-basis: 85%;
-    }
-</style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="vca-input" :class="{error: hasError}">
+    <div class="vca-input vca-label-field" :class="{error: hasError}">
         <div class="vca-input-label">
             <div class="vca-labeled-input-container">
                 <div class="top-text" v-if="topText"> {{ topText }} </div>
@@ -161,65 +161,3 @@ export default {
 }
 
 </script>
-<style type="text/css">
-
-.vca-input-label {
-    margin: auto;
-    border: solid thin #ccc;
-    display: flex;
-    width: max-content;
-    padding: 10px;
-
-}
-
-.top-text {
-    flex-basis: auto;
-}
-
-.currency-label {
-    background-color: transparent !important;
-    font-size: 1.75em;
-    margin-top: 8px;
-    font-weight: bold;
-}
-
-span.middle {
-    margin: auto 0;
-    font-size: 1.75em;
-    padding-top: 15px;
-}
-
-.vca-input-label input {
-    padding: 10px 0 0 0 !important;
-    font-size: 1.75em !important;
-    border: none !important;
-    font-weight: bold !important;
-}
-
-.vca-input-label input[class*="middle"] {
-    font-weight: bold;
-    text-align: left;
-    width: 75px;
-}
-
-.vca-input-label input[class*="left"] {
-    font-weight: bold;
-    text-align: right;
-    width: 75px;
-}
-
-
-@media only screen and (min-width: 600px) {
-    .top-text {
-            flex-basis: 100%;
-        }
-
-    .vca-input-label input[class*="left"] {
-        width: 50px;
-    }
-    .vca-input-label input[class*="middle"] {
-        width: 50px;
-    }
-}
-
-</style>

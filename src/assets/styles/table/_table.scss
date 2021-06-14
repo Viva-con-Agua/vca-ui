@@ -1,0 +1,39 @@
+/*
+    CSS Table Elements
+    @TODO get new table design from r4w
+    @TODO create own page for tables including pagination
+*/
+
+.vca-table {
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: right;
+}
+
+.vca-table-cell:first-child {
+    text-align: left;
+}
+.vca-table-header {
+    display: table-row;
+    color: white;
+    background-color: $vca-main;
+    font-weight: bold;
+    font-size: 1.2em
+}
+.vca-table-cell {
+    vertical-align: middle;
+    padding: .5em;
+    display: table-cell;
+}
+.vca-table-row {
+    display: table-row;
+}
+.vca-table-row:hover {
+    transition: 0.3s;
+    background-color: $vca-primary-dark;
+    color: white;
+}
+.even {
+    background-color: $vca-primary-light;
+}

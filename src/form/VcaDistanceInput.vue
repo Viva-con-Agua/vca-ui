@@ -1,35 +1,33 @@
 <template>
-    <div class="vca-input" :class="{error: hasError}">
-        <div class="vca-labeled-input">
-            <div class="vca-labeled-input-container" :class="{focus: hasFocus}">
-                <label v-if="topText"> {{ topText }} </label>
-                <div class="vca-right vca-input-container">
-                    <input 
-                     ref="ta"
-                     class="left"
-                     type="number"
-                     v-model="distance_data.km" 
-                     placeholder="0" 
-                     min="0"
-                     @input="changeKm"
-                     @blur="validate"
-                     @change="change">
-                    
-                    <span class="middle">,</span>
-                    <input 
-                     ref="ta"
-                     class="middle"
-                     type="number"
-                     v-model="distance_data.meter" 
-                     placeholder="0" 
-                      :maxlength="max_meter"
-                     @change="change"
-                     @blur="validate"
-                     @input="changeMeter">
-                </div> 
-            </div>
-            <div class="currency-label">
-                <label class="currency-select"> KM </label>
+    <div class="vca-input vca-label-field" :class="{error: hasError}">
+        <div class="vca-input-label">
+            <div class="vca-labeled-input-container">
+                <div class="top-text" v-if="topText"> {{ topText }} </div>
+                <input 
+                 ref="ta"
+                 class="left"
+                 type="number"
+                 v-model="distance_data.km" 
+                 placeholder="0" 
+                 min="0"
+                 @input="changeKm"
+                 @blur="validate"
+                 @change="change">
+                
+                <span class="middle">,</span>
+                <input 
+                 ref="ta"
+                 class="middle"
+                 type="number"
+                 v-model="distance_data.meter" 
+                 placeholder="0" 
+                  :maxlength="max_meter"
+                 @change="change"
+                 @blur="validate"
+                 @input="changeMeter">
+                <div class="currency-label">
+                    <label class="currency-select"> KM </label>
+                </div>
             </div>
         </div>
         <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
@@ -37,7 +35,7 @@
     </div>
 </template>
 <script>
-import Distance from '@/utils/Distance'
+import Distance from '../utils/Distance'
 export default {
     name: 'VcaDistanceInput',
     props: {
@@ -122,13 +120,3 @@ export default {
 
 }
 </script>
-<style scoped>
-
-input[class*="left"] {
-    text-align: right;
-}
-input[class*="middle"] {
-    text-align: left;
-}
-
-</style>

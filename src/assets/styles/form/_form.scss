@@ -1,0 +1,297 @@
+/*
+* Input field, textarea, select and checkbox
+*/
+
+
+.vca-input-border {
+    border: 1px solid $grey;
+    padding: 0.6em 1em;
+    box-shadow: none;
+    outline-color: $vca-main;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;
+}
+
+.vca-input {
+
+    font-family: 'Roboto Slab', serif;
+    width: 100%;
+    margin: 0 0 1em;
+
+
+    @include media('large') {
+
+        select, input, textarea, &.error .errorMsg {
+            font-size: 1em;
+        }
+    }
+
+
+    &.vca-checkbox {
+
+        .container-row {
+            align-items: baseline;
+
+            .checkbox-text {
+                flex: auto;
+                flex-basis: 85%;
+                
+                @include media(large) {
+                    flex-basis: 100%;
+                }
+            }        
+        }
+
+    }
+
+    input[type=checkbox], select, textarea, input {
+        border: 1px solid $grey;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 0.6em 1em;
+        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+        box-sizing: border-box;
+    }
+
+    input[type=checkbox] {
+        margin: 5px 10px;
+        flex-basis: auto;
+        width: auto;
+        padding: 0.6em 1em;
+    }
+
+    select {
+        width: 100%;
+        padding: 0.6em 1em;
+        background-color: white;
+
+        option {
+          background: white;
+          border-top: 1px solid $grey;
+          padding: .3em 1em .3em 1em;
+        }
+    }
+
+    &.first, &.last {
+        flex-basis: 150px;
+        flex-grow: 1;
+        flex-shrink: 1;
+    }
+
+    &.error.last .errorMsg {
+        text-align: left;
+        margin-left: 5%;
+    }
+
+    &.error, &.error input, &.error .vca-input-label, &.error .vs--single  {
+        border-color: $vca-orange;
+    }
+
+    &.error .errorMsg {
+        margin: 5px;
+        display: block;
+        width: auto;
+        color: $vca-orange;
+    }
+
+}
+
+
+.vca-label-field {
+    width: max-content;
+    margin: auto;
+    text-align: left;
+}
+
+/*
+* Distance input, money input, time input
+*/
+
+.vca-input-label {
+
+    margin: auto;
+    border: solid thin $grey;
+    display: flex;
+    width: max-content;
+    padding: 10px;
+
+    .vca-labeled-input-container {
+    
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+        width: 100%;
+
+        .top-text {
+            flex-basis: 100%;
+        }
+
+        input {
+            padding: 10px 0 0 0;
+            font-size: 1.75em;
+            border: none;
+            font-weight: bold;
+            text-align: right;
+            width: 70px;
+            outline: none;
+            -moz-appearance: textfield;
+            -webkit-appearance: textfield;
+            appearance: textfield;
+
+            &.middle {
+                text-align: left;
+            }
+
+        }
+
+        span.middle {
+            margin: auto 0;
+            font-size: 1.75em;
+            padding-top: 15px;
+        }
+
+        .currency-label {
+            text-align: center;
+            background-color: transparent;
+            font-size: 1.75em;
+            margin-top: 10px;
+            font-weight: bold;
+            min-width: 50px;
+
+
+           @include media(large) {
+                min-width: 100px;
+                label {
+                    min-width: 100px;
+                }
+            }
+
+
+        }
+
+    }
+
+}
+
+
+.dropdown-container {
+    margin-bottom: 0.5em;
+
+    /* Overrwrite v-select style here */
+    .v-select {
+        background-color: white;
+        border: 1px solid $grey;
+
+        .vs__search, .vs__search:focus {
+            border: none;
+            height: 41px;
+        }
+        .vs__selected {
+            padding: .6em;
+            transition: 0.3s;
+            background-color: $vca-main;
+            border-color: transparent;
+            color: $white;
+            margin-left: 0;
+
+            .vs__deselect {
+                transition: 0.3s;
+                fill: $white;
+            }
+
+            &:hover {
+                transition: 0.3s;
+                background-color: $vca-primary-dark;
+                border-color: $vca-primary-dark;
+                color: $white;
+            }
+
+        }
+
+        .vs__dropdown-menu {
+            top: 50px;
+        }
+        .vs__dropdown-toggle {
+            border: none;
+        }
+        .vs__dropdown-option {
+
+            transition: 0.3s;
+            margin: 5px;
+            border: solid thin transparent;
+            font-size: .8em;
+            padding: 15px;
+            background-color: $white;
+            color: #000;
+            &:hover {
+                transition: 0.3s;
+                color: $vca-primary-dark;
+                border: solid thin $vca-primary-dark;
+            }
+        }
+
+        .vs__dropdown-option--selected {
+            transition: 0.3s;
+            background-color: $vca-main;
+            border: solid thin $vca-main;
+            color: $white;
+            &:hover {
+                transition: 0.3s;
+                color: $white;
+                border: solid thin $vca-primary-dark;
+                background-color: $vca-primary-dark;
+            }
+        }
+
+
+        &.vs--single {
+            height: 51px;
+
+            .vs__selected {
+                background-color: $white;
+                color: #000;
+                width: 100%;
+                border: none;
+                margin: 0;
+                position: absolute;
+                padding: 0.75em;
+
+            }
+
+        }
+    }
+
+
+    .dropdown-option {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-end;
+        .option-title {
+            font-weight: bold;
+            margin-right: 0.5em;
+        }
+
+        .option-subtitle {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: baseline;
+            list-style-type: none;
+            margin-bottom: 1em;
+        }
+
+    }
+
+}
+
+
+
+
+
+
+

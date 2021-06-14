@@ -1,5 +1,5 @@
 <template>
-  <div class="btn-center-container">
+  <div class="selection-button-box">
     <button v-for="item in selection" :key="item.value" class="selection-button" :class="btnSelected(item.value)" @click.prevent="triggerCallback(item.value)">{{ item.label }}</button>
   </div>
 </template>
@@ -29,7 +29,7 @@ export default {
             this.$emit("input", e)
         },
         btnSelected(val) {
-            return (val == this.value) ? 'selection-btn-selected' : '';
+            return (val == this.value) ? 'selected' : '';
         },
     }
 }

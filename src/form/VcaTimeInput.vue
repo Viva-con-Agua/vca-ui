@@ -1,46 +1,45 @@
 <template>
-    <div class="vca-input" :class="{error: hasError}">
-        <div class="vca-labeled-input">
-            <div class="vca-labeled-input-container" :class="{focus: hasFocus}">
-                <label v-if="topText"> {{ topText }} </label>
-        <div class="vca-flex-cell vca-input-container vca-right">
-            <input 
-             ref="ta"
-             type="number"
-             v-model="time_data.hours"
-             :placeholder="label"
-             min="0"
-             @input="changeHours"
-             @blur="validate"
-             @change="change">
-            <span class="middle"> : </span>
-            <input 
-             ref="ta"
-             class="middle"
-             type="number"
-             v-model="time_data.minutes" 
-             :placeholder="label" 
-             min="0"
-             max="59"
-             @change="change"
-             @blur="validate"
-             @input="changeMinutes">
-            <span class="middle"> : </span>
-            <input 
-             ref="ta" 
-             class="middle"
-             type="number"
-             v-model="time_data.seconds" 
-             :placeholder="label" 
-             min=0
-             max=59
-             @change="change"
-             @blur="validate"
-             @input="changeSecond">
-        </div>
-            </div>
-            <div class="currency-label">
-                <label class="currency-select"> Zeit </label>
+    <div class="vca-input vca-label-field" :class="{error: hasError}">
+        <div class="vca-input-label">
+            <div class="vca-labeled-input-container">
+                <div class="top-text" v-if="topText"> {{ topText }} </div>
+                
+                <input 
+                 ref="ta"
+                 type="number"
+                 v-model="time_data.hours"
+                 :placeholder="label"
+                 min="0"
+                 @input="changeHours"
+                 @blur="validate"
+                 @change="change">
+                <span class="middle"> : </span>
+                <input 
+                 ref="ta"
+                 class="middle"
+                 type="number"
+                 v-model="time_data.minutes" 
+                 :placeholder="label" 
+                 min="0"
+                 max="59"
+                 @change="change"
+                 @blur="validate"
+                 @input="changeMinutes">
+                <span class="middle"> : </span>
+                <input 
+                 ref="ta" 
+                 class="middle"
+                 type="number"
+                 v-model="time_data.seconds" 
+                 :placeholder="label" 
+                 min=0
+                 max=59
+                 @change="change"
+                 @blur="validate"
+                 @input="changeSecond">
+                <div class="currency-label">
+                    <label class="currency-select"> Zeit </label>
+                </div>
             </div>
         </div>
         <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
@@ -48,7 +47,7 @@
     </div>
 </template>
 <script>
-import Time from '@/utils/Time'
+import Time from '../utils/Time'
 export default {
     name: 'VcaTimeInput',
     props: {
@@ -123,7 +122,7 @@ export default {
 <style scoped>
 
 input[type=number] {
-    text-align: center;
+    text-align: center !important;
 }
 
 </style>

@@ -1,9 +1,7 @@
 <template>
-  <div>
     <div class="cancel-button">
-      <a @click.prevent="submit" target="_blank" class="button">{{ placeholder }}</a>
+      <button @click.prevent="submit" target="_blank" class="button">{{ placeholder }}</button>
     </div>
-  </div>
 </template>
 <script>
 
@@ -16,7 +14,7 @@ export default {
         },
         callback: {
             type: String,
-            default: "cancel"
+            default: "click"
         }
     },
     methods: {

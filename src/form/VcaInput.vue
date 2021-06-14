@@ -106,29 +106,22 @@ export default {
     },
     input (e) {
       this.hasError = false
-      if (!event.target.validity.valid) {
+      if (!e.target.validity.valid || (this.rules !== null && this.rules.$invalid)) {
         this.hasError = true
-      } else {
-        this.$emit('input', e.target.value)
       }
+      this.$emit('input', e.target.value)
     },
     blur (e) {
       this.hasError = false
-      if (!event.target.validity.valid) {
+      if (!e.target.validity.valid || (this.rules !== null && this.rules.$invalid)) {
         this.hasError = true
-      } else {
-        this.$emit('blur', e.target.value)
       }
+      this.$emit('blur', e.target.value)
     },
-    // validate form via vuelidate
-    validate () {
-      // if validate is set
-      if (this.rules !== null) {
-        if (this.rules.$invalid) {
-          this.hasError = true
-        } else {
-          this.hasError = false
-        }
+    validate() {
+      this.hasError = false
+      if (this.rules !== null && this.rules.$invalid) {
+        this.hasError = true
       }
     }
   }

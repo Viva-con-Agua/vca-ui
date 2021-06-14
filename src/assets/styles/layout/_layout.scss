@@ -1,0 +1,167 @@
+.vue-notification {
+    width: 100%;
+
+    padding: 10px;
+    margin: 0;
+
+    color: $white;
+    background: $vca-main;
+    border-bottom: 5px solid $vca-primary-dark;
+    border-left: none;
+
+    &.success {
+        background: $vca-green;
+        border-bottom-color: $vca-green-dark;
+    }
+
+    &.warn {
+        background: $vca-orange;
+        border-bottom-color: $vca-orange-dark;
+    }
+
+    &.error {
+        background: $vca-red;
+        border-bottom-color: $vca-red-dark;
+    }
+
+}
+
+
+.desktop {
+  @include media(small) {
+    display: none;
+  }
+  @include media(large) {
+    display: contents;
+  }
+}
+
+.mobile {
+  @include media(small) {
+    display: contents;
+  }
+  @include media(large) {
+    display: none;
+  }
+}
+
+.vca-border {
+    padding: 10px;
+    border: solid thin $vca-main;
+}
+
+.highlight {
+    color: white;
+    background-color: $vca-main;
+    font-weight: bold;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+.text-highlight {
+    color: white;
+    background-color: $vca-main;
+    font-weight: bold;
+    padding: 1px 4px;
+    display: inline;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.editable {
+    cursor: pointer;
+}
+
+/*
+    CSS Positioning
+*/
+
+.vca-right,
+.vca-left,
+.vca-center {
+    display: flex;
+    width: auto;
+}
+
+.vca-left, .vca-right {
+    flex-basis: 50%;
+}
+
+.vca-right {
+    justify-content: flex-end;
+}
+
+.vca-left {
+    justify-content: flex-start;
+}
+
+.vca-center {
+    justify-content: center;
+}
+
+.vca-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+
+    @include media(large) {
+        flex-wrap: nowrap;
+    }
+
+}
+
+.vca-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.vca-row > *,
+.vca-column > * {
+    flex: auto;
+    flex-basis: 100%;
+}
+
+.vca-field-row {
+    width: 100%;
+    box-shadow: none;
+    display: flex;
+    flex-wrap: wrap;
+    
+    .first {
+        width: 100%;
+        box-shadow: none;
+        input {
+            width: 95%;
+        }
+    
+    }
+    
+    .last {
+        width: 100%;
+        box-shadow: none;
+        text-align: right;
+        input {
+            width: 95%;
+        }
+    }
+
+}
+
+
+@include media (large) {
+    .content-text {
+        padding-top: 75px;
+    }
+
+}

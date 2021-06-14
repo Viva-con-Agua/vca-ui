@@ -38,6 +38,12 @@
       }
     },
     methods: {
+        validate() {
+          this.hasError = false
+          if (this.rules !== null && this.rules.$invalid) {
+            this.hasError = true
+          }
+        },
         autocompleteCallback() {
 
         // Load autocomplete from google places

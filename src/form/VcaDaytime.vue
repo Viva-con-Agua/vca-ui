@@ -83,38 +83,54 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-  .vca-input .time-picker {
+<style scopred lang="scss">
+@import "../../src/assets/styles/utils/variables";
+
+.vca-input .time-picker {
 
     width: 100% !important;
-    
+
     input {
-      padding: .6em 1em !important;
-      width: 100% !important;  
-      height: auto !important;
+        padding: .6em 1em !important;
+        width: 100% !important;  
+        height: auto !important;
     }
 
     .select-list {
 
-      li.hint {
-        font-weight: bold;
-        line-height: 2em;
-      }
+        li {
 
-      li:hover {  
-        background-color: #008fc3 !important;
-        color: #fff !important;
-      }
-      li.active {
-        background-color: #002e6d !important;
-      }
+            transition: 0.3s;
+            color: #000 !important;
+            border: solid thin transparent !important;
+
+            &.hint {
+                font-weight: bold;
+                line-height: 2em;
+            }
+    
+            &.active {
+                transition: 0.3s;
+                background-color: $vca-main !important;
+                color: $white !important;
+                &:hover {
+                    transition: 0.3s;
+                    background-color: $vca-primary-dark !important;
+                    border: solid thin transparent !important;
+                    color: $white !important;
+                }
+            }
+
+            &:hover {  
+                border: solid thin $vca-primary-dark !important;
+                background-color: $white !important;
+                color: $vca-primary-dark !important;
+            }
+
+        }
+
     }
 
-  }
-  
-</style>
-<style scoped>
-  .vca-input-daytime .time-picker {
-    width: 100%;
-  }
+}
+
 </style>
