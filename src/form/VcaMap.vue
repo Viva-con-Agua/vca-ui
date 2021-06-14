@@ -293,7 +293,7 @@
   }
 </script>
 <style lang="scss">
-ämap {
+#map {
     height: 400px;
     width: 100%;
     margin-bottom: 15px;
