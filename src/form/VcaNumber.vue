@@ -1,6 +1,6 @@
 <template>
-        <div class="vca-input vca-number" :class="{error: hasError}">
-            <input :class="{error: hasError}" :value="value" @change="input" type="number" :max="max" :min="min" :step="step" :placeholder="placeholder">
+        <div class="vca-input vca-number" :class="{error: hasError === true, valid: hasError === false}">
+            <input :class="{error: hasError === true, valid: hasError === false}" :value="value" @change="input" type="number" :max="max" :min="min" :step="step" :placeholder="placeholder">
             <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
             <span v-else></span>
         </div>
@@ -50,7 +50,7 @@ export default {
   data () {
     return {
       inputValue: this.value,
-      hasError: false,
+      hasError: null
     }
   },
   methods: {

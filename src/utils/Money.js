@@ -28,7 +28,7 @@ export default class Money {
     if(subunit == 0 || subunit.length == 0) {
       subunit = '00'
     } else if(subunit.length == 1) {
-      subunit = subunit + '0'
+      subunit = '0' + subunit
     }
 
     if (unit == '') {

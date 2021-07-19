@@ -1,7 +1,7 @@
 <template>
-        <div class="vca-input" :class="{error: hasError, first: first, last: last}">
+        <div class="vca-input" :class="{error: hasError === true, valid: hasError === false, first: first, last: last}">
             <textarea
-                :class="{error: hasError}"
+                :class="{error: hasError === true, valid: hasError === false}"
                 :value="value"
                 :type="type"
                 :maxlength="maxlength"
@@ -66,7 +66,7 @@ export default {
   },
   data () {
     return {
-      hasError: false
+      hasError: null
     }
   },
   methods: {

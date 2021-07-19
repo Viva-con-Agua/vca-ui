@@ -1,36 +1,40 @@
 <template>
-    <div class="vca-input vca-label-field" :class="{error: hasError}">
+    <div class="vca-input vca-label-field" :class="{error: hasError === true, valid: hasError === false}">
         <div class="vca-input-label">
             <div class="vca-labeled-input-container">
                 <div class="top-text" v-if="topText"> {{ topText }} </div>
-                <input 
-                 class="left"
-                 type="number"
-                 v-model="money_data.unit" 
-                 :placeholder="0"
-                 :min="min"
-                 :class="css"
-                 @input="changeUnit"
-                 @blur="validate"
-                 @change="change">
-                
-                <span class="middle" :class="css">,</span>
-                <input 
-                 class="middle"
-                 type="number"
-                 v-model="money_data.subunit" 
-                 placeholder="00"
-                 :class="css"
-                 @change="change"
-                 @blur="validate"
-                 @input="changeSubUnit">
-                <div v-if="select" :class="css" class="currency-select">
-                    <select v-if="select" v-model="money_data.currency">
-                        <option v-for="cur in currency" :key="cur.value" label="€" :value="cur.value">{{ cur.label }}</option>
-                    </select>
-                </div>
-                <div v-if="!select" :class="css" class="currency-label">
-                    <label v-if="!select" class="currency-select"> {{ currency[0].label }} </label>
+
+                <div class="input-fields">
+                    <input 
+                    class="left"
+                    type="number"
+                    v-model="money_data.unit" 
+                    :placeholder="0"
+                    :min="min"
+                    :class="css"
+                    @input="changeUnit"
+                    @blur="validate"
+                    @change="change">
+                    
+                    <span class="middle" :class="css">,</span>
+                    <input 
+                    class="middle"
+                    type="number"
+                    v-model="money_data.subunit" 
+                    placeholder="00"
+                    :min="0"
+                    :class="css"
+                    @change="change"
+                    @blur="validate"
+                    @input="changeSubUnit">
+                    <div v-if="select" :class="css" class="currency-select">
+                        <select v-if="select" v-model="money_data.currency">
+                            <option v-for="cur in currency" :key="cur.value" label="€" :value="cur.value">{{ cur.label }}</option>
+                        </select>
+                    </div>
+                    <div v-if="!select" :class="css" class="currency-label">
+                        <label v-if="!select" class="currency-select"> {{ currency[0].label }} </label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -113,7 +117,7 @@ export default {
         return {
             amount: this.value,
             money_data: { unit: Money.getData(this.value).unit, subunit: Money.getData(this.value).subunit, currency: this.value.currency },
-            hasError: false,
+            hasError: null,
             lastLength: 0,
             lastPos: 0,
         }
@@ -140,6 +144,7 @@ export default {
         },
         changeSubUnit(){
             this.money_data.subunit = this.money_data.subunit.substring(this.money_data.subunit.length - 2, this.money_data.subunit.length)
+            console.log(this.money_data.subunit)
             if (this.money_data.subunit >= 99) {
                 this.money_data.subunit = 99
             }

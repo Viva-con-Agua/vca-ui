@@ -9,6 +9,22 @@
 
 }
 
+.inline-input {
+    display: inline-block;
+}
+.long {
+    flex-basis: 100% !important;
+    @include media(large) {
+        flex-basis: 75% !important;
+    }
+}
+.short {
+    flex-basis: 100% !important;
+    @include media(large) {
+        flex-basis: 25% !important;
+    }
+}
+
 .quarter {
     width: 50% !important;
     @include media(large) {
@@ -28,23 +44,61 @@
     text-align: center;
 }
 
+.editable {
+    cursor: pointer;
+}
 
 .main-color {
-    color: $vca-main;
+    color: $main-color;
 }
 
-.primay-light {
-    color: $vca-primary-light;
+.primary-light {
+    color: $primary-light;
 }
 
-.primay-dark {
-    color: $vca-primary-dark;
+.primary-dark {
+    color: $primary-dark;
 }
 
 .secondary-light {
-    color: $vca-secondary-color;
+    color: $secondary-light;
 }
 .secondary-dark {
-    color: $vca-secondary-darker;
+    color: $secondary-dark;
 }
 
+.white {
+  color: $white;
+}
+
+.red {
+  color: $red;
+}
+
+.green {
+  color: $green;
+}
+
+.orange {
+  color: $orange;
+}
+
+.yellow {
+    color: $yellow;
+}
+
+.red-dark {
+  color: $red-dark;
+}
+
+.green-dark {
+  color: $green-dark;
+}
+
+.orange-dark {
+  color: $orange-dark;
+}
+
+.yellow-dark {
+    color: $yellow-dark;
+}

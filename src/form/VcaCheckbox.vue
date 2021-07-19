@@ -1,8 +1,9 @@
 <template>
-    <div class="vca-input vca-checkbox" :class="{error: hasError}">
+    <div class="vca-input vca-checkbox" :class="{error: hasError === true, valid: hasError === false}">
         <label class="container">
             <div class="vca-row container-row">
-                <input type="checkbox" v-model="checked" @change="change" @blur="validate">
+                <input v-if="!isArray" type="checkbox" v-model="checked" @change="change" @blur="validate">
+                <input v-else type="checkbox" @change="change" :value="id" v-model="checked">
                 <p class="checkbox-text">
                     <span class="checkmark"></span>
                     <slot></slot>
@@ -17,7 +18,7 @@ export default {
     name: 'VcaCheckbox',
     props: {
         value: {
-            type: Boolean,
+            type: [ Boolean, Array ],
             default: false
         },
         errorMsg: {
@@ -28,6 +29,10 @@ export default {
             type: String,
             default: 'please fill'
         },
+        id: {
+            type: String,
+            default: null
+        },
         rules: {
             type: Object,
             default: null
@@ -36,7 +41,8 @@ export default {
     data(){
         return {
             checked: false,
-            hasError: false
+            hasError: null,
+            isArray: false
         }
     },
     watch: { 
@@ -45,12 +51,19 @@ export default {
       }
     },
     mounted () {
+        this.isArray = Array.isArray(this.value)
         this.checked = this.value
     },
     methods: {
         change (e) {
             this.validate()
-            this.$emit('input',  e.target.checked)
+            if (this.isArray) {
+
+                this.$emit('input',  this.checked)
+            } else {
+                this.$emit('input',  e.target.checked)
+            }
+
         },
         // validate form via vuelidate
         validate () {

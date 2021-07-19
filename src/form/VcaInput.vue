@@ -1,5 +1,5 @@
 <template>
-        <div class="vca-input" :class="{error: hasError, first: first, last: last}">
+        <div class="vca-input" :class="{error: hasError === true, valid: hasError === false, first: first, last: last}">
             <input
                 :class="{error: hasError}"
                 :value="value"
@@ -7,6 +7,7 @@
                 :disabled="disabled"
                 name="value"
                 @input="input"
+                @keydown="input"
                 @blur="blur"
                 :placeholder="placeholder"
                 />
@@ -60,7 +61,7 @@ export default {
   },
   data () {
     return {
-      hasError: false
+      hasError: null
     }
   },
   methods: {

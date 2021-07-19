@@ -1,7 +1,7 @@
 <template>
-    <div class="vca-input vca-date" :class="{error: hasError}">
+    <div class="vca-input vca-date" :class="{error: hasError === true, valid: hasError === false}">
         <datepicker
-        :class="{error: hasError, first: first, last: last}"
+        :class="{error: hasError, valid: hasError === false, first: first, last: last}"
         :placeholder="placeholder"
         :format="format"
         :value="getValue"
@@ -55,7 +55,7 @@
 data () {
     return {
       inputValue: new Date(this.value) * 1000,
-      hasError: false
+      hasError: null
     }
 },
 computed: {
@@ -93,17 +93,17 @@ methods: {
      
         &:hover {
             transition: 0.3s;
-            border: solid thin $vca-primary-dark !important;
-            color: $vca-primary-dark !important;
+            border: solid thin $primary-dark !important;
+            color: $primary-dark !important;
         }
 
         &.selected {
             transition: 0.3s;
-            background-color: $vca-main !important;
+            background-color: $main-color !important;
             color: $white !important;
             &:hover {
                 transition: 0.3s;
-                background-color: $vca-primary-dark !important;
+                background-color: $primary-dark !important;
                 border: solid thin transparent !important;
             }
         }

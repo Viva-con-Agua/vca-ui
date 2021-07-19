@@ -1,32 +1,35 @@
 <template>
-    <div class="vca-input vca-label-field" :class="{error: hasError}">
+    <div class="vca-input vca-label-field" :class="{error: hasError === true, valid: hasError === false}">
         <div class="vca-input-label">
             <div class="vca-labeled-input-container">
                 <div class="top-text" v-if="topText"> {{ topText }} </div>
-                <input 
-                 ref="ta"
-                 class="left"
-                 type="number"
-                 v-model="distance_data.km" 
-                 placeholder="0" 
-                 min="0"
-                 @input="changeKm"
-                 @blur="validate"
-                 @change="change">
-                
-                <span class="middle">,</span>
-                <input 
-                 ref="ta"
-                 class="middle"
-                 type="number"
-                 v-model="distance_data.meter" 
-                 placeholder="0" 
-                  :maxlength="max_meter"
-                 @change="change"
-                 @blur="validate"
-                 @input="changeMeter">
-                <div class="currency-label">
-                    <label class="currency-select"> KM </label>
+
+                <div class="input-fields">
+                    <input 
+                    ref="ta"
+                    class="left"
+                    type="number"
+                    v-model="distance_data.km" 
+                    placeholder="0" 
+                    min="0"
+                    @input="changeKm"
+                    @blur="validate"
+                    @change="change">
+                    
+                    <span class="middle">,</span>
+                    <input 
+                    ref="ta"
+                    class="middle"
+                    type="number"
+                    v-model="distance_data.meter" 
+                    placeholder="000"
+                    :maxlength="max_meter"
+                    @change="change"
+                    @blur="validate"
+                    @input="changeMeter">
+                    <div class="currency-label">
+                        <label class="currency-select"> KM </label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -66,9 +69,9 @@ export default {
     },
     data () {
         return {
-            max_meter: 1,
+            max_meter: 3,
             distance_data: Distance.getData(this.value),
-            hasError: false,
+            hasError: null,
             hasFocus: false,
             lastLength: 0,
             lastPos: 0,
@@ -101,9 +104,6 @@ export default {
         changeMeter(){
             if (this.distance_data.meter === "") {
                 this.distance_data.meter = 0
-            }
-            if (this.distance_data.meter.length > 1){
-                this.distance_data.meter = this.distance_data.meter[1]
             }
             this.change()
         },

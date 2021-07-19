@@ -47,8 +47,8 @@ export default class Time {
     }
     
     static validateHours(hours){
-        if (hours >= 36) {
-            return 36
+        if (hours >= 42) {
+            return 42
         }
         if (hours === "") {
             return  "0"

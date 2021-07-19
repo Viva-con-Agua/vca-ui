@@ -6,8 +6,6 @@
 .vca-input-border {
     border: 1px solid $grey;
     padding: 0.6em 1em;
-    box-shadow: none;
-    outline-color: $vca-main;
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box;
@@ -15,22 +13,17 @@
 
 .vca-input {
 
-    font-family: 'Roboto Slab', serif;
     width: 100%;
     margin: 0 0 1em;
-
-
-    @include media('large') {
-
-        select, input, textarea, &.error .errorMsg {
-            font-size: 1em;
-        }
-    }
-
+    flex-basis: 150px;
+    flex-grow: 1;
+    flex-shrink: 1;
 
     &.vca-checkbox {
+        flex-basis: auto;
 
         .container-row {
+            flex-wrap: nowrap;
             align-items: baseline;
 
             .checkbox-text {
@@ -45,7 +38,13 @@
 
     }
 
-    input[type=checkbox], select, textarea, input {
+    &.vca-label-field {
+        width: max-content;
+        margin: auto;
+        text-align: left;
+    }
+
+    input[type=checkbox], textarea, input {
         border: 1px solid $grey;
     }
 
@@ -64,18 +63,6 @@
         padding: 0.6em 1em;
     }
 
-    select {
-        width: 100%;
-        padding: 0.6em 1em;
-        background-color: white;
-
-        option {
-          background: white;
-          border-top: 1px solid $grey;
-          padding: .3em 1em .3em 1em;
-        }
-    }
-
     &.first, &.last {
         flex-basis: 150px;
         flex-grow: 1;
@@ -84,28 +71,35 @@
 
     &.error.last .errorMsg {
         text-align: left;
-        margin-left: 5%;
+        margin-left: 0;
+        @include media(large) {
+            margin-left: 5%;
+        }
     }
 
-    &.error, &.error input, &.error .vca-input-label, &.error .vs--single  {
-        border-color: $vca-orange;
+    &.error, &.error input, &.error textarea, &.error .vca-input-label, &.error .v-select  {
+        border-color: $orange;
+    }
+
+    &.valid, &.valid input, &.valid textarea, &.valid .vca-input-label, &.valid .v-select  {
+        border-color: $green;
     }
 
     &.error .errorMsg {
         margin: 5px;
         display: block;
         width: auto;
-        color: $vca-orange;
+        color: $orange;
+    }
+
+    @include media(large) {
+        select, input, textarea, &.error .errorMsg {
+            font-size: 1em;
+        }
     }
 
 }
 
-
-.vca-label-field {
-    width: max-content;
-    margin: auto;
-    text-align: left;
-}
 
 /*
 * Distance input, money input, time input
@@ -122,55 +116,70 @@
     .vca-labeled-input-container {
     
         display: flex;
-        justify-content: flex-end;
-        flex-wrap: nowrap;
-        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        width: min-content;
+
+        @include media(large) {
+            width: 100%;
+            justify-content: flex-end;
+            flex-wrap: nowrap;
+        }
 
         .top-text {
             flex-basis: 100%;
         }
 
-        input {
-            padding: 10px 0 0 0;
-            font-size: 1.75em;
-            border: none;
-            font-weight: bold;
-            text-align: right;
-            width: 70px;
-            outline: none;
-            -moz-appearance: textfield;
-            -webkit-appearance: textfield;
-            appearance: textfield;
 
-            &.middle {
-                text-align: left;
-            }
+        .input-fields {
 
-        }
+            flex-basis: 50%;
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: row;
 
-        span.middle {
-            margin: auto 0;
-            font-size: 1.75em;
-            padding-top: 15px;
-        }
+            input {
+                padding: 10px 0 0 0;
+                font-size: 1.75em;
+                border: none;
+                font-weight: bold;
+                text-align: right;
+                width: 70px;
+                outline: none;
+                -moz-appearance: textfield;
+                -webkit-appearance: textfield;
+                appearance: textfield;
 
-        .currency-label {
-            text-align: center;
-            background-color: transparent;
-            font-size: 1.75em;
-            margin-top: 10px;
-            font-weight: bold;
-            min-width: 50px;
-
-
-           @include media(large) {
-                min-width: 100px;
-                label {
-                    min-width: 100px;
+                &.middle {
+                    text-align: left;
                 }
+
             }
 
+            span.middle {
+                margin: auto 0;
+                font-size: 1.75em;
+                padding-top: 15px;
+            }
 
+            .currency-label {
+                text-align: center;
+                background-color: transparent;
+                font-size: 1.75em;
+                padding: 15px 5px 0 0;
+                font-weight: bold;
+                min-width: 50px;
+
+
+               @include media(large) {
+                    min-width: 100px;
+                    label {
+                        min-width: 100px;
+                    }
+                }
+
+
+            }
         }
 
     }
@@ -187,13 +196,13 @@
         border: 1px solid $grey;
 
         .vs__search, .vs__search:focus {
-            border: none;
+            border: solid thin $grey;
             height: 41px;
         }
         .vs__selected {
             padding: .6em;
             transition: 0.3s;
-            background-color: $vca-main;
+            background-color: $main-color;
             border-color: transparent;
             color: $white;
             margin-left: 0;
@@ -205,8 +214,8 @@
 
             &:hover {
                 transition: 0.3s;
-                background-color: $vca-primary-dark;
-                border-color: $vca-primary-dark;
+                background-color: $primary-dark;
+                border-color: $primary-dark;
                 color: $white;
             }
 
@@ -229,27 +238,35 @@
             color: #000;
             &:hover {
                 transition: 0.3s;
-                color: $vca-primary-dark;
-                border: solid thin $vca-primary-dark;
+                color: $primary-dark;
+                border: solid thin $primary-dark;
             }
         }
 
         .vs__dropdown-option--selected {
             transition: 0.3s;
-            background-color: $vca-main;
-            border: solid thin $vca-main;
+            background-color: $main-color;
+            border: solid thin $main-color;
             color: $white;
             &:hover {
                 transition: 0.3s;
                 color: $white;
-                border: solid thin $vca-primary-dark;
-                background-color: $vca-primary-dark;
+                border: solid thin $primary-dark;
+                background-color: $primary-dark;
             }
         }
 
 
         &.vs--single {
             height: 51px;
+
+
+            .vs__search {
+                border: none;
+            }
+            .vs__search:focus {
+                border: solid thin $grey;   
+            }
 
             .vs__selected {
                 background-color: $white;

@@ -1,7 +1,7 @@
 <template>
-        <div class="vca-input vca-daytime" :class="{error: hasError}">
+        <div class="vca-input vca-daytime" :class="{error: hasError === true, valid: hasError === false}">
             <vue-timepicker
-                :class="{error: hasError, first: first, last: last}"
+                :class="{error: hasError === true, valid: hasError === false, first: first, last: last}"
                 :placeholder="placeholder"
                 :format="format"
                 close-on-complete
@@ -62,7 +62,7 @@ export default {
   data () {
     return {
       inputValue: this.value,
-      hasError: false
+      hasError: null
     }
   },
   methods: {
@@ -111,20 +111,20 @@ export default {
     
             &.active {
                 transition: 0.3s;
-                background-color: $vca-main !important;
+                background-color: $main-color !important;
                 color: $white !important;
                 &:hover {
                     transition: 0.3s;
-                    background-color: $vca-primary-dark !important;
+                    background-color: $primary-dark !important;
                     border: solid thin transparent !important;
                     color: $white !important;
                 }
             }
 
             &:hover {  
-                border: solid thin $vca-primary-dark !important;
+                border: solid thin $primary-dark !important;
                 background-color: $white !important;
-                color: $vca-primary-dark !important;
+                color: $primary-dark !important;
             }
 
         }

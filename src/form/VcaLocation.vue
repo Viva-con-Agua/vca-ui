@@ -1,5 +1,5 @@
 <template>
-  <div class="vca-input">
+  <div class="vca-input" :class="{error: hasError === true, valid: hasError === false}">
     <input type="text" ref="autocompleteAddress"/>
   </div>
 </template>
@@ -19,6 +19,7 @@
     },
     data() { 
       return {
+        hasError: null,
         locationType: this.type,
         currentAddress: {
           street: '',
