@@ -292,10 +292,10 @@
 
   }
 </script>
-<style type="text/css">
-  #map {
+<style lang="scss">
+#map {
     height: 400px;
     width: 100%;
     margin-bottom: 15px;
-  }
+}
 </style>

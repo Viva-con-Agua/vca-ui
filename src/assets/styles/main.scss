@@ -1,0 +1,26 @@
+//autor: habibi gang <3<3 for Viva con Agua
+//7-1 Sass Pattern
+
+@import
+    "utils/variables",
+    "utils/mixins",
+    "utils/helper";
+
+@import
+    "base/typography";
+
+@import
+    "layout/layout",
+    "layout/navigation",
+    "layout/footer";
+
+@import
+    "elements/elements";
+
+@import
+    "table/table";
+
+@import
+    "form/form",
+    "form/buttons";
+

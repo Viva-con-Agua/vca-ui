@@ -2,11 +2,11 @@
     <div class="dropdown-container">
         
         <label>{{ label }}</label>
-        <div class="vca-input" :class="{error: hasError, first: first, last: last}">
+        <div class="vca-input" :class="{error: hasError === true, valid: hasError === false, first: first, last: last}">
             <v-select
                     :value="currentOptions"
                     :options="options"
-                    :class="{error: hasError}"
+                    :class="{error: hasError === true, valid: hasError === false}"
                     :multiple="multiple"
                     :taggable="taggable"
                     :placeholder="placeholder"
@@ -83,7 +83,7 @@ export default {
     data() {
         return {
             currentOptions: this.value,
-            hasError: false
+            hasError: null
         }
     },
     watch: {

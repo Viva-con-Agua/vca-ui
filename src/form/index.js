@@ -1,5 +1,3 @@
-export { default as VcaForm } from './VcaForm';
-export { default as VcaField } from './VcaField';
 export { default as VcaTextarea } from './VcaTextarea.vue';
 export { default as VcaFieldRow } from './VcaFieldRow';
 export { default as VcaInput } from './VcaInput';
@@ -10,9 +8,6 @@ export { default as VcaLocation } from './VcaLocation.vue';
 export { default as VcaMap } from './VcaMap.vue';
 export { default as VcaNumber } from './VcaNumber.vue';
 export { default as VcaMoneyInput } from './VcaMoneyInput.vue';
-export { default as VcaBorderedButton } from './VcaBorderedButton.vue';
-export { default as VcaCancelButton } from './VcaCancelButton.vue';
-export { default as VcaSelection } from './VcaSelection.vue';
 export { default as VcaDropdown } from './VcaDropdown.vue';
 export { default as VcaKnownFrom } from './VcaKnownFrom.vue';
 export { default as VcaCountry } from './VcaCountry.vue';

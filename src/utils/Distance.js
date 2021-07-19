@@ -9,7 +9,7 @@ export default class Distance {
         }
 
         var x = distance % 1000
-        distance_data.meter = x /100
+        distance_data.meter = x
         x = distance - x
 
         distance_data.km = x / 1000
@@ -17,7 +17,7 @@ export default class Distance {
     }
     static getValue(distance_data) {
         var km = parseInt(distance_data.km) * 1000
-        var meter = parseInt(distance_data.meter) * 100
+        var meter = parseInt(distance_data.meter)
         return km + meter
     }
     static getString(meter) {

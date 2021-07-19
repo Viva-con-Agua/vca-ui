@@ -7,7 +7,7 @@
         </button>
         <transition name="fade" mode="out-in">
             <div v-if="isActive" class="panel" :class="{active: isActive}">
-                <p class="content"><slot name="body"></slot></p>
+                <vca-card><slot name="body"></slot></vca-card>
             </div>
         </transition>
     </div>
@@ -37,17 +37,3 @@ export default {
     }
 }
 </script>
-<style scoped>
-    button {
-      position: relative;
-    }
-    button div {
-      display: inline-block;
-    }
-    button .arrow {
-      margin-right: 10px;
-    }
-    .panel {
-        overflow: visible;
-    }
-</style>

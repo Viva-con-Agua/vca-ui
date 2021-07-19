@@ -1,14 +1,15 @@
 <template>
-        <div class="vca-input" :class="{error: hasError, first: first, last: last}">
+        <div class="vca-input" :class="{error: hasError === true, valid: hasError === false, first: first, last: last}">
             <textarea
-                :class="{error: hasError}"
+                :class="{error: hasError === true, valid: hasError === false}"
                 :value="value"
                 :type="type"
+                :maxlength="maxlength"
                 :disabled="disabled"
                 name="value"
                 @input="input"
                 :placeholder="placeholder"
-                @blur="validate"
+                @blur="blur"
                 >
             </textarea>
             <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
@@ -29,6 +30,10 @@ export default {
     errorMsg: {
       type: String,
       default: ''
+    },
+    maxlength: {
+      type: Number,
+      default: 10000
     },
     placeholder: {
       type: String,
@@ -61,7 +66,7 @@ export default {
   },
   data () {
     return {
-      hasError: false
+      hasError: null
     }
   },
   methods: {
@@ -107,21 +112,22 @@ export default {
     },
     input (e) {
       this.hasError = false
-      if (!event.target.validity.valid) {
+      if (!e.target.validity.valid || (this.rules !== null && this.rules.$invalid)) {
         this.hasError = true
-      } else {
-        this.$emit('input', e.target.value)
       }
+      this.$emit('input', e.target.value)
     },
-    // validate form via vuelidate
-    validate () {
-      // if validate is set
-      if (this.rules !== null) {
-        if (this.rules.$invalid) {
-          this.hasError = true
-        } else {
-          this.hasError = false
-        }
+    blur (e) {
+      this.hasError = false
+      if (!e.target.validity.valid || (this.rules !== null && this.rules.$invalid)) {
+        this.hasError = true
+      }
+      this.$emit('blur', e.target.value)
+    },
+    validate() {
+      this.hasError = false
+      if (this.rules !== null && this.rules.$invalid) {
+        this.hasError = true
       }
     }
   }

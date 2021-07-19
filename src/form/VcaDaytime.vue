@@ -1,7 +1,7 @@
 <template>
-        <div class="vca-input vca-daytime" :class="{error: hasError}">
+        <div class="vca-input vca-daytime" :class="{error: hasError === true, valid: hasError === false}">
             <vue-timepicker
-                :class="{error: hasError, first: first, last: last}"
+                :class="{error: hasError === true, valid: hasError === false, first: first, last: last}"
                 :placeholder="placeholder"
                 :format="format"
                 close-on-complete
@@ -62,7 +62,7 @@ export default {
   data () {
     return {
       inputValue: this.value,
-      hasError: false
+      hasError: null
     }
   },
   methods: {
@@ -83,38 +83,54 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-  .vca-input .time-picker {
+<style scopred lang="scss">
+@import "../../src/assets/styles/utils/variables";
+
+.vca-input .time-picker {
 
     width: 100% !important;
-    
+
     input {
-      padding: .6em 1em !important;
-      width: 100% !important;  
-      height: auto !important;
+        padding: .6em 1em !important;
+        width: 100% !important;  
+        height: auto !important;
     }
 
     .select-list {
 
-      li.hint {
-        font-weight: bold;
-        line-height: 2em;
-      }
+        li {
 
-      li:hover {  
-        background-color: #008fc3 !important;
-        color: #fff !important;
-      }
-      li.active {
-        background-color: #002e6d !important;
-      }
+            transition: 0.3s;
+            color: #000 !important;
+            border: solid thin transparent !important;
+
+            &.hint {
+                font-weight: bold;
+                line-height: 2em;
+            }
+    
+            &.active {
+                transition: 0.3s;
+                background-color: $main-color !important;
+                color: $white !important;
+                &:hover {
+                    transition: 0.3s;
+                    background-color: $primary-dark !important;
+                    border: solid thin transparent !important;
+                    color: $white !important;
+                }
+            }
+
+            &:hover {  
+                border: solid thin $primary-dark !important;
+                background-color: $white !important;
+                color: $primary-dark !important;
+            }
+
+        }
+
     }
 
-  }
-  
-</style>
-<style scoped>
-  .vca-input-daytime .time-picker {
-    width: 100%;
-  }
+}
+
 </style>

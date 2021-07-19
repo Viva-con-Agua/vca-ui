@@ -1,0 +1,54 @@
+.legal {
+  display: flex;
+  color: $white;
+  height: 220px;
+  background-color: $primary-dark;
+  bottom: 0;
+  flex-wrap: wrap;
+
+  a {
+    text-decoration: none;
+    list-style-type: none;
+    color: $white;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+  @include media(large) {
+    flex-wrap: nowrap;
+    padding: 10px 10px;
+    height: 80px;
+  }
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+
+  li {
+    list-style: none;
+  }
+
+  li a {
+    display: block;
+    padding: 10px 10px;
+  }
+
+  @include media(large) {
+    float: left;
+    flex-direction: row;
+    justify-content: unset;
+    flex-basis: 100%;
+
+    li {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+  }
+
+}

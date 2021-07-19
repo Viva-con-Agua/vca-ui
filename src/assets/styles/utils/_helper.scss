@@ -1,0 +1,104 @@
+@import "src/assets/styles/utils/variables";
+@import "src/assets/styles/utils/mixins";
+ 
+.half {
+    width: 70% !important;
+    @include media(large) {
+        width: 50% !important;
+    }
+
+}
+
+.inline-input {
+    display: inline-block;
+}
+.long {
+    flex-basis: 100% !important;
+    @include media(large) {
+        flex-basis: 75% !important;
+    }
+}
+.short {
+    flex-basis: 100% !important;
+    @include media(large) {
+        flex-basis: 25% !important;
+    }
+}
+
+.quarter {
+    width: 50% !important;
+    @include media(large) {
+        width: 25% !important;
+    }
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.editable {
+    cursor: pointer;
+}
+
+.main-color {
+    color: $main-color;
+}
+
+.primary-light {
+    color: $primary-light;
+}
+
+.primary-dark {
+    color: $primary-dark;
+}
+
+.secondary-light {
+    color: $secondary-light;
+}
+.secondary-dark {
+    color: $secondary-dark;
+}
+
+.white {
+  color: $white;
+}
+
+.red {
+  color: $red;
+}
+
+.green {
+  color: $green;
+}
+
+.orange {
+  color: $orange;
+}
+
+.yellow {
+    color: $yellow;
+}
+
+.red-dark {
+  color: $red-dark;
+}
+
+.green-dark {
+  color: $green-dark;
+}
+
+.orange-dark {
+  color: $orange-dark;
+}
+
+.yellow-dark {
+    color: $yellow-dark;
+}

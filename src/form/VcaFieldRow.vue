@@ -1,6 +1,6 @@
 <template>
     <div class="vca-field-row">
-            <slot></slot>
+        <slot></slot>
     </div>
 </template>
 <script>

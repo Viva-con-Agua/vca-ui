@@ -1,5 +1,5 @@
 <template>
-        <div class="vca-input" :class="{error: hasError, first: first, last: last}">
+        <div class="vca-input" :class="{error: hasError === true, valid: hasError === false, first: first, last: last}">
             <input
                 :class="{error: hasError}"
                 :value="value"
@@ -7,8 +7,9 @@
                 :disabled="disabled"
                 name="value"
                 @input="input"
+                @keydown="input"
+                @blur="blur"
                 :placeholder="placeholder"
-                @blur="validate"
                 />
             <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
             <span v-else></span>
@@ -60,7 +61,7 @@ export default {
   },
   data () {
     return {
-      hasError: false
+      hasError: null
     }
   },
   methods: {
@@ -106,21 +107,22 @@ export default {
     },
     input (e) {
       this.hasError = false
-      if (!event.target.validity.valid) {
+      if (!e.target.validity.valid || (this.rules !== null && this.rules.$invalid)) {
         this.hasError = true
-      } else {
-        this.$emit('input', e.target.value)
       }
+      this.$emit('input', e.target.value)
     },
-    // validate form via vuelidate
-    validate () {
-      // if validate is set
-      if (this.rules !== null) {
-        if (this.rules.$invalid) {
-          this.hasError = true
-        } else {
-          this.hasError = false
-        }
+    blur (e) {
+      this.hasError = false
+      if (!e.target.validity.valid || (this.rules !== null && this.rules.$invalid)) {
+        this.hasError = true
+      }
+      this.$emit('blur', e.target.value)
+    },
+    validate() {
+      this.hasError = false
+      if (this.rules !== null && this.rules.$invalid) {
+        this.hasError = true
       }
     }
   }
