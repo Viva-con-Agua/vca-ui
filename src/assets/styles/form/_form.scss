@@ -154,6 +154,11 @@
                     text-align: left;
                 }
 
+                &::-webkit-outer-spin-button,
+                &::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                }
+
             }
 
             span.middle {

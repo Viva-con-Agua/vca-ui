@@ -136,13 +136,13 @@
     }
 
     .selection-button {
+        font-family: 'Roboto Slab', serif;
         background-color: $white;
 
         color: $main-color;
         border: solid thin $main-color;
 
         cursor: pointer;
-        text-transform: uppercase;
         font-weight: bold;
         text-decoration: none;
         width: auto;
