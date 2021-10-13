@@ -1,21 +1,41 @@
 export default class Money {
-  static getAmount (moneyString) {
-    const cents = parseInt(moneyString.replace(/,|\.|€|$|Fr/g, ''))
-    if (isNaN(cents)) {
-      return 0
+
+  static getData (amount) {
+    const money = amount.amount.toString()
+    if (money.length === 0) {
+        return { unit: 0, subunit: 0 }
+    } else if(money.length === 1) {
+      return { unit: 0, subunit: money  }
+    } else if (money.length === 2) {
+      return { unit: 0, subunit: money  }
     } else {
-      return cents
+      const euro = money.substring(0, money.length - 2)
+      const cents = money.substring(money.length - 2, money.length)
+      return { unit: euro, subunit: cents  }
     }
   }
 
-  static getInputString (amount, currency) {
-    if (currency === 'EUR') {
-      return this.convertDE(amount)
-    } else if (currency === 'USD') {
-      return this.convertEN(amount)
-    } else if (currency === 'CHF') {
-      return this.convertDE(amount)
+  static getValue (data) {
+
+    var unit = data.unit
+    if(data.unit == 0) {
+      unit = ''
+    } else {
+      unit = unit - 0
     }
+
+    var subunit = data.subunit
+    if(subunit == 0 || subunit.length == 0) {
+      subunit = '00'
+    } else if(subunit.length == 1) {
+      subunit = '0' + subunit
+    }
+
+    if (unit == '') {
+      subunit = subunit - 0
+    }
+
+    return unit + '' + subunit
   }
 
   static getString (amount, currency) {

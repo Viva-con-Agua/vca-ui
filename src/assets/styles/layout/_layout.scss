@@ -1,0 +1,200 @@
+
+html, body {
+  height: 100%;
+}
+
+body {
+    margin: 0;
+    display: flex;
+}
+
+#app {
+    margin: 0 auto;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: min-content;
+    width: 100%;
+}
+
+#app-content {
+    overflow-x: auto;
+    flex-shrink: 0;
+    flex-grow: 1;
+}
+
+#app-footer {
+    z-index: 100;
+    flex-shrink: 0;
+}
+
+.vue-notification {
+    width: 100%;
+
+    padding: 10px;
+    margin: 0;
+
+    color: $white;
+    background: $main-color;
+    border-bottom: 5px solid $primary-dark;
+    border-left: none;
+
+    &.success {
+        background: $green;
+        border-bottom-color: $green-dark;
+    }
+
+    &.warn {
+        background: $orange;
+        border-bottom-color: $orange-dark;
+    }
+
+    &.error {
+        background: $red;
+        border-bottom-color: $red-dark;
+    }
+
+}
+
+
+.desktop {
+  @include media(small) {
+    display: none;
+  }
+  @include media(large) {
+    display: contents;
+  }
+}
+
+.mobile {
+  @include media(small) {
+    display: contents;
+  }
+  @include media(large) {
+    display: none;
+  }
+}
+
+.vca-border {
+    padding: 10px;
+    border: solid thin $main-color;
+}
+
+.strong {
+  background-color: $primary-dark;
+  text-transform: uppercase;
+  color: $white;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.typo-roboto {
+  font-family: 'Roboto Slab', serif !important;
+}
+
+.typo-veneer {
+  font-family: Veneer, "Veneer", sans-serif !important;
+}
+
+
+.highlight {
+    color: white;
+    background-color: $main-color;
+    font-weight: bold;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+.text-highlight {
+    color: white;
+    background-color: $main-color;
+    font-weight: bold;
+    padding: 1px 4px;
+    display: inline;
+}
+
+
+/*
+    CSS Positioning
+*/
+
+.vca-right,
+.vca-left,
+.vca-center {
+    display: flex;
+    width: auto;
+}
+
+.vca-left, .vca-right {
+    flex-basis: 50%;
+}
+
+.vca-right {
+    justify-content: flex-end;
+}
+
+.vca-left {
+    justify-content: flex-start;
+}
+
+.vca-center {
+    justify-content: center;
+}
+
+.vca-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+
+    @include media(large) {
+        flex-wrap: nowrap;
+    }
+
+}
+
+.vca-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.vca-row > *,
+.vca-column > * {
+    flex: auto;
+    flex-basis: 100%;
+}
+
+.vca-field-row {
+    width: 100%;
+    box-shadow: none;
+    display: flex;
+    flex-wrap: wrap;
+    
+    .first {
+        width: 100%;
+        box-shadow: none;
+        input {
+            width: 95%;
+        }
+    
+    }
+    
+    .last {
+        width: 100%;
+        box-shadow: none;
+        text-align: right;
+        input {
+            width: 95%;
+        }
+    }
+
+}
+
+@include media (large) {
+    .content-text {
+        padding-top: 75px;
+    }
+
+}

@@ -1,15 +1,17 @@
 <template>
-        <div class="vca-input" :class="{error: hasError, first: first, last: last}">
+        <div class="vca-input" :class="{error: hasError === true, valid: hasError === false, first: first, last: last}">
             <input
                 :class="{error: hasError}"
                 :value="value"
                 :type="type"
+                :disabled="disabled"
                 name="value"
                 @input="input"
+                @keydown="input"
+                @blur="blur"
                 :placeholder="placeholder"
-                @blur="validate"
                 />
-            <span v-if="hasError">{{ errorMsg }}</span>
+            <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
             <span v-else></span>
         </div>
 </template>
@@ -36,6 +38,10 @@ export default {
       type: Object,
       default: null
     },
+    disabled: {
+        type: Boolean,
+        default: false
+    },
     first: {
         type: Boolean,
         default: false
@@ -55,8 +61,7 @@ export default {
   },
   data () {
     return {
-      inputValue: '',
-      hasError: false
+      hasError: null
     }
   },
   methods: {
@@ -78,6 +83,10 @@ export default {
           var first = parent.querySelector(".first")
           var last = parent.querySelector(".last")
 
+          if (last  === null || first === null) {
+            return
+          }
+
           var firstRect = first.getBoundingClientRect();
           var lastRect = last.getBoundingClientRect();
 
@@ -97,17 +106,23 @@ export default {
       })
     },
     input (e) {
+      this.hasError = false
+      if (!e.target.validity.valid || (this.rules !== null && this.rules.$invalid)) {
+        this.hasError = true
+      }
       this.$emit('input', e.target.value)
     },
-    // validate form via vuelidate
-    validate () {
-      // if validate is set
-      if (this.rules !== null) {
-        if (this.rules.$invalid) {
-          this.hasError = true
-        } else {
-          this.hasError = false
-        }
+    blur (e) {
+      this.hasError = false
+      if (!e.target.validity.valid || (this.rules !== null && this.rules.$invalid)) {
+        this.hasError = true
+      }
+      this.$emit('blur', e.target.value)
+    },
+    validate() {
+      this.hasError = false
+      if (this.rules !== null && this.rules.$invalid) {
+        this.hasError = true
       }
     }
   }

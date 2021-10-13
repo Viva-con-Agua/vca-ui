@@ -1,29 +1,54 @@
 <template>
-    <div class="vca-input" :class="{error: hasError}">
-        <div class="vca-money-input">
-            <div class="vca-input-container" :class="{focus: hasFocus}">
-                <label> {{ topText }} </label>
-                <input ref="ta" v-model="displayAmount" :placeholder="label" :disabled="disabled" @keyup="keyup()" @click="click" @change="change" @blur="blur" @focus="setFocus">
-            </div>
-            <div v-if="select" class="currency-select">
-                <select v-if="select" v-model="money.currency">
-                    <option v-for="cur in currency" :key="cur.value" label="€" :value="cur.value">{{ cur.label }}</option>
-                </select>
-            </div>
-            <div v-if="!select" class="currency-label">
-                <label v-if="!select" class="currency-select"> {{ currency[0].label }} </label>
+    <div class="vca-input vca-label-field" :class="{error: hasError === true, valid: hasError === false}">
+        <div class="vca-input-label">
+            <div class="vca-labeled-input-container">
+                <div class="top-text" v-if="topText"> {{ topText }} </div>
+
+                <div class="input-fields">
+                    <input 
+                    class="left"
+                    type="number"
+                    v-model="money_data.unit" 
+                    :placeholder="0"
+                    :min="min"
+                    :class="css"
+                    @input="changeUnit"
+                    @blur="validate"
+                    @change="change">
+                    
+                    <span class="middle" :class="css">,</span>
+                    <input 
+                    class="middle"
+                    type="number"
+                    v-model="money_data.subunit" 
+                    placeholder="00"
+                    :min="0"
+                    :class="css"
+                    @change="change"
+                    @blur="validate"
+                    @input="changeSubUnit">
+                    <div v-if="select" :class="css" class="currency-select">
+                        <select v-if="select" v-model="money_data.currency">
+                            <option v-for="cur in currency" :key="cur.value" label="€" :value="cur.value">{{ cur.label }}</option>
+                        </select>
+                    </div>
+                    <div v-if="!select" :class="css" class="currency-label">
+                        <label v-if="!select" class="currency-select"> {{ currency[0].label }} </label>
+                    </div>
+                </div>
             </div>
         </div>
-        <span v-if="hasError">{{ errorMsg }}</span>
+        <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
         <span v-else></span>
     </div>
 </template>
 <script>
+// TODO SWITCH BACK
 import Money from '../utils/Money'
 export default {
     name: 'VcaMoneyInput',
     props: {
-        money: {
+        value: {
             type: Object,
             default: function () {
                 return {
@@ -55,6 +80,18 @@ export default {
             type: Object,
             default: null
         },
+        min: {
+            type: Number,
+            default: 0
+        },
+        css: {
+            type: String,
+            default: ""
+        },
+        threshhold: {
+            type: Object,
+            default: null
+        },
         label: {
             'type': String,
             'default': ''
@@ -73,72 +110,25 @@ export default {
         },
         topText: {
             type: String,
-            default: ""
+            default: ''
         }
     },
     data () {
         return {
-            hasError: false,
-            hasFocus: false,
+            amount: this.value,
+            money_data: { unit: Money.getData(this.value).unit, subunit: Money.getData(this.value).subunit, currency: this.value.currency },
+            hasError: null,
             lastLength: 0,
             lastPos: 0,
         }
     },
-    computed: {
-        displayAmount: {
-            get: function () {
-                return Money.getInputString(this.money.amount, this.money.currency)
-            },
-            set: function (value) {
-                this.money.amount = Money.getAmount(value)
-            }
-        }
+    watch: {
+      value: function(nVal) {
+        this.amount = nVal
+        this.money_data = { unit: Money.getData(nVal).unit, subunit: Money.getData(nVal).subunit, currency: nVal.currency }
+      }
     },
     methods: {
-        internalValidation (numeric) {
-            return this.rules.reduce((acc, rule) => {
-                var res = acc
-                if (rule.validator(numeric)) {
-                    res = {
-                        'valid': false,
-                        'msg': rule.msg
-                    }
-                }
-                return res
-            }, {
-                'valid': true
-            })
-        },
-        change () {
-            this.$emit('change', this.amount)
-        },
-        keyup () {
-            if (typeof this.$refs.ta.selectionStart == "number") {
-                var diff = Math.abs(this.lastLength - this.$refs.ta.value.length)
-                this.$refs.ta.setSelectionRange(this.lastPos + diff, this.lastPos + diff)
-
-                this.lastLength = this.$refs.ta.value.length
-                this.lastPos = this.$refs.ta.selectionStart//this.$refs.ta.selectionEnd;
-            } else if (typeof this.$refs.ta.createTextRange != "undefined") {
-                this.$refs.ta.focus();
-                var range = this.$refs.ta.createTextRange();
-                range.collapse(false);
-                range.select();
-            }
-        },
-        click () {
-            this.lastLength =  this.$refs.ta.value.length
-            this.lastPos =  this.$refs.ta.selectionStart
-        },
-        setFocus () {
-            this.lastLength =  this.$refs.ta.value.length
-            this.lastPos =  this.$refs.ta.selectionStart
-            this.hasFocus = true
-        },
-        blur () {
-            this.validate()
-            this.hasFocus = false
-        },
         validate () {
             // if validate is set
             if (this.rules !== null) {
@@ -148,31 +138,31 @@ export default {
                     this.hasError = false
                 }
             }
+        },
+        change() {
+            this.$emit("input", { 'amount': Money.getValue(this.money_data), 'currency': this.currency[0].value })
+        },
+        changeSubUnit(){
+            this.money_data.subunit = this.money_data.subunit.substring(this.money_data.subunit.length - 2, this.money_data.subunit.length)
+            console.log(this.money_data.subunit)
+            if (this.money_data.subunit >= 99) {
+                this.money_data.subunit = 99
+            }
+            if (this.money_data.subunit === "") {
+                this.money_data.subunit = 0
+            }
+            this.change()
+        },
+        changeUnit(){
+            if (this.money_data.unit >= 99999) {
+                this.money_data.unit = 99999
+            }
+            if (this.money_data.unit === "") {
+                this.money_data.unit = 0
+            }
+            this.change()
         }
     }
 }
 
 </script>
-<style scoped>
-.vca-money-input {
-    width: 100%;
-    display: inline-flex;
-    border-radius: 0em;
-    border: 0em;
-}
-.vca-money-input input {
-    width: 80%;
-    border-radius: 0em;
-    border-top-right-radius: 0em;
-    border-bottom-right-radius: 0em;;
-    border: none;
-}
-.vca-money-input select {
-    background: rgba(34,36,38,.15);
-    width: 20%;
-    border: none;
-    border-left: none;
-    border-top-left-radius: 0em;
-    border-bottom-left-radius: 0em;
-}
-</style>

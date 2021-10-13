@@ -1,5 +1,5 @@
 <template>
-  <div class="btn-center-container">
+  <div class="selection-button-box">
     <button v-for="item in selection" :key="item.value" class="selection-button" :class="btnSelected(item.value)" @click.prevent="triggerCallback(item.value)">{{ item.label }}</button>
   </div>
 </template>
@@ -13,20 +13,23 @@ export default {
         }
     },
     props: {
+        value: {
+            type: [ String, Number ]
+        },
         selection: {
             type: Array,
             default: function() {
-                return [ { value: 0, label: "" } ]
+                return [ { value: '0', label: "" } ]
             }
         },
     },
     methods: {
         triggerCallback(e) {
             this.selected = e
-            this.$emit("click", e)
+            this.$emit("input", e)
         },
         btnSelected(val) {
-            return (val == this.selected) ? 'selection-btn-selected' : '';
+            return (val == this.value) ? 'selected' : '';
         },
     }
 }

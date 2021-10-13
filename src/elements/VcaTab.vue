@@ -20,11 +20,6 @@ export default {
             isActive: false
         };
     },
-    computed: {
-        href() {
-            return '#' + this.title.toLowerCase().replace(/ /g, '-');
-        }
-    },
     mounted() {
         this.isActive = this.selected;
     }
