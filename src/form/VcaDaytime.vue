@@ -1,13 +1,12 @@
 <template>
-        <div class="vca-input vca-daytime" :class="{error: hasError === true, valid: hasError === false}">
+        <div class="vca-input vca-daytime" :class="{error: hasError === true, valid: hasError === false, first: first, last: last}">
             <vue-timepicker
-                :class="{error: hasError === true, valid: hasError === false, first: first, last: last}"
+                :class="{error: hasError === true, valid: hasError === false}"
                 :placeholder="placeholder"
                 :format="format"
                 close-on-complete
                 :minute-interval="minuteInterval"
                 :second-interval="secondInterval"
-
                 v-model="inputValue"
                 @blur="validate"
                 @close="validate"
@@ -86,49 +85,64 @@ export default {
 <style scopred lang="scss">
 @import "../../src/assets/styles/utils/variables";
 
-.vca-input .time-picker {
+.vca-input {
 
-    width: 100% !important;
+    .time-picker {
 
-    input {
-        padding: .6em 1em !important;
-        width: 100% !important;  
-        height: auto !important;
+      width: 100%;
+
+      input {
+          padding: .6em 1em !important;
+          width: 100%;  
+          height: auto !important;
+      }
+
+      .select-list {
+
+          li {
+
+              transition: 0.3s;
+              color: #000 !important;
+              border: solid thin transparent !important;
+
+              &.hint {
+                  font-weight: bold;
+                  line-height: 2em;
+              }
+      
+              &.active {
+                  transition: 0.3s;
+                  background-color: $main-color !important;
+                  color: $white !important;
+                  &:hover {
+                      transition: 0.3s;
+                      background-color: $primary-dark !important;
+                      border: solid thin transparent !important;
+                      color: $white !important;
+                  }
+              }
+
+              &:hover {  
+                  border: solid thin $primary-dark !important;
+                  background-color: $white !important;
+                  color: $primary-dark !important;
+              }
+
+          }
+
+      }
+
     }
 
-    .select-list {
 
-        li {
 
-            transition: 0.3s;
-            color: #000 !important;
-            border: solid thin transparent !important;
-
-            &.hint {
-                font-weight: bold;
-                line-height: 2em;
-            }
-    
-            &.active {
-                transition: 0.3s;
-                background-color: $main-color !important;
-                color: $white !important;
-                &:hover {
-                    transition: 0.3s;
-                    background-color: $primary-dark !important;
-                    border: solid thin transparent !important;
-                    color: $white !important;
-                }
-            }
-
-            &:hover {  
-                border: solid thin $primary-dark !important;
-                background-color: $white !important;
-                color: $primary-dark !important;
-            }
-
+    &.vca-daytime {
+        &.first, &.last {
+            width: 95%;
+            flex-basis: 150px;
+            flex-grow: 1;
+            flex-shrink: 1;
         }
-
     }
 
 }

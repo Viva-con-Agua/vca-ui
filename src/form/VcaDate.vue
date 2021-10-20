@@ -1,7 +1,7 @@
 <template>
-    <div class="vca-input vca-date" :class="{error: hasError === true, valid: hasError === false}">
+    <div class="vca-input vca-date" :class="{error: hasError === true, valid: hasError === false, first: first, last: last}">
         <datepicker
-        :class="{error: hasError, valid: hasError === false, first: first, last: last}"
+        :class="{error: hasError, valid: hasError === false}"
         :placeholder="placeholder"
         :format="format"
         :value="getValue"
@@ -84,6 +84,16 @@ methods: {
 </script>
 <style scopred lang="scss">
 @import "../../src/assets/styles/utils/variables";
+
+  .vca-date {
+
+      &.first, &.last {
+          width: 95%;
+          flex-basis: 150px;
+          flex-grow: 1;
+          flex-shrink: 1;
+      }
+  }
 
   .vdp-datepicker__calendar {
     .cell {
