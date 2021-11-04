@@ -226,7 +226,9 @@
         top: 0;
         right: 0;
         background-color: $main-color;
-        width: 50%;
+        max-width: 90%;
+        min-width: 50%;
+        width: auto;
       }
       li {
         a {

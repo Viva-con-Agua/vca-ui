@@ -58,12 +58,10 @@ export default {
         change (e) {
             this.validate()
             if (this.isArray) {
-
                 this.$emit('input',  this.checked)
             } else {
                 this.$emit('input',  e.target.checked)
             }
-
         },
         // validate form via vuelidate
         validate () {

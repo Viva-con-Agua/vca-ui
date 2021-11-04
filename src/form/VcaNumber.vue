@@ -1,5 +1,5 @@
 <template>
-        <div class="vca-input vca-number" :class="{error: hasError === true, valid: hasError === false}">
+        <div class="vca-input vca-number" :class="{error: hasError === true, valid: hasError === false, first: first, last: last}">
             <input :class="{error: hasError === true, valid: hasError === false}" :value="value" @change="input" type="number" :max="max" :min="min" :step="step" :placeholder="placeholder">
             <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
             <span v-else></span>
@@ -76,8 +76,21 @@ export default {
   }
 }
 </script>
-<style type="text/css">
-  .vca-input.vca-number input:invalid {
-    box-shadow: none;
+<style style="scss">
+  .vca-input {
+      &.vca-number {
+          input:invalid {
+            box-shadow: none;
+          }
+      }
   }
+
+    &.vca-daytime {
+        &.first, &.last {
+            width: 95%;
+            flex-basis: 150px;
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+    }
 </style>

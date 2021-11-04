@@ -4,7 +4,6 @@
         :class="{error: hasError, valid: hasError === false}"
         :placeholder="placeholder"
         :format="format"
-        :value="getValue"
         v-model="inputValue"
         @selected="validate"
         @input="input"
@@ -21,7 +20,7 @@
       components: {datepicker},
       props: {
         value: {
-          type: Number
+          type: [Number, String]
       },
       format: {
           type: String,
@@ -54,7 +53,7 @@
 },
 data () {
     return {
-      inputValue: new Date(this.value) * 1000,
+      inputValue: (this.value) ? new Date(this.value) * 1000 : 0,
       hasError: null
     }
 },
@@ -65,8 +64,8 @@ computed: {
 },
 methods: {
     input () {
-      this.validate()
       this.$emit('input', this.inputValue.getTime() / 1000)
+      this.validate()
     },
     // validate form via vuelidate
     validate () {

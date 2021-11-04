@@ -106,18 +106,18 @@ export default {
       })
     },
     input (e) {
+      this.$emit('input', e.target.value)
       this.hasError = false
       if (!e.target.validity.valid || (this.rules !== null && this.rules.$invalid)) {
         this.hasError = true
       }
-      this.$emit('input', e.target.value)
     },
     blur (e) {
+      this.$emit('blur', e.target.value)
       this.hasError = false
       if (!e.target.validity.valid || (this.rules !== null && this.rules.$invalid)) {
         this.hasError = true
       }
-      this.$emit('blur', e.target.value)
     },
     validate() {
       this.hasError = false

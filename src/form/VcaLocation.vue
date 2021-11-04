@@ -13,7 +13,7 @@
         default: 'geocode',
         validator: function (value) {
           // The value must match one of these strings
-          return ['address', 'geocode'].indexOf(value) !== -1
+          return ['address', 'geocode', 'establishment'].indexOf(value) !== -1
         }
       }
     },

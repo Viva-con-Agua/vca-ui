@@ -134,8 +134,6 @@ export default {
 
     }
 
-
-
     &.vca-daytime {
         &.first, &.last {
             width: 95%;
