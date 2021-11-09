@@ -96,7 +96,7 @@ methods: {
           flex-grow: 1;
           flex-shrink: 1;
           input {
-            width: 100%;
+            width: 100% !important;
           }
       }
   }
