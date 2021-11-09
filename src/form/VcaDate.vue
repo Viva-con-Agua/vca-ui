@@ -4,6 +4,7 @@
         :class="{error: hasError, valid: hasError === false}"
         :placeholder="placeholder"
         :format="format"
+        :typeable="typeable"
         v-model="inputValue"
         @selected="validate"
         @input="input"
@@ -44,12 +45,15 @@
       first: {
         type: Boolean,
         default: false
-    },
-    last: {
-        type: Boolean,
-        default: false
-    }
-
+      },
+      last: {
+          type: Boolean,
+          default: false
+      },
+      typeable: {
+          type: Boolean,
+          default: false
+      }
 },
 data () {
     return {
@@ -91,6 +95,9 @@ methods: {
           flex-basis: 150px;
           flex-grow: 1;
           flex-shrink: 1;
+          input {
+            width: 100%;
+          }
       }
   }
 

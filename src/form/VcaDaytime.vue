@@ -87,6 +87,21 @@ export default {
 
 .vca-input {
 
+
+    &.vca-daytime {
+
+        &.first, &.last {
+
+          .time-picker {
+            width: 95%;
+            flex-basis: 150px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            }
+        }
+
+    }
+
     .time-picker {
 
       width: 100%;
@@ -134,14 +149,6 @@ export default {
 
     }
 
-    &.vca-daytime {
-        &.first, &.last {
-            width: 95%;
-            flex-basis: 150px;
-            flex-grow: 1;
-            flex-shrink: 1;
-        }
-    }
 
 }
 
