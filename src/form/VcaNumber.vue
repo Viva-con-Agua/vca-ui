@@ -59,7 +59,7 @@ export default {
       if (!e.target.validity.valid) {
         this.hasError = true
       } else {
-        this.$emit('input', e.target.value)
+        this.$emit('input', parseInt(e.target.value))
       }
     },
     // validate form via vuelidate
