@@ -8,7 +8,8 @@ export default {
     name: 'VcaTab',
     props: {
         title: { required: true },
-        selected: { default: false}
+        selected: { default: false },
+        subMenu: { default: null }
     },
     watch: {
         selected: function(val) {

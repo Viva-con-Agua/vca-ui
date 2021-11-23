@@ -2,10 +2,10 @@
     <div class="popup-container" v-if="visible">
       <div class="popup-background" @click="hide" />
       <div class="popup">
-        <h3 class="popup-header">
+        <h2 class="popup-header">
           {{ title }}
           <span @click="hide">X</span>
-        </h3>
+        </h2>
         <vca-card class="popup-content">
           <slot></slot>
         </vca-card>
@@ -78,13 +78,19 @@ export default {
 
         .popup-header {
             padding: 5px 10px 3px 10px;
-            min-height: 21px;
+            min-height: 45px;
             border-bottom: solid thin $grey;
+            background-color: $main-color;
+            color: $white;
 
             span {
                 cursor: pointer;
-                color: #000;
+                color: $white;
+                font-size: xx-large;
                 float: right;
+                &:hover {
+                    color: $primary-dark;
+                }
             }
         }
         .popup-content {

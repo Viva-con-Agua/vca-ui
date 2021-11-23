@@ -1,8 +1,8 @@
 <template>
     <div class="arr-btn-box">
         <div class="arr-buttons" :class="{single: !showNext || !showBack}">
-            <button class="arr-btn-back" v-if="showBack" :disabled="!backEnabled" @click.prevent="back()">{{ getBack }}</button>
-            <button class="arr-btn-next" v-if="showNext" :disabled="!nextEnabled" @click.prevent="next()">{{ getNext }}</button>
+            <button :class="getBackClass" v-if="showBack" :disabled="!backEnabled" @click.prevent="back()">{{ getBack }}</button>
+            <button :class="getNextClass" v-if="showNext" :disabled="!nextEnabled" @click.prevent="next()">{{ getNext }}</button>
         </div>
     </div>
 </template>
@@ -22,6 +22,10 @@ export default {
             type: String,
             default: null
         },
+        nextLong: {
+            type: Boolean,
+            default: false
+        },
         showBack: {
             type: Boolean,
             default: true
@@ -33,7 +37,11 @@ export default {
         backLabel: {
             type: String,
             default: null
-        }
+        },
+        backLong: {
+            type: Boolean,
+            default: false
+        },
     },
     computed: {
         getNext() {
@@ -41,6 +49,12 @@ export default {
         },
         getBack() {
             return this.backLabel ? this.backLabel : '<<<<<<<<'
+        },
+        getBackClass() {
+            return 'arr-btn-back'
+        },
+        getNextClass() {
+            return this.nextLong ? 'arr-btn-next-long' : 'arr-btn-next'
         }
     },
     methods: {
