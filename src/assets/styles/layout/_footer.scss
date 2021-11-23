@@ -1,7 +1,7 @@
 .legal {
   display: flex;
   color: $white;
-  height: 220px;
+  height: auto;
   background-color: $primary-dark;
   bottom: 0;
   flex-wrap: wrap;
@@ -40,6 +40,7 @@
   }
 
   @include media(large) {
+    height: auto;
     float: left;
     flex-direction: row;
     justify-content: unset;
