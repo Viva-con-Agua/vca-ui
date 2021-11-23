@@ -83,7 +83,7 @@ methods: {
 }
 </script>
 <style scopred lang="scss">
-@import "../../src/assets/styles/utils/variables";
+@import "../../assets/styles/utils/variables";
 
   .vdp-datepicker__calendar {
     .cell {

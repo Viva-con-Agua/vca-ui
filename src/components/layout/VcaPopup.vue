@@ -45,7 +45,7 @@ export default {
 }
 </script>
 <style lang="scss">
-@import "../../src/assets/styles/utils/variables";
+@import "../../assets/styles/utils/variables";
 
 .popup-container {
 

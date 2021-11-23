@@ -1,16 +1,16 @@
 
 @font-face {
   font-family: 'Museo Slab 500';
-  src:  url("~@/assets/fonts/MuseoSlab-500.woff2") format("woff2"),
-  url("~@/assets/fonts/MuseoSlab-500.woff") format("woff");
+  src:  url("./../../assets/fonts/MuseoSlab-500.woff2") format("woff2"),
+  url("./../../assets/fonts/MuseoSlab-500.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Museo Slab 900';
-  src:  url("~@/assets/fonts/MuseoSlab-900.woff2") format("woff2"),
-  url("~@/assets/fonts/MuseoSlab-900.woff") format("woff");
+  src:  url("./../../assets/fonts/MuseoSlab-900.woff2") format("woff2"),
+  url("./../../assets/fonts/MuseoSlab-900.woff") format("woff");
   font-weight: bold;
   font-style: normal;
 }
@@ -23,12 +23,12 @@
 
 @font-face {
   font-family: 'veneer';
-  src:  url('~@/assets/fonts/Veneer.eot');
-  src:  url('~@/assets/fonts/Veneer.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('~@/assets/fonts/Veneer.ttf') format('truetype'),
-  url('~@/assets/fonts/Veneer.woff2') format('woff2'),
-  url('~@/assets/fonts/Veneer.woff') format('woff'),
-  url('~@/assets/fonts/Veneer.svg#svgFontName') format('svg'); /* Legacy iOS */;
+  src:  url('./../../assets/fonts/Veneer.eot');
+  src:  url('./../../assets/fonts/Veneer.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('./../../assets/fonts/Veneer.ttf') format('truetype'),
+  url('./../../assets/fonts/Veneer.woff2') format('woff2'),
+  url('./../../assets/fonts/Veneer.woff') format('woff'),
+  url('./../../assets/fonts/Veneer.svg#svgFontName') format('svg'); /* Legacy iOS */;
 }
 
 h1, h2 {
