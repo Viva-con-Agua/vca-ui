@@ -4,6 +4,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --inline-vue --name vca-ui src/main.js",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
     "lint": "vue-cli-service lint"
   },
   "main": "./dist/vca-ui.common.js",
@@ -16,8 +18,8 @@
   ],
   "dependencies": {
     "core-js": "^3.8.3",
-    "node-sass": "^5.0.0",
     "rfs": "^9.0.3",
+    "sass": "^1.43.4",
     "sass-loader": "^10.1.1",
     "vue": "^2.6.12",
     "vue-select": "^3.11.2",
@@ -34,7 +36,8 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "eslint-plugin-vue-libs": "^4.0.0",
-    "vue-template-compiler": "^2.6.12"
+    "vue-template-compiler": "^2.6.12",
+    "vuepress": "^1.8.2"
   },
   "eslintConfig": {
     "root": true,
