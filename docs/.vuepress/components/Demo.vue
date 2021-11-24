@@ -27,9 +27,12 @@
     </div>
     <div class="grid-item-code pre-wrapper">
       <button type="button" class="copy-button" @click="copyToClipboard">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path d="M22 6v16h-16v-16h16zm2-2h-20v20h20v-20zm-24 17v-21h21v2h-19v19h-2z"/></svg>
+        <transition name="fade" mode="out-in">
+          <svg key="copyicon" v-if="!showSelection" id="copy" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path d="M22 6v16h-16v-16h16zm2-2h-20v20h20v-20zm-24 17v-21h21v2h-19v19h-2z"/></svg>
+          <svg key="checkicon" v-else width="24" id="check" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M21 6.285l-11.16 12.733-6.84-6.018 1.319-1.49 5.341 4.686 9.865-11.196 1.475 1.285z"/></svg>
+        </transition>
       </button>
-      <pre :class="{selectcode: showSelection} "><code ref="codesnippet">{{codeOutput}}</code></pre>
+      <pre class="language-vue "><code ref="codesnippet">{{codeOutput}}</code></pre>
     </div>
   </div>
 </template>
@@ -68,10 +71,14 @@ import VcaDropButton from '../../../src/components/buttons/VcaDropButton.vue'
           for (let key in this.componentProperties){
             switch (this.properties[key]) {
               case 'String':
-                formattedPropertiesString = formattedPropertiesString.concat("\n  ",key, '="', this.componentProperties[key], '"')
+                if (this.componentProperties[key] !== ''){
+                  formattedPropertiesString = formattedPropertiesString.concat("\n  ",key, '="', this.componentProperties[key], '"')
+                }
                 break;
               case 'Number':
-                formattedPropertiesString = formattedPropertiesString.concat("\n  ",key, '="', this.componentProperties[key], '"')
+                if (this.componentProperties[key] !== ''){
+                  formattedPropertiesString = formattedPropertiesString.concat("\n  ",key, '="', this.componentProperties[key], '"')
+                }
                 break;
               case 'Boolean':
                 if (this.componentProperties[key]) formattedPropertiesString = formattedPropertiesString.concat("\n  ",key)
@@ -92,6 +99,7 @@ import VcaDropButton from '../../../src/components/buttons/VcaDropButton.vue'
         try {
           navigator.clipboard.writeText(this.codeOutput)
           this.showSelection = true;
+          setTimeout(() => {this.showSelection = false}, 1500)
           console.log('copied')
         } catch (error) {
           console.error(error)
@@ -126,7 +134,6 @@ import VcaDropButton from '../../../src/components/buttons/VcaDropButton.vue'
 <style lang="scss" scoped>
 .grid-container {
   min-height: 30vh;
-  position: relative;
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-template-rows: 1fr min-content;
@@ -160,6 +167,7 @@ import VcaDropButton from '../../../src/components/buttons/VcaDropButton.vue'
     }
   }
   .grid-item-code {
+    position: relative;
     grid-area: code;
     background-color: #31529300;
     // // display: flex;
@@ -171,77 +179,80 @@ import VcaDropButton from '../../../src/components/buttons/VcaDropButton.vue'
   .pre-wrapper pre {
     margin-top: 0px;
     // margin-bottom: 0px;
+    user-select: all;
     border-radius: 0px 0px 5px 5px;
     // display: flex;
     // justify-content: left;
     // align-items: center;
   }
-  .switch {
-  position: relative;
-  display: inline-block;
-  width: 32px;
-  height: 16px;
-  }
+  // .switch {
+  // position: relative;
+  // display: inline-block;
+  // width: 32px;
+  // height: 16px;
+  // }
 
-  .switch input { 
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
+  // .switch input { 
+  //   opacity: 0;
+  //   width: 0;
+  //   height: 0;
+  // }
 
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
+  // .slider {
+  //   position: absolute;
+  //   cursor: pointer;
+  //   top: 0;
+  //   left: 0;
+  //   right: 0;
+  //   bottom: 0;
+  //   background-color: #ccc;
+  //   -webkit-transition: .4s;
+  //   transition: .4s;
+  // }
 
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 0px;
-    bottom: 0px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
+  // .slider:before {
+  //   position: absolute;
+  //   content: "";
+  //   height: 16px;
+  //   width: 16px;
+  //   left: 0px;
+  //   bottom: 0px;
+  //   background-color: white;
+  //   -webkit-transition: .4s;
+  //   transition: .4s;
+  // }
 
-  input:checked + .slider {
-    background-color: #2196F3;
-  }
+  // input:checked + .slider {
+  //   background-color: #2196F3;
+  // }
 
-  input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
+  // input:focus + .slider {
+  //   box-shadow: 0 0 1px #2196F3;
+  // }
 
-  input:checked + .slider:before {
-    -webkit-transform: translateX(16px);
-    -ms-transform: translateX(16px);
-    transform: translateX(16px);
-  }
+  // input:checked + .slider:before {
+  //   -webkit-transform: translateX(16px);
+  //   -ms-transform: translateX(16px);
+  //   transform: translateX(16px);
+  // }
 
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 34px;
-  }
+  // /* Rounded sliders */
+  // .slider.round {
+  //   border-radius: 34px;
+  // }
 
-  .slider.round:before {
-    border-radius: 50%;
-  }
+  // .slider.round:before {
+  //   border-radius: 50%;
+  // }
 
   .copy-button {
     position: absolute;
-    right: 4px;
+    right: 8px;
+    top: 8px;
     background: rgba(255, 255, 255, 0);
     border: none;
-    padding: 6px;
+    width: 32px;
+    height: 32px;
     border-radius: 100%;
     cursor: pointer;
     
@@ -250,12 +261,28 @@ import VcaDropButton from '../../../src/components/buttons/VcaDropButton.vue'
     }
 
     svg {
+      position: relative;
       fill: rgb(194, 194, 194);
+    }
+
+    #copy {
+      top: 1px;
+    }
+    #check {
+      right: 1px;
     }
   }
   .selectcode {
     user-select: all;
   }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 0.1s ease-out;
+  }
+
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+}
 }
   
 </style>
