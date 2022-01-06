@@ -1,6 +1,5 @@
 <template>
     <div class="dropdown-container">
-        
         <label>{{ label }}</label>
         <div class="vca-input" :class="{error: hasError === true, valid: hasError === false, first: first, last: last}">
             <v-select
@@ -86,12 +85,13 @@ export default {
             hasError: null
         }
     },
-    watch: {
-      value: function(nVal) {
-
+    created() {
+        if (!this.value) {
+            return []
+        }
         var preSelected = []
-        nVal.forEach(val => {
-          var value = this.options.find(element => element.value == val.value)      
+        this.value.forEach(val => {
+          var value = this.options.find(element => element.value == val.value)
           if (value != null) {
             preSelected.push(value)
           } else if(this.taggable) {
@@ -99,7 +99,19 @@ export default {
           }
         })
         this.currentOptions = preSelected
-
+    },
+    watch: {
+      value: function(nVal) {
+        var preSelected = []
+        nVal.forEach(val => {
+          var value = this.options.find(element => element.value == val.value)
+          if (value != null) {
+            preSelected.push(value)
+          } else if(this.taggable) {
+            preSelected.push(val)
+          }
+        })
+        this.currentOptions = preSelected
       }
     },
     methods: {
