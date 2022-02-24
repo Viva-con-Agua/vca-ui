@@ -41,6 +41,19 @@ export default {
         }
       }
     },
+    watch: { 
+        preselection: function(nVal) {
+            console.log(nVal)
+            if (nVal !== null) {
+                var value = this.options.find(element => element.value == nVal)
+                console.log(value)
+                if (value != null) {
+                    this.current = [value]
+                    this.$emit("input", this.current)
+                }
+            }
+        }
+    },
     methods: {
         change(e) {
             this.current = e
