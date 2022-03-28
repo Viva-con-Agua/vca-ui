@@ -59,13 +59,13 @@
         .vca-table-nav {
             td {
 
+                color: $grey-dark;
+                padding: 0.5em;
+
                 &.vca-table-sort {
                     background-color: $main-color;
                     color: white;
                 }
-
-                color: $grey-dark;
-                padding: 10px 0;
 
                 @include media(large) {
                     padding: 15px 0;
@@ -78,7 +78,7 @@
 
                 span {
                     display: inline-block;
-                    margin: 15px 15px 0 15px;
+                    margin: 0.3em 0.3em 0 0.3em;
                     @include media(large) {
                         margin: 0 15px;
                     }
@@ -147,13 +147,31 @@
                 transition: 0.3s;
                 text-align: right;
 
+
+                &.vca-table-cell {
+                    @include media(small) {
+                        padding: 0.3em;
+                    }
+                }
+
+                &.vca-table-nav-cell {
+                    @include media(small) {
+                    padding: 0.5em;
+                        span {
+                            margin: 0.3em 0.3em 0 0.3em;
+                        }
+                    }
+                }
+
                 &:hover h2 {
                     transition: 0.3s;
                     color: $white;
                 }
 
                 &:last-child {
-                    padding-right: 40px;
+                    @include media(large) {
+                        padding-right: 40px;
+                    }
                 }
             }
 
@@ -166,8 +184,12 @@
 
         .vca-table-cell {
             vertical-align: middle;
-            padding: .5em;
             display: table-cell;
+            padding: .3em;
+
+            @include media(large) {
+                padding: .5em;
+            }
         }
 
         .vca-table-cell:first-child {
@@ -177,6 +199,9 @@
         .vca-content-row .vca-table-nav-cell {
 
             white-space: nowrap;
+            @include media(small) {
+                padding: .5em;
+            }
 
             label {
                 transition: 0.3s;
@@ -203,13 +228,6 @@
             }
 
         }
-
-        .vca-table-nav-cell {
-
-            color: $primary-dark;
-            background-color: $white;
-        }
-
         .vca-table-index {
             flex: auto;
             width: 15%;

@@ -3,6 +3,7 @@
         <label>{{ label }}</label>
         <div class="vca-input" :class="{error: hasError === true, valid: hasError === false, first: first, last: last}">
             <v-select
+                    class="custom-style"
                     :value="currentOptions"
                     :options="options"
                     :class="{error: hasError === true, valid: hasError === false}"
@@ -102,21 +103,26 @@ export default {
     },
     watch: {
       value: function(nVal) {
-        var preSelected = []
-        nVal.forEach(val => {
-          var value = this.options.find(element => element.value == val.value)
-          if (value != null) {
-            preSelected.push(value)
-          } else if(this.taggable) {
-            preSelected.push(val)
-          }
-        })
-        this.currentOptions = preSelected
+        this.setPreselection(nVal)
+      },
+      options: function() {
+        this.setPreselection(this.value)
       }
     },
     methods: {
+        setPreselection(val) {
+            var preSelected = []
+            val.forEach(val => {
+              var value = this.options.find(element => element.value == val.value)
+              if (value != null) {
+                preSelected.push(value)
+              } else if(this.taggable) {
+                preSelected.push(val)
+              }
+            })
+            this.currentOptions = preSelected
+        },
         handleClick(event) {
-            this.validate()
             if(event !== null) {
 
                 // Set event as an array if its only a single selection, otherwise we cannot handle the model correctly
@@ -130,24 +136,14 @@ export default {
                 this.currentOptions = []
                 this.$emit("input", [])
             }
+            this.validate()
         },
         validate () {
-            if (this.rules !== null) {
-                if (this.rules.$invalid) {
-                    this.hasError = true
-                } else {
-                    this.hasError = false
-                }
-            }
+              this.hasError = false
+              if (this.rules !== null && this.rules.$invalid) {
+                this.hasError = true
+              }
         }
     }
 }
 </script>
-<style type="text/css">
-    .vs__selected {
-        padding: .6em;
-        background-color: white;
-        border: solid thin #008fc3;
-        margin-left: 0;
-    }
-</style>

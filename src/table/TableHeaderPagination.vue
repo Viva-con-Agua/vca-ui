@@ -8,7 +8,7 @@
                         {{ $t('table.page.label') }} <vca-number class="vca-table-page typo-roboto" :min="1" :max="pg.pageCount" v-model="pg.currentPage"/> / {{ pg.pageCount }}
                     </span>
                     <span>
-                        {{ $t('table.page.size') }}: <vca-number :min="1" :max="10000" class="vca-table-pagesize typo-roboto" v-model="pg.pageSize"/> / <div class="vca-border main-color editable vca-page-all" @click="setMax()">{{ pg.listLength }}</div>
+                        {{ $t('table.page.size') }}: <vca-number :min="1" :max="pg.listLength" class="vca-table-pagesize typo-roboto" v-model="pg.pageSize"/> / <div class="vca-border main-color editable vca-page-all" @click="setMax()">{{ pg.listLength }}</div>
                     </span>
                 </div>
             </div>

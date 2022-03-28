@@ -16,92 +16,138 @@
     </div>
 </template>
 <script>
-    import {en, de} from 'vuejs-datepicker/dist/locale'
-    import datepicker from 'vuejs-datepicker';
-    export default {
-      name: 'VcaInputDate',
-      components: {datepicker},
-      props: {
+import {en, de} from 'vuejs-datepicker/dist/locale'
+import datepicker from 'vuejs-datepicker';
+export default {
+    name: 'VcaInputDate',
+    components: {datepicker},
+    props: {
         value: {
-          type: [Number, String]
-      },
-      default: {
-          type: Number,
-          default: null
-      },
-      format: {
-          type: String,
-          default: 'dd.MM.yyyy'
-      },
-      model: {
-          type: Object
-      },
-      errorMsg: {
-          type: String,
-          default: ''
-      },
-      placeholder: {
-          type: String,
-          default: 'please fill'
-      },
-      language: {
-          type: String,
-          default: 'de',
-          validator: function (value) {
-            // The value must match one of these strings
-            return ['de', 'en'].indexOf(value) !== -1
-          }
-      },
-      rules: {
-          type: Object,
-          default: null
-      },
-      first: {
-        type: Boolean,
-        default: false
-      },
-      last: {
-          type: Boolean,
-          default: false
-      },
-      typeable: {
-          type: Boolean,
-          default: false
-      }
-},
-data () {
-    return {
-      defaultValue: (this.default) ? new Date(this.default) * 1000 : new Date(new Date().setFullYear(new Date().getFullYear() - 20)),
-      inputValue: (this.value) ? new Date(this.value) * 1000 : 0,
-      hasError: null,
-      languages: {
-        'de': de,
-        'en': en
-      }
-    }
-},
-computed: {
-    getValue() {
-      return new Date(this.value)
-    }
-},
-methods: {
-    input () {
-      this.$emit('input', this.inputValue.getTime() / 1000)
-      this.validate()
+            type: [Number, String]
+        },
+        default: {
+            type: Number,
+            default: null
+        },
+        format: {
+            type: String,
+            default: 'dd.MM.yyyy'
+        },
+        model: {
+            type: Object
+        },
+        errorMsg: {
+            type: String,
+            default: ''
+        },
+        placeholder: {
+            type: String,
+            default: 'please fill'
+        },
+        language: {
+            type: String,
+            default: 'de',
+            validator: function (value) {
+                // The value must match one of these strings
+                return ['de', 'en'].indexOf(value) !== -1
+            }
+        },
+        rules: {
+            type: Object,
+            default: null
+        },
+        first: {
+            type: Boolean,
+            default: false
+        },
+        last: {
+            type: Boolean,
+            default: false
+        },
+        typeable: {
+            type: Boolean,
+            default: false
+        }
     },
-    // validate form via vuelidate
-    validate () {
-      // if validate is set
-      if (this.rules !== null) {
-        if (this.rules.$invalid) {
-          this.hasError = true
-      } else {
-          this.hasError = false
-      }
-  }
-}
-}
+    data () {
+        return {
+            defaultValue: (this.default) ? new Date(this.default * 1000) : new Date(new Date().setFullYear(new Date().getFullYear() - 20)),
+            inputValue: (this.value) ? new Date(this.value) * 1000 : 0,
+            hasError: null,
+            languages: {
+                'de': de,
+                'en': en
+            }
+        }
+    },
+    computed: {
+        getValue() {
+            return new Date(this.value)
+        }
+    },
+    created() {
+        this.checkWrap()
+        window.addEventListener("resize", this.checkWrap);
+    },
+    destroyed() {
+        window.removeEventListener("resize", this.checkWrap);
+    },
+    methods: {
+        checkWrap() {
+            /* Wait for DOM to be rendered */
+            this.$nextTick(() => {
+
+                /* Check for first class in DOM */
+                var first = document.querySelectorAll(".first")
+                if (first.length == 0) {
+                    return
+                }
+
+                /* For each first, check if there */
+                first.forEach((element) => {
+                    var parent = element.parentNode
+
+                    var first = parent.querySelector(".first")
+                    var last = parent.querySelector(".last")
+
+                    if (last  === null || first === null) {
+                        return
+                    }
+
+                    var firstRect = first.getBoundingClientRect();
+                    var lastRect = last.getBoundingClientRect();
+
+                    /* If wrapped, set width to 100% */
+                    if (firstRect.top < lastRect.top) {
+                        first.children[0].style.width = "100%";
+                        last.children[0].style.width = "100%";
+                        last.children[0].style.marginLeft = "0";
+                    } else {
+                        first.children[0].style.width = "95%";
+                        last.children[0].style.width = "95%";
+                        last.children[0].style.marginLeft = "5%";
+                    }
+
+                })
+
+            })
+        },
+        input () {
+            this.$emit('input', this.inputValue.getTime() / 1000)
+            this.validate()
+        },
+        // validate form via vuelidate
+        validate () {
+            // if validate is set
+            if (this.rules !== null) {
+                if (this.rules.$invalid) {
+                    this.hasError = true
+                } else {
+                    this.hasError = false
+                }
+            }
+        }
+    }
 }
 </script>
 <style scopred lang="scss">
@@ -126,47 +172,45 @@ methods: {
 
     header {
 
-      .day__month_btn, .month__year_btn {
-          border: solid thin transparent !important;
-          width: 215px !important;
-          box-sizing: border-box;
+        .day__month_btn, .month__year_btn {
+            border: solid thin transparent !important;
+            width: 215px !important;
+            box-sizing: border-box;
 
-          &:hover {
-              transition: 0.3s;
-              background-color: white !important;
-              border: solid thin $primary-dark !important;
-              color: $primary-dark !important;
-          }
+            &:hover {
+                transition: 0.3s;
+                background-color: white !important;
+                border: solid thin $primary-dark !important;
+                color: $primary-dark !important;
+            }
 
-          &::after {
-            content: " \25BE ";
-            position: relative;
-            bottom: 2px;
-            left: 5px;
-          }
-          /*&::before {
-            content: " \25BE ";
-            position: relative;
-            bottom: 2px;
-            right: 5px;
-          }*/
-      }
-      .prev, .next {
+            &::after {
+                content: " \25BE ";
+                position: relative;
+                bottom: 2px;
+                left: 5px;
+            }
+            /*&::before {
+                content: " \25BE ";
+                position: relative;
+                bottom: 2px;
+                right: 5px;
+            }*/
+        }
+        .prev, .next {
 
-          border: solid thin transparent !important;
-          width: 42.5px !important;
-          box-sizing: border-box;
+            border: solid thin transparent !important;
+            width: 42.5px !important;
+            box-sizing: border-box;
 
-          &:hover {
-              transition: 0.3s;
-              background-color: white !important;
-              border: solid thin $primary-dark !important;
-              color: $primary-dark !important;
-          }
-      }
-
+            &:hover {
+                transition: 0.3s;
+                background-color: white !important;
+                border: solid thin $primary-dark !important;
+                color: $primary-dark !important;
+            }
+        }
     }
-
 
     .cell {
         transition: 0.3s;
