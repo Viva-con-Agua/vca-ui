@@ -29,7 +29,7 @@
                     @input="changeSubUnit">
                     <div v-if="select" :class="css" class="currency-select">
                         <select v-if="select" v-model="money_data.currency">
-                            <option v-for="cur in currency" :key="cur.value" label="€" :value="cur.value">{{ cur.label }}</option>
+                            <option v-for="cur in currency" :key="cur.value" :label="cur.label" :value="cur.value">{{ cur.label }}</option>
                         </select>
                     </div>
                     <div v-if="!select" :class="css" class="currency-label">
@@ -166,3 +166,12 @@ export default {
 }
 
 </script>
+<style lang="scss">
+    .currency-select {
+        margin: auto;
+        select {
+            background-color: transparent;
+            border: none;
+        }
+    }
+</style>

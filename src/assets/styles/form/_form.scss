@@ -203,6 +203,9 @@
         .vs__search, .vs__search:focus {
             border: solid thin $grey;
             height: 41px;
+            @include media(small) {
+                font-size: 13px;
+            }
         }
         .vs__selected {
             padding: .6em;
@@ -228,6 +231,7 @@
 
         .vs__dropdown-menu {
             top: 50px;
+            z-index: 80;
         }
         .vs__dropdown-toggle {
             border: none;
@@ -263,11 +267,16 @@
 
 
         &.vs--single {
-            height: 51px;
-
+            height: 45px;
+            @include media(large) {
+                height: 51px;
+            }
 
             .vs__search {
                 border: none;
+                @include media(small) {
+                    margin-top: 2px;
+                }
             }
             .vs__search:focus {
                 border: solid thin $grey;   
@@ -281,6 +290,9 @@
                 margin: 0;
                 position: absolute;
                 padding: 0.75em;
+                @include media(small) {
+                    top: 4px;
+                }
 
             }
 
@@ -311,9 +323,9 @@
 
 }
 
-
-
-
-
-
-
+.vca-radiobutton {
+    margin: 0 10px 1em 0;
+    input {
+        margin: 5px 10px
+    }
+}

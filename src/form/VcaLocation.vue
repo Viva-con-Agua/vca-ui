@@ -1,6 +1,8 @@
 <template>
   <div class="vca-input" :class="{error: hasError === true, valid: hasError === false}">
     <input type="text" ref="autocompleteAddress"/>
+    <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
+    <span v-else></span>
   </div>
 </template>
 
@@ -15,6 +17,14 @@
           // The value must match one of these strings
           return ['address', 'geocode', 'establishment'].indexOf(value) !== -1
         }
+      },
+      errorMsg: {
+          type: String,
+          default: ''
+      },
+      rules: {
+          type: Object,
+          default: null
       }
     },
     data() { 

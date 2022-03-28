@@ -46,6 +46,7 @@ export default {
 </script>
 <style lang="scss">
 @import "../../src/assets/styles/utils/variables";
+@import "../../src/assets/styles/utils/mixins";
 
 .popup-container {
 
@@ -69,21 +70,33 @@ export default {
         display: flex;
         flex-direction: column;
         background-color: white;
-        margin: 100px auto;
+        margin: 150px auto;
         position: relative;
         width: 80%;
         height: auto;
         max-height: 80%;
         z-index: 200;
 
+        @include media(small) {
+            margin: 80px auto;
+        }
+
         .popup-header {
-            padding: 5px 10px 3px 10px;
-            min-height: 45px;
+
+            padding: 5px 40px 3px 10px;
             border-bottom: solid thin $grey;
             background-color: $main-color;
             color: $white;
+            min-height: auto;
+
+            @include media(large) {
+                min-height: 55px;
+            }
 
             span {
+                position: absolute;
+                top: 0;
+                right: 10px;
                 cursor: pointer;
                 color: $white;
                 font-size: xx-large;
