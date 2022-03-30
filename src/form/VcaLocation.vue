@@ -32,6 +32,7 @@
         hasError: null,
         locationType: this.type,
         currentAddress: {
+          name: '',
           street: '',
           number: '',
           zip: '',
@@ -74,6 +75,8 @@
           }
 
           let ac = place.address_components;
+
+          let name = place.name
           let street = ac.find(field => field.types.some(t => t === "route")) //ac[ac.length-1]["long_name"];
           let street_number = ac.find(field => field.types.some(t => t === "street_number")) //ac[ac.length-1]["short_name"];
           let zip = ac.find(field => field.types.some(t => t === "postal_code")) //ac[ac.length-1]["short_name"];
@@ -83,6 +86,7 @@
 
           // Set place id
           this.currentAddress.placeId = place.place_id
+          this.currentAddress.name = name
 
           // Set geolocation informations
           if (place.geometry.location) {
