@@ -39,12 +39,12 @@
           city: '',
           sublocality: '',
           country: '',
-          countryCode: '',
+          country_code: '',
           position: {
             lat: '',
             lng: ''
           },
-          placeId: '',
+          place_id: '',
         },
         autocomplete: null
       }
@@ -85,7 +85,7 @@
           let country = ac.find(field => field.types.some(t => t === "country")) //ac[ac.length-1]["long_name"];
 
           // Set place id
-          this.currentAddress.placeId = place.place_id
+          this.currentAddress.place_id = place.place_id
           this.currentAddress.name = name
 
           // Set geolocation informations
@@ -117,7 +117,7 @@
 
           if(typeof country !== "undefined") {
             this.currentAddress.country = country.long_name;
-            this.currentAddress.countryCode = country.short_name;
+            this.currentAddress.country_code = country.short_name;
           }
 
           // Emit new address

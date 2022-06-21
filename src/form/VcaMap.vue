@@ -209,7 +209,7 @@
           }
 
           // Update the current marker in the marektList to the new values
-          this.markerList[index].position = JSON.parse(JSON.stringify(this.current.position))
+          this.markerList[index].position = { lat: Number(this.current.position.lat), lng: Number(this.current.position.lng)}
           this.markerList[index].title = this.current.title
           this.markerList[index].subtitle = this.current.subtitle
   
@@ -239,10 +239,9 @@
 
         },
         mapCallback() {
-
           // Check if there is any value given and center first element
           if (this.value.length > 0) {
-            this.currentCenter = this.value[0].position
+            this.currentCenter = { lat: Number(this.value[0].position.lat), lng: Number(this.value[0].position.lng)}
             this.zoom = 12
           }
 
