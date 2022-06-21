@@ -1,6 +1,7 @@
 <template>
     <div class="vca-input vca-date" :class="{error: hasError === true, valid: hasError === false, first: first, last: last}">
         <datepicker
+        ref="input_date"
         :class="{error: hasError, valid: hasError === false}"
         :placeholder="placeholder"
         :format="format"
@@ -93,6 +94,9 @@ export default {
         window.removeEventListener("resize", this.checkWrap);
     },
     methods: {
+        clearDate() {
+            this.$refs.input_date.clearDate()
+        },
         checkWrap() {
             /* Wait for DOM to be rendered */
             this.$nextTick(() => {
@@ -133,7 +137,7 @@ export default {
             })
         },
         input () {
-            this.$emit('input', this.inputValue.getTime() / 1000)
+            this.$emit('input', this.inputValue ? this.inputValue.getTime() / 1000 : this.inputValue)
             this.validate()
         },
         // validate form via vuelidate
