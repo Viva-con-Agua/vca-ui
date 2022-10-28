@@ -1,55 +1,53 @@
 <template>
     <div class="popup-container" v-if="visible">
-      <div class="popup-background" @click="hide" />
-      <div class="popup">
-        <h2 class="popup-header">
-          {{ title }}
-          <span @click="hide">X</span>
-        </h2>
-        <vca-card class="popup-content">
-          <slot></slot>
-        </vca-card>
-      </div>
+        <div class="popup-background" @click="hide" />
+        <div class="popup">
+            <h2 class="popup-header">
+                {{ title }}
+                <span @click="hide">&#10060;</span>
+            </h2>
+            <vca-card class="popup-content">
+                <slot></slot>
+            </vca-card>
+        </div>
     </div>
-    
 </template>
 <script>
 export default {
-    name: 'VcaPopup',
+    name: "VcaPopup",
     props: {
         title: {
             type: String,
-            default: ""
+            default: "",
         },
         show: {
             type: Boolean,
-            default: false
-        }
+            default: false,
+        },
     },
     data() {
-      return {
-        visible: this.show
-      }
+        return {
+            visible: this.show,
+        };
     },
     methods: {
         hide() {
-          this.$emit("close")
-          this.visible = false
-        }
+            this.$emit("close");
+            this.visible = false;
+        },
     },
-    watch: { 
-      show: function(nVal) {
-        this.visible = nVal
-      }
+    watch: {
+        show: function (nVal) {
+            this.visible = nVal;
+        },
     },
-}
+};
 </script>
 <style lang="scss">
 @import "../../src/assets/styles/utils/variables";
 @import "../../src/assets/styles/utils/mixins";
 
 .popup-container {
-
     top: 0;
     left: 0;
     width: 100%;
@@ -82,7 +80,6 @@ export default {
         }
 
         .popup-header {
-
             padding: 5px 40px 3px 10px;
             border-bottom: solid thin $grey;
             background-color: $main-color;
@@ -109,13 +106,6 @@ export default {
         .popup-content {
             overflow: scroll;
         }
-
     }
-
 }
-
-
-
-
-
 </style>

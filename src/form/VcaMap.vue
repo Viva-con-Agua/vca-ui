@@ -3,15 +3,15 @@
     <div id="map"></div>
     <div v-if="isLoaded" class="vca-mapdata">
       <div class="vca-center">
-        <button v-if="!disabled" class="vca-button-small" @click="removeMarker">remove marker</button>
-        <button class="vca-button-small" @click="centerMarker">center current</button>
-        <button class="vca-button-small" @click="fitBounds">show all</button>
+        <button v-if="!disabled && !hideButtons" class="vca-button-small" @click="removeMarker">remove marker</button>
+        <button v-if="!hideButtons" class="vca-button-small" @click="centerMarker">center current</button>
+        <button v-if="!hideButtons" class="vca-button-small" @click="fitBounds">show all</button>
       </div>
-      <vca-input :disabled="disabled" placeholder="Title" @input="updateMapsMarker" v-model="current.title" />
-      <vca-input :disabled="disabled" placeholder="Subtitle" @input="updateMapsMarker" v-model="current.subtitle" />
-      <vca-input :disabled="disabled" placeholder="Latitude" @input="updateMapsMarker" v-model="current.position.lat" />
-      <vca-input :disabled="disabled" placeholder="Longitude" @input="updateMapsMarker" v-model="current.position.lng" />
-      <vca-dropdown v-if="!disabled" :options="markerTypes" @input="updateMapsMarker" label="" v-model="current.type" placeholder="Marker Type" />
+      <vca-input v-if="!hideFields" :disabled="disabled" placeholder="Title" @input="updateMapsMarker" v-model="current.title" />
+      <vca-input v-if="!hideFields" :disabled="disabled" placeholder="Subtitle" @input="updateMapsMarker" v-model="current.subtitle" />
+      <vca-input v-if="!hideFields" :disabled="disabled" placeholder="Latitude" @input="updateMapsMarker" v-model="current.position.lat" />
+      <vca-input v-if="!hideFields" :disabled="disabled" placeholder="Longitude" @input="updateMapsMarker" v-model="current.position.lng" />
+      <vca-dropdown v-if="!disabled && !hideFields" :options="markerTypes" @input="updateMapsMarker" label="" v-model="current.type" placeholder="Marker Type" />
     </div>
   </div>
 </template>
@@ -40,6 +40,14 @@
         }
       },
       disabled: {
+        type: Boolean,
+        default: false
+      },
+      hideFields: {
+        type: Boolean,
+        default: false
+      },
+      hideButtons: {
         type: Boolean,
         default: false
       },
