@@ -89,6 +89,13 @@
         isLoaded() {
           return window.google
         },
+        clearOverlays() {
+          for (let i = 0; i < this.mapsMarker.length; i++ ) {
+            this.mapsMarker[i].setMap(null)
+          }
+          this.mapsMarker.length = 0;
+          this.markerList.length = 0;
+        },
         // Change listener, called if any field in the form is edited
         change() {
           this.updateMarkerList()
@@ -280,7 +287,7 @@
           }
 
           if (this.value.length > 0) {
-            this.fitBounds()
+            this.centerMarker()
           }
 
       }
@@ -288,6 +295,7 @@
     mounted() {
 
       if (this.isLoaded()) {
+        this.clearOverlays()
         this.mapCallback()
         return;
       }
