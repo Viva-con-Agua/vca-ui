@@ -115,6 +115,9 @@ export default {
         },
         input(e) {
             this.$emit("input", e.target.value);
+            if (this.type == "email") {
+                return;
+            }
             this.hasError = false;
             if (
                 !e.target.validity.valid ||
