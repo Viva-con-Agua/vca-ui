@@ -3,8 +3,8 @@
         <div class="popup-background" @click="hide" />
         <div class="popup">
             <h2 class="popup-header">
-                {{ title }}
-                <span @click="hide">&#10060;</span>
+                <span>{{ title }}</span>
+                <span @click="hide" class="popup-close">✕</span>
             </h2>
             <vca-card class="popup-content">
                 <slot></slot>
@@ -68,7 +68,7 @@ export default {
         display: flex;
         flex-direction: column;
         background-color: white;
-        margin: 150px auto;
+        margin: 5% auto;
         position: relative;
         width: 80%;
         height: auto;
@@ -76,28 +76,26 @@ export default {
         z-index: 200;
 
         @include media(small) {
-            margin: 80px auto;
+            margin: 10% auto;
         }
 
         .popup-header {
-            padding: 5px 40px 3px 10px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 1rem;
             border-bottom: solid thin $grey;
             background-color: $main-color;
             color: $white;
             min-height: auto;
+            font-size: 1.25rem;
 
             @include media(large) {
-                min-height: 55px;
+                font-size: 2rem;
             }
 
-            span {
-                position: absolute;
-                top: 0;
-                right: 10px;
+            .popup-close {
                 cursor: pointer;
                 color: $white;
-                font-size: xx-large;
-                float: right;
                 &:hover {
                     color: $primary-dark;
                 }

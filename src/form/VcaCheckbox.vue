@@ -10,6 +10,7 @@
                     v-if="!isArray"
                     type="checkbox"
                     v-model="checked"
+                    :name="name"
                     @change="change"
                     @blur="validate"
                 />
@@ -19,6 +20,7 @@
                     type="checkbox"
                     @change="change"
                     :value="id"
+                    :name="name"
                     v-model="checked"
                 />
                 <p class="checkbox-text">
@@ -39,6 +41,10 @@ export default {
             default: false,
         },
         errorMsg: {
+            type: String,
+            default: "",
+        },
+        name: {
             type: String,
             default: "",
         },

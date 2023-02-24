@@ -13,11 +13,12 @@
             :value="value"
             :type="type"
             :disabled="disabled"
-            name="value"
+            :name="name"
             :maxlength="maxLength"
             @input="input"
             @keydown="input"
             @blur="blur"
+            ref="inputField"
             :placeholder="placeholder"
         />
         <span class="errorMsg" v-if="hasError">{{ errorMsg }}</span>
@@ -34,6 +35,10 @@ export default {
         },
         value: {
             type: String,
+        },
+        name: {
+            type: String,
+            default: "",
         },
         maxLength: {
             type: Number,
@@ -135,6 +140,9 @@ export default {
             ) {
                 this.hasError = true;
             }
+        },
+        focusInput() {
+            this.$refs.inputField.focus();
         },
         validate() {
             this.hasError = false;
