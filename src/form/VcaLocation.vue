@@ -1,6 +1,7 @@
 <template>
     <div
         class="vca-input"
+        :key="hash"
         :class="{ error: hasError === true, valid: hasError === false }"
     >
         <input type="text" ref="autocompleteAddress" />
@@ -32,10 +33,16 @@ export default {
             type: Object,
             default: null,
         },
+        defaultLang: {
+            type: String,
+            default: "en",
+        },
     },
     data() {
         return {
+            lang: this.defaultLang,
             hasError: null,
+            hash: "ffasdf",
             locationType: this.type,
             currentAddress: {
                 name: "",
@@ -65,11 +72,27 @@ export default {
                 this.hasError = true;
             }
         },
+        setLanguage(lang) {
+            this.lang = lang;
+            this.hash = lang;
+            if (this.autocomplete) {
+                this.autocomplete.unbindAll();
+            }
+            this.$nextTick(() => {
+                this.autocompleteCallback();
+            });
+        },
         autocompleteCallback() {
             // Load autocomplete from google places
+            const options = { types: [this.locationType] };
+            if (this.lang) {
+                console.log("setting lang " + this.lang);
+                options["language"] = this.lang;
+                this.$refs.autocompleteAddress.setAttribute("lang", this.lang);
+            }
             this.autocomplete = new window.google.maps.places.Autocomplete(
                 this.$refs.autocompleteAddress,
-                { types: [this.locationType] }
+                options
             );
 
             // Add listener for changing of place
@@ -152,8 +175,10 @@ export default {
             return;
         }
 
-        // eslint-disable-next-line
-        console.error('Please include the Google Maps API in your index.html- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=[[API_KEY]]&libraries=places" ><\/script>');
+        console.error(
+            // eslint-disable-next-line
+            'Please include the Google Maps API in your index.html- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=[[API_KEY]]&libraries=places" ><\/script>'
+        );
     },
 };
 </script>

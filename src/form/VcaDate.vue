@@ -102,6 +102,7 @@ export default {
         value: function (nVal) {
             console.log("changed: " + nVal);
             this.value = nVal;
+            this.inputValue = this.value ? new Date(this.value) * 1000 : 0;
         },
     },
     computed: {
