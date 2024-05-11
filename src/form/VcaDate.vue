@@ -15,6 +15,7 @@
             :format="format"
             :language="languages[language]"
             :typeable="typeable"
+            :monday-first="isMondayFirst"
             :open-date="defaultValue"
             :disabled-dates="disabledVals"
             v-model="inputValue"
@@ -109,6 +110,9 @@ export default {
         getValue() {
             return new Date(this.value);
         },
+        isMondayFirst: function() {
+          return this.$props.language === "de";
+        }
     },
     created() {
         this.checkWrap();
