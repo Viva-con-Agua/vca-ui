@@ -42,8 +42,8 @@ export default {
 
     .mobile {
         display: inline-flex;
-        width: 35px;
-        height: 35px;
+        width: 32px;
+        height: 32px;
         margin: 0 10px;
         border-radius: 50%;
         border: solid 2px #008fc3;
