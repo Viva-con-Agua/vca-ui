@@ -63,7 +63,7 @@ export default {
             default: "de",
             validator: function (value) {
                 // The value must match one of these strings
-                return ["de", "en"].indexOf(value) !== -1;
+                return ["de", "ch", "en", "gb"].indexOf(value) !== -1;
             },
         },
         rules: {
@@ -95,7 +95,9 @@ export default {
             hasError: null,
             languages: {
                 de: de,
+                ch: de,
                 en: en,
+                gb: en
             },
         };
     },
@@ -111,7 +113,7 @@ export default {
             return new Date(this.value);
         },
         isMondayFirst: function() {
-          return this.$props.language === "de";
+          return this.$props.language === "de" || this.$props.language === "ch";
         }
     },
     created() {
