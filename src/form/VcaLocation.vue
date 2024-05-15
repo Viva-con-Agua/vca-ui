@@ -84,7 +84,16 @@ export default {
         },
         autocompleteCallback() {
             // Load autocomplete from google places
-            const options = { types: [this.locationType] };
+            const options = {
+              types: [this.locationType],
+              // add bounds around Germany, Austria & Switzerland
+              bounds: {
+                north: 54.970804848009955, // South denmark
+                south: 45.59946845833749, // North italy
+                west: 5.764796691201656, // West of Genf
+                east: 17.3052751460145 // Bratislava
+              }
+            };
             if (this.lang) {
                 console.log("setting lang " + this.lang);
                 options["language"] = this.lang;
