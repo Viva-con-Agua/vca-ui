@@ -8,8 +8,7 @@
                 valid: hasError === false,
                 first: first,
                 last: last,
-            }"
-        >
+            }">
             <v-select
                 class="custom-style"
                 :value="currentOptions"
@@ -20,11 +19,13 @@
                 :pushTags="pushTags"
                 :placeholder="placeholder"
                 @input="handleClick"
+                @change="handleChange"
+                @update:search-input="searchEvent"
+                @keydown="keydownEvent"
                 @close="validate"
                 @option:selected="validate"
                 @option:deselected="validate"
-                @option:created="validate"
-            >
+                @option:created="validate">
                 <span slot="no-options">Bitte auswählen</span>
                 <template slot="option" slot-scope="option">
                     <div class="dropdown-option">
@@ -42,100 +43,75 @@
 </template>
 
 <script>
-export default {
-    name: "VcaDropdown",
-    props: {
-        value: {
-            type: Array,
-            default: function () {
-                return [];
+    export default {
+        name: 'VcaDropdown',
+        props: {
+            value: {
+                type: Array,
+                default: function () {
+                    return [];
+                },
+            },
+            title: {
+                type: String,
+                default: 'deprecated, remove title, use placeholder',
+            },
+            placeholder: {
+                type: String,
+                default: 'default placeholder',
+            },
+            label: {
+                type: String,
+                default: 'default label',
+            },
+            pushTags: {
+                type: Boolean,
+                default: false,
+            },
+            rules: {
+                type: Object,
+                default: null,
+            },
+            first: {
+                type: Boolean,
+                default: false,
+            },
+            last: {
+                type: Boolean,
+                default: false,
+            },
+            multiple: {
+                type: Boolean,
+                default: false,
+            },
+            taggable: {
+                type: Boolean,
+                default: false,
+            },
+            errorMsg: {
+                type: String,
+                default: 'Error',
+            },
+            options: {
+                type: Array,
+                default: function () {
+                    return [];
+                },
             },
         },
-        title: {
-            type: String,
-            default: "deprecated, remove title, use placeholder",
+        data() {
+            return {
+                currentOptions: this.value,
+                hasError: null,
+            };
         },
-        placeholder: {
-            type: String,
-            default: "default placeholder",
-        },
-        label: {
-            type: String,
-            default: "default label",
-        },
-        pushTags: {
-            type: Boolean,
-            default: false,
-        },
-        rules: {
-            type: Object,
-            default: null,
-        },
-        first: {
-            type: Boolean,
-            default: false,
-        },
-        last: {
-            type: Boolean,
-            default: false,
-        },
-        multiple: {
-            type: Boolean,
-            default: false,
-        },
-        taggable: {
-            type: Boolean,
-            default: false,
-        },
-        errorMsg: {
-            type: String,
-            default: "Error",
-        },
-        options: {
-            type: Array,
-            default: function () {
+        created() {
+            if (!this.value) {
                 return [];
-            },
-        },
-    },
-    data() {
-        return {
-            currentOptions: this.value,
-            hasError: null,
-        };
-    },
-    created() {
-        if (!this.value) {
-            return [];
-        }
-        var preSelected = [];
-        this.value.forEach((val) => {
-            var value = this.options.find(
-                (element) => element.value == val.value
-            );
-            if (value != null) {
-                preSelected.push(value);
-            } else if (this.taggable) {
-                preSelected.push(val);
             }
-        });
-        this.currentOptions = preSelected;
-    },
-    watch: {
-        value: function (nVal) {
-            this.setPreselection(nVal);
-        },
-        options: function () {
-            this.setPreselection(this.value);
-        },
-    },
-    methods: {
-        setPreselection(val) {
             var preSelected = [];
-            val.forEach((val) => {
-                var value = this.options.find(
-                    (element) => element.value == val.value
-                );
+            this.value.forEach((val) => {
+                var value = this.options.find((element) => element.value == val.value);
                 if (value != null) {
                     preSelected.push(value);
                 } else if (this.taggable) {
@@ -144,27 +120,57 @@ export default {
             });
             this.currentOptions = preSelected;
         },
-        handleClick(event) {
-            if (event !== null) {
-                // Set event as an array if its only a single selection, otherwise we cannot handle the model correctly
-                if (!Array.isArray(event)) {
-                    event = [event];
-                }
+        watch: {
+            value: function (nVal) {
+                this.setPreselection(nVal);
+            },
+            options: function () {
+                this.setPreselection(this.value);
+            },
+        },
+        methods: {
+            setPreselection(val) {
+                var preSelected = [];
+                val.forEach((val) => {
+                    var value = this.options.find((element) => element.value == val.value);
+                    if (value != null) {
+                        preSelected.push(value);
+                    } else if (this.taggable) {
+                        preSelected.push(val);
+                    }
+                });
+                this.currentOptions = preSelected;
+            },
+            handleChange(event) {
+                this.$emit('change', event);
+            },
+            searchEvent(event) {
+                this.$emit('search', event);
+            },
+            keydownEvent(event) {
+                this.$emit('keydown', event);
+            },
+            handleClick(event) {
+                if (event !== null) {
+                    // Set event as an array if its only a single selection, otherwise we cannot handle the model correctly
+                    if (!Array.isArray(event)) {
+                        event = [event];
+                    }
 
-                this.currentOptions = event;
-                this.$emit("input", event);
-            } else {
-                this.currentOptions = [];
-                this.$emit("input", []);
-            }
-            this.validate();
+                    this.currentOptions = event;
+                    this.$emit('input', event);
+                } else {
+                    this.currentOptions = [];
+                    this.$emit('input', []);
+                }
+                this.validate();
+            },
+            validate() {
+                this.hasError = false;
+                if (this.rules !== null && this.rules.$invalid) {
+                    this.hasError = true;
+                }
+            },
         },
-        validate() {
-            this.hasError = false;
-            if (this.rules !== null && this.rules.$invalid) {
-                this.hasError = true;
-            }
-        },
-    },
-};
+    };
 </script>
