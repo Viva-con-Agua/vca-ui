@@ -19,8 +19,8 @@
                 :pushTags="pushTags"
                 :placeholder="placeholder"
                 @input="handleClick"
-                @change="handleChange"
-                @update:search-input="searchEvent"
+                @search="searchEvent"
+                @search:blur="searchBlurEvent"
                 @keydown="keydownEvent"
                 @close="validate"
                 @option:selected="validate"
@@ -141,8 +141,8 @@
                 });
                 this.currentOptions = preSelected;
             },
-            handleChange(event) {
-                this.$emit('change', event);
+            searchBlurEvent(event) {
+                this.$emit('search:blur', event);
             },
             searchEvent(event) {
                 this.$emit('search', event);
