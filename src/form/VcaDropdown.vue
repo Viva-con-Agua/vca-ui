@@ -18,6 +18,7 @@
                 :taggable="taggable"
                 :pushTags="pushTags"
                 :placeholder="placeholder"
+                @open="handleOpen"
                 @input="handleClick"
                 @search="searchEvent"
                 @search:blur="searchBlurEvent"
@@ -149,6 +150,9 @@
             },
             keydownEvent(event) {
                 this.$emit('keydown', event);
+            },
+            handleOpen(event) {
+                this.$emit('open', event);
             },
             handleClick(event) {
                 if (event !== null) {
