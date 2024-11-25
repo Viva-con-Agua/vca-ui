@@ -1,54 +1,53 @@
 <template>
     <div class="popup-container" v-if="visible">
-      <div class="popup-background" @click="hide" />
-      <div class="popup">
-        <h3 class="popup-header">
-          {{ title }}
-          <span @click="hide">X</span>
-        </h3>
-        <vca-card class="popup-content">
-          <slot></slot>
-        </vca-card>
-      </div>
+        <div class="popup-background" @click="hide" />
+        <div class="popup">
+            <h2 class="popup-header">
+                <span>{{ title }}</span>
+                <span @click="hide" class="popup-close">✕</span>
+            </h2>
+            <vca-card class="popup-content">
+                <slot></slot>
+            </vca-card>
+        </div>
     </div>
-    
 </template>
 <script>
 export default {
-    name: 'VcaPopup',
+    name: "VcaPopup",
     props: {
         title: {
             type: String,
-            default: ""
+            default: "",
         },
         show: {
             type: Boolean,
-            default: false
-        }
+            default: false,
+        },
     },
     data() {
-      return {
-        visible: this.show
-      }
+        return {
+            visible: this.show,
+        };
     },
     methods: {
         hide() {
-          this.$emit("close")
-          this.visible = false
-        }
+            this.$emit("close");
+            this.visible = false;
+        },
     },
-    watch: { 
-      show: function(nVal) {
-        this.visible = nVal
-      }
+    watch: {
+        show: function (nVal) {
+            this.visible = nVal;
+        },
     },
-}
+};
 </script>
 <style lang="scss">
 @import "../../src/assets/styles/utils/variables";
+@import "../../src/assets/styles/utils/mixins";
 
 .popup-container {
-
     top: 0;
     left: 0;
     width: 100%;
@@ -69,34 +68,42 @@ export default {
         display: flex;
         flex-direction: column;
         background-color: white;
-        margin: 100px auto;
+        margin: 5% auto;
         position: relative;
         width: 80%;
         height: auto;
         max-height: 80%;
         z-index: 200;
 
-        .popup-header {
-            padding: 5px 10px 3px 10px;
-            min-height: 21px;
-            border-bottom: solid thin $grey;
+        @include media(small) {
+            margin: 10% auto;
+        }
 
-            span {
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 1rem;
+            border-bottom: solid thin $grey;
+            background-color: $main-color;
+            color: $white;
+            min-height: auto;
+            font-size: 1.25rem;
+
+            @include media(large) {
+                font-size: 2rem;
+            }
+
+            .popup-close {
                 cursor: pointer;
-                color: #000;
-                float: right;
+                color: $white;
+                &:hover {
+                    color: $primary-dark;
+                }
             }
         }
         .popup-content {
             overflow: scroll;
         }
-
     }
-
 }
-
-
-
-
-
 </style>

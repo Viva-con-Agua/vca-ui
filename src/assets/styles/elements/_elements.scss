@@ -1,11 +1,17 @@
 
 .vca-card {
-    /* Add shadows to create the "card" effect */
-    padding: 1.0em;
+    padding: 0.4em;
+    @include media(large) {
+        padding: 1.0em;
+    }
 }
 
 .vca-field {
-    padding: 1.0em;
+
+    padding: 0.4em;
+    @include media(large) {
+        padding: 1.0em;
+    }
     display: flex;
     flex-direction: column;
 
@@ -32,7 +38,6 @@
     }
 
 }
-
 
 
 
@@ -197,10 +202,9 @@
 
 
 .inline-infobox {
-    flex-basis: 1% !important;
     display: inline-block;
     flex: inherit;
-    margin: 8px auto auto 10px;
+    margin: 10px auto auto 10px;
 }
 
 .info-box {

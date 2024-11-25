@@ -1,9 +1,28 @@
 <template>
-    <div class="vca-input vca-checkbox" :class="{error: hasError === true, valid: hasError === false}">
+    <div
+        class="vca-input vca-checkbox"
+        :class="{ error: hasError === true, valid: hasError === false }"
+    >
         <label class="container">
             <div class="vca-row container-row">
-                <input v-if="!isArray" type="checkbox" v-model="checked" @change="change" @blur="validate">
-                <input v-else type="checkbox" @change="change" :value="id" v-model="checked">
+                <input
+                    :disabled="disabled"
+                    v-if="!isArray"
+                    type="checkbox"
+                    v-model="checked"
+                    :name="name"
+                    @change="change"
+                    @blur="validate"
+                />
+                <input
+                    :disabled="disabled"
+                    v-else
+                    type="checkbox"
+                    @change="change"
+                    :value="id"
+                    :name="name"
+                    v-model="checked"
+                />
                 <p class="checkbox-text">
                     <span class="checkmark"></span>
                     <slot></slot>
@@ -15,67 +34,73 @@
 </template>
 <script>
 export default {
-    name: 'VcaCheckbox',
+    name: "VcaCheckbox",
     props: {
         value: {
-            type: [ Boolean, Array ],
-            default: false
+            type: [Boolean, Array],
+            default: false,
         },
         errorMsg: {
             type: String,
-            default: ''
+            default: "",
+        },
+        name: {
+            type: String,
+            default: "",
         },
         placeholder: {
             type: String,
-            default: 'please fill'
+            default: "please fill",
         },
         id: {
             type: String,
-            default: null
+            default: null,
+        },
+        disabled: {
+            type: Boolean,
+            default: false,
         },
         rules: {
             type: Object,
-            default: null
-        }
+            default: null,
+        },
     },
-    data(){
+    data() {
         return {
             checked: false,
             hasError: null,
-            isArray: false
-        }
+            isArray: false,
+        };
     },
-    watch: { 
-      value: function(nVal) {
-        this.checked = nVal
-      }
+    watch: {
+        value: function (nVal) {
+            this.checked = nVal;
+        },
     },
-    mounted () {
-        this.isArray = Array.isArray(this.value)
-        this.checked = this.value
+    mounted() {
+        this.isArray = Array.isArray(this.value);
+        this.checked = this.value;
     },
     methods: {
-        change (e) {
-            this.validate()
+        change(e) {
             if (this.isArray) {
-
-                this.$emit('input',  this.checked)
+                this.$emit("input", this.checked);
             } else {
-                this.$emit('input',  e.target.checked)
+                this.$emit("input", e.target.checked);
             }
-
+            this.validate();
         },
         // validate form via vuelidate
-        validate () {
+        validate() {
             // if validate is set
             if (this.rules !== null) {
                 if (this.rules.$invalid) {
-                    this.hasError = true
+                    this.hasError = true;
                 } else {
-                    this.hasError = false
+                    this.hasError = false;
                 }
             }
-        }
-    }
-}
+        },
+    },
+};
 </script>

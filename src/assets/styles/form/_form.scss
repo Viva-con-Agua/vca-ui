@@ -111,7 +111,7 @@
     border: solid thin $grey;
     display: flex;
     width: max-content;
-    padding: 10px;
+    padding: 5px 10px;
 
     .vca-labeled-input-container {
     
@@ -139,7 +139,7 @@
             flex-direction: row;
 
             input {
-                padding: 10px 0 0 0;
+                padding: 5px 0 0 0;
                 font-size: 1.75em;
                 border: none;
                 font-weight: bold;
@@ -154,6 +154,11 @@
                     text-align: left;
                 }
 
+                &::-webkit-outer-spin-button,
+                &::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                }
+
             }
 
             span.middle {
@@ -166,7 +171,7 @@
                 text-align: center;
                 background-color: transparent;
                 font-size: 1.75em;
-                padding: 15px 5px 0 0;
+                padding: 10px 5px 0 0;
                 font-weight: bold;
                 min-width: 50px;
 
@@ -198,6 +203,9 @@
         .vs__search, .vs__search:focus {
             border: solid thin $grey;
             height: 41px;
+            @include media(small) {
+                font-size: 13px;
+            }
         }
         .vs__selected {
             padding: .6em;
@@ -223,6 +231,7 @@
 
         .vs__dropdown-menu {
             top: 50px;
+            z-index: 80;
         }
         .vs__dropdown-toggle {
             border: none;
@@ -258,11 +267,16 @@
 
 
         &.vs--single {
-            height: 51px;
-
+            height: 45px;
+            @include media(large) {
+                height: 51px;
+            }
 
             .vs__search {
                 border: none;
+                @include media(small) {
+                    margin-top: 2px;
+                }
             }
             .vs__search:focus {
                 border: solid thin $grey;   
@@ -276,6 +290,9 @@
                 margin: 0;
                 position: absolute;
                 padding: 0.75em;
+                @include media(small) {
+                    top: 4px;
+                }
 
             }
 
@@ -306,9 +323,9 @@
 
 }
 
-
-
-
-
-
-
+.vca-radiobutton {
+    margin: 0 10px 1em 0;
+    input {
+        margin: 5px 10px
+    }
+}

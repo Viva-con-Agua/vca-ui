@@ -18,7 +18,6 @@ body {
 }
 
 #app-content {
-    overflow-x: auto;
     flex-shrink: 0;
     flex-grow: 1;
 }
@@ -116,6 +115,17 @@ body {
 }
 
 
+.shadowed {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 3px;
+    margin: 5px;
+    @include media(large) {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 5px;
+        margin: 10px;
+    }
+}
+
 /*
     CSS Positioning
 */
@@ -141,6 +151,9 @@ body {
 
 .vca-center {
     justify-content: center;
+}
+.vertical-center {
+    margin: auto 5px;
 }
 
 .vca-row {
