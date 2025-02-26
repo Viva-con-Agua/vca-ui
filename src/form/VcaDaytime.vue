@@ -145,4 +145,10 @@ export default {
         }
     }
 }
+
+.vue__time-picker .dropdown,
+.vue__time-picker .dropdown .select-list
+{
+  height: 13em !important;
+}
 </style>
