@@ -27,8 +27,8 @@
                 @option:selected="validate"
                 @option:deselected="validate"
                 @option:created="validate">
-                <span slot="no-options">Bitte auswählen</span>
-                <template slot="option" slot-scope="option">
+                <template #no-options>Bitte auswählen</template>
+                <template #option="{ option }">
                     <div class="dropdown-option">
                         <h3 class="option-title">{{ option.title }}</h3>
                         <h5 v-if="option.subtitle" class="option-subtitle">

@@ -1,16 +1,16 @@
-import * as form from './form'
-import * as elements from './elements'
-import * as directives from './directives'
-import * as navigation from './navigation'
-import * as buttons from './buttons'
-import * as table from './table'
-import * as layout from './layout'
 import vSelect from 'vue-select'
-import VueTimepicker from 'vue2-timepicker'
-import 'vue2-timepicker/dist/VueTimepicker.css'
-import 'vue-select/dist/vue-select.css';
-import './assets/styles/main.scss'
+import 'vue-select/dist/vue-select.css'
+import VueTimepicker from 'vue3-timepicker'
+import 'vue3-timepicker/dist/VueTimepicker.css'
 import './assets/main.css'
+import './assets/styles/main.scss'
+import * as buttons from './buttons'
+import * as directives from './directives'
+import * as elements from './elements'
+import * as form from './form'
+import * as layout from './layout'
+import * as navigation from './navigation'
+import * as table from './table'
 
 const allComponents = {
   ...form,
@@ -31,9 +31,10 @@ const VcaUi = Vue => {
 }
 
 export default VcaUi
-export * from './form'
+export * from './buttons'
 export * from './directives'
 export * from './elements'
+export * from './form'
 export * from './layout'
-export * from './buttons'
 export * from './navigation'
+

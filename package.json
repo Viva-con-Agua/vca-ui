@@ -1,58 +1,60 @@
 {
-    "name": "vca-ui",
-    "version": "0.4.108",
-    "scripts": {
-        "serve": "vue-cli-service serve",
-        "build": "vue-cli-service build --target lib --inline-vue --name vca-ui src/main.js",
-        "lint": "vue-cli-service lint"
+  "name": "vca-ui",
+  "version": "0.5.0",
+  "private": true,
+  "main": "./dist/vca-ui.common.js",
+  "files": [
+    "dist/*",
+    "src/*",
+    "public/*",
+    "*.json",
+    "*.js"
+  ],
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --target lib --inline-vue --name vca-ui src/main.js",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@vuelidate/core": "^2.0.3",
+    "@vuelidate/validators": "^2.0.4",
+    "core-js": "^3.38.1",
+    "rfs": "^10.0.0",
+    "sass": "^1.93.3",
+    "sass-loader": "^13.3.3",
+    "vue": "^3.5.22",
+    "vue-datepicker-next": "^1.0.3",
+    "vue-select": "^4.0.0-beta.6",
+    "vue3-timepicker": "^1.0.0-beta.2",
+    "vuex": "^4.1.0"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.26.3",
+    "@vue/cli-plugin-babel": "^5.0.9",
+    "@vue/cli-plugin-eslint": "^5.0.9",
+    "@vue/cli-service": "^5.0.9",
+    "@vue/compiler-sfc": "^3.5.22",
+    "eslint": "^8.57.1",
+    "eslint-plugin-vue": "^9.33.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
     },
-    "main": "./dist/vca-ui.common.js",
-    "files": [
-        "dist/*",
-        "src/*",
-        "public/*",
-        "*.json",
-        "*.js"
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
     ],
-    "dependencies": {
-        "core-js": "^3.8.3",
-        "node-sass": "^5.0.0",
-        "rfs": "^9.0.3",
-        "sass-loader": "^10.1.1",
-        "vue": "^2.6.12",
-        "vue-select": "^3.11.2",
-        "vue2-timepicker": "^1.1.6",
-        "vuejs-datepicker": "^1.6.2",
-        "vuelidate": "^0.7.6",
-        "vuex": "^3.6.2"
+    "parserOptions": {
+      "parser": "@babel/eslint-parser",
+      "requireConfigFile": false
     },
-    "devDependencies": {
-        "@vue/cli-plugin-babel": "^4.5.12",
-        "@vue/cli-plugin-eslint": "^4.5.12",
-        "@vue/cli-service": "^4.5.12",
-        "babel-eslint": "^10.1.0",
-        "eslint": "^6.7.2",
-        "eslint-plugin-vue": "^6.2.2",
-        "eslint-plugin-vue-libs": "^4.0.0",
-        "vue-template-compiler": "^2.6.12"
-    },
-    "eslintConfig": {
-        "root": true,
-        "env": {
-            "node": true
-        },
-        "extends": [
-            "plugin:vue/essential",
-            "eslint:recommended"
-        ],
-        "parserOptions": {
-            "parser": "babel-eslint"
-        },
-        "rules": {}
-    },
-    "browserslist": [
-        "> 1%",
-        "last 2 versions",
-        "not dead"
-    ]
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }

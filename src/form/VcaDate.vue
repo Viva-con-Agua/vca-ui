@@ -25,8 +25,9 @@
     </div>
 </template>
 <script>
-    import { en, de } from 'vuejs-datepicker/dist/locale';
-    import datepicker from 'vuejs-datepicker';
+    import datepicker from 'vue-datepicker-next';
+    import de from 'vue-datepicker-next/locale/de';
+    import en from 'vue-datepicker-next/locale/en';
     export default {
         name: 'VcaInputDate',
         components: { datepicker },
@@ -100,6 +101,7 @@
         watch: {
             value: function (nVal) {
                 console.log('changed: ' + nVal);
+                // eslint-disable-next-line
                 this.value = nVal;
                 this.inputValue = this.value ? new Date(this.value) * 1000 : undefined;
             },
@@ -116,7 +118,7 @@
             this.checkWrap();
             window.addEventListener('resize', this.checkWrap);
         },
-        destroyed() {
+        unmounted() {
             window.removeEventListener('resize', this.checkWrap);
         },
         methods: {
